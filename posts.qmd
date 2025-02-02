@@ -1,0 +1,8 @@
+---
+listing:
+    type: grid
+    contents:
+        - "posts/"
+        - "posts/**/"
+    categories: true
+---

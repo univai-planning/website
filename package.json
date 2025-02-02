@@ -1,0 +1,20 @@
+{
+  "name": "univai-docs",
+  "version": "1.0.0",
+  "description": "UnivAI documentation with custom theme",
+  "scripts": {
+    "generate-vars": "node generate-scss.js",
+    "build-tailwind": "tailwindcss -i tailwind.css -o output.css --no-source-map",
+    "dev": "tailwindcss -i custom.scss -o output.css --map --watch",
+    "build-dev": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && quarto render",
+    "build": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && quarto render --output-dir=docs"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "postcss-scss": "^4.0.9",
+    "autoprefixer": "^10.4.16",
+    "source-map-loader": "^4.0.1"
+  }
+}

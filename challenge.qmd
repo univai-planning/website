@@ -1,0 +1,102 @@
+---
+format:
+  html:
+    toc: false
+    page-layout: custom
+---
+
+::: {.container-fluid .p-0}
+
+::: {.px-4 .py-5 .text-center}
+# Whatever the scope of your challenge.. {.display-4 .fw-normal}
+
+![Team collaborating on AI solutions](images/team-collaboration.jpg){.img-fluid .mt-4 .mb-4}
+
+Our team of experts brings together deep technical expertise and strategic thinking to tackle your most complex AI challenges. From early-stage ideation to full-scale deployment, we're here to guide your journey.
+:::
+
+## Our work {.text-center .mt-5 .mb-4}
+
+We partner with industry leaders to deliver transformative AI solutions that drive real business impact. Our portfolio spans from developing cutting-edge machine learning models to implementing enterprise-wide AI strategies.
+
+::: {.grid .mt-5}
+
+::: {.g-col-12 .g-col-md-6 .mb-4}
+### Healthcare Analytics Platform
+Developed a comprehensive analytics platform for a leading healthcare provider, enabling real-time patient monitoring and predictive care recommendations.
+
+- Advanced ML models for patient outcome prediction
+- Real-time data integration pipeline
+- Custom visualization dashboard
+:::
+
+::: {.g-col-12 .g-col-md-6 .mb-4}
+### Financial Risk Assessment System
+Created an AI-powered risk assessment system for a major financial institution, improving decision accuracy by 35%.
+
+- Automated risk scoring
+- Anomaly detection
+- Regulatory compliance integration
+:::
+
+:::
+
+## Industries {.mt-5 .mb-4}
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-3}
+### Healthcare
+- Patient outcome prediction
+- Resource optimization
+- Diagnostic assistance
+:::
+
+::: {.g-col-12 .g-col-md-3}
+### Finance
+- Risk assessment
+- Fraud detection
+- Algorithmic trading
+:::
+
+::: {.g-col-12 .g-col-md-3}
+### Manufacturing
+- Process optimization
+- Quality control
+- Predictive maintenance
+:::
+
+::: {.g-col-12 .g-col-md-3}
+### Retail
+- Customer analytics
+- Inventory optimization
+- Demand forecasting
+:::
+
+:::
+
+::: {.text-center .py-5}
+## Ready to Innovate {.display-5}
+
+[Talk to an Expert]{.btn .btn-warning .btn-lg}
+:::
+
+::: {.footer .bg-dark .text-white .py-5}
+::: {.container}
+::: {.row}
+
+::: {.col-md-6}
+## Let's Talk!
+
+We are always open to discuss your project, improve your online presence and help with your AI/ML development challenges.
+:::
+
+::: {.col-md-6 .text-end}
+[Instagram]{.btn .btn-link} [Twitter]{.btn .btn-link} [Facebook]{.btn .btn-link}
+:::
+
+:::
+:::
+:::
+
+:::

@@ -1,0 +1,73 @@
+$enable-sourcemaps: false;
+/*-- scss:defaults --*/
+// Default values
+$color-brand-300: #4086d0 !default;
+$font-sans:
+    "PT Sans",
+    system-ui,
+    -apple-system,
+    sans-serif !default;
+$font-serif: "IBM Plex Serif", Georgia, serif !default;
+$font-mono: "JetBrains Mono", "Fira Code", monospace !default;
+
+// Now modify if needed
+@import "generated-variables";
+
+// Import fonts
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap");
+
+// Bootstrap overrides
+$primary: $color-brand-300;
+$font-family-sans-serif: $font-sans;
+$font-family-serif: $font-serif;
+$font-family-monospace: $font-mono;
+
+/*-- scss:rules --*/
+// Base styles
+body {
+    font-family: $font-sans;
+    color: $color-brand-700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-serif;
+}
+
+// Code styles
+pre,
+code {
+    font-family: $font-mono;
+}
+
+.sourceCode {
+    .kw {
+        color: $color-syntax-keyword;
+    }
+    .st {
+        color: $color-syntax-string;
+    }
+    .dv {
+        color: $color-syntax-number;
+    }
+    .fu {
+        color: $color-syntax-function;
+    }
+    .op {
+        color: $color-syntax-operator;
+    }
+    .va {
+        color: $color-syntax-variable;
+    }
+    .dt {
+        color: $color-syntax-type;
+    }
+    .co {
+        color: $color-syntax-comment;
+    }
+}

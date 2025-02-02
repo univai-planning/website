@@ -1,0 +1,89 @@
+---
+format:
+  html:
+    page-layout: custom
+    toc: false
+    include-in-header:
+    - text: |
+        <style>
+        #intro {
+            background-image: url("/assets/Frame+1000006623.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        #services {
+            background-image: url("/assets/Frame+1000006623.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        #outro {
+            background-image: url("/assets/photo-of-man-holding-a-book-927022.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        </style>
+---
+
+::: {#intro .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-white .text-center .vh-100 .d-flex .flex-column .justify-content-center}
+
+# Our Process {.display-4 .fw-bold}
+
+:::: {.fs-2 .fw-light .mt-3 .px-4}
+Transformative strategies that redefine what's possible. We turn complex challenges into elegant solutions.
+::::
+
+:::
+
+::: {.container .px-4 .mb-5}
+
+### 1. Problem Definition
+
+We begin by deeply understanding your business challenges. Our team works closely with yours to:
+
+* Identify key pain points and opportunities
+* Define clear success metrics aligned with business KPIs
+* Map existing processes and systems
+* Establish project scope and timeline
+
+### 2. Model Construction
+
+Our expert team develops custom AI solutions tailored to your needs:
+
+* Data strategy and preparation
+* Model architecture design
+* Training and validation
+* Inference design
+* Performance optimization
+
+### 3. Business Translation
+
+Models are useless unless they drive business outcomes. So we:
+
+* Translate model metrics into business KPIs such as cost
+* Design and implement experiments to validate business assumptions
+* Work with your team to capture outcomes of models from customers
+
+### 4. Deployment
+
+We ensure smooth integration into your existing infrastructure:
+
+* System integration
+* Inference optimization
+* Customer data collection for the data flywheel
+* Performance monitoring
+* Team training
+* Ongoing support and maintenence
+
+:::
+
+::: {#outro .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-primary .text-center .vh-100 .d-flex .flex-column .justify-content-center}
+
+## Ready to Innovate? {.display-5 .fw-bold}
+
+Let's transform your business with cutting-edge AI solutions.
+
+[Talk to an Expert]{.btn .btn-light .btn-lg}
+:::

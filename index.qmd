@@ -1,0 +1,166 @@
+---
+format:
+  html:
+    page-layout: custom
+    toc: false
+    include-in-header:
+        - text: |
+            <style>
+            #intro {
+                background-image: url("/assets/Frame+1000006623.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            #services {
+                background-image: url("/assets/Frame+1000006623.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            #outro {
+                background-image: url("/assets/photo-of-man-holding-a-book-927022.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            </style>
+---
+
+::: {#intro .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-white .text-center .d-flex .vh-100 .flex-column .justify-content-center}
+
+# Step into the future {.display-4 .fw-bold}
+
+:::: {.fs-2 .fw-light .mt-3 .px-4}
+Engineering expertise and Machine Learning development for companies ready to innovate
+::::
+
+[Talk to an Expert]{.btn .btn-light .btn-lg}
+:::
+
+
+::: {.p-0 .m-0 .bg-primary .tw-bg-brand-400 .text-white .text-center .vh-100 .d-flex .flex-column .justify-content-center}
+
+# Ideate, Implement & Innovate {.display-4 .fw-bold}
+
+:::: {.fs-2 .fw-light .mt-3 .px-4 .text-start}
+At univ.ai, we transform possibilities into reality. Our team of expert consultants combines deep technical knowledge with strategic thinking to deliver AI solutions that drive real business value.
+::::
+
+:::: {.fs-2 .fw-light .mt-3 .text-start .mx-auto .col-lg-8}
+* Custom AI solutions tailored to your needs
+* End-to-end implementation support
+* Continuous innovation and optimization
+::::
+
+:::
+
+::: {#services .p-0 .m-0 .pb-5 .bg-primary .tw-bg-brand-200 .text-white .text-center .d-flex .flex-column .justify-content-center}
+
+# Our Services {.text-center}
+
+:::: {.container .px-4}
+::::: {.grid}
+
+::::: {.g-col-12 .g-col-md-4 .text-start }
+### User-Centric Design
+
+We build AI solutions that put your users first. Our approach combines technical excellence with deep understanding of human-centered design principles.
+
+* User research and analysis
+* Interface optimization
+* Workflow integration
+* Usability testing
+
+:::::
+
+::::: {.g-col-12 .g-col-md-4 .text-start }
+### Generative AI
+
+Harness the power of generative AI to create new possibilities for your business. From content generation to creative problem-solving.
+
+* Custom language models
+* Image generation systems
+* Text-to-speech solutions
+* Content optimization
+:::::
+
+::::: {.g-col-12 .g-col-md-4 .text-start }
+### AI Research
+
+Stay at the forefront of AI innovation with our dedicated research team. We turn cutting-edge research into practical business solutions.
+
+* Applied research projects
+* Proof of concepts
+* Performance optimization
+* Innovation consulting
+:::::
+
+:::::
+
+::::
+
+:::
+
+::: {.p-0 .m-0 .pb-5 .bg-primary .tw-bg-brand-300 .text-white .text-center  .d-flex .flex-column .justify-content-center}
+
+# Industries We Are Transforming {.text-center}
+
+:::: {.container .px-4}
+::::: {.grid}
+
+::::: {.g-col-12 .g-col-md-3 .text-start }
+### Healthcare
+
+Revolutionizing patient care through AI-powered diagnostics and treatment planning.
+
+* Diagnostic assistance
+* Treatment optimization
+* Patient monitoring
+* Resource allocation
+:::::
+
+::::: {.g-col-12 .g-col-md-3 .text-start }
+### Pharma
+
+Accelerating drug discovery and development with advanced machine learning solutions.
+
+* Drug discovery
+* Clinical trials
+* Research automation
+* Safety monitoring
+:::::
+
+::::: {.g-col-12 .g-col-md-3 .text-start }
+### Law
+
+Enhancing legal services with AI-powered document analysis and research tools.
+
+* Document analysis
+* Case research
+* Contract review
+* Compliance monitoring
+:::::
+
+::::: {.g-col-12 .g-col-md-3 .text-start }
+### Finance
+
+Transforming financial services with intelligent automation and predictive analytics.
+
+* Risk assessment
+* Fraud detection
+* Portfolio management
+* Market analysis
+:::::
+:::::
+::::
+:::
+
+::: {#outro .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-primary .text-center .vh-100 .d-flex .flex-column .justify-content-center}
+
+## Ready to Innovate? {.display-5 .fw-bold}
+
+Let's transform your business with cutting-edge AI solutions.
+
+[Talk to an Expert]{.btn .btn-light .btn-lg}
+:::

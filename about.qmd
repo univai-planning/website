@@ -1,0 +1,61 @@
+---
+format:
+  html:
+    toc: false
+    page-layout: custom
+    include-in-header:
+        - text: |
+            <style>
+            #intro {
+                background-image: url("/assets/Frame+1000006623.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            #services {
+                background-image: url("/assets/Frame+1000006623.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            #outro {
+                background-image: url("/assets/photo-of-man-holding-a-book-927022.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            </style>
+    listing:
+        - type: default
+          id: people
+          image-height: "50"
+          image-align: left
+          categories: false
+          contents:
+            - people.yaml
+        - type: default
+          id: alumni
+          image-height: "50"
+          image-align: left
+          categories: false
+          contents:
+            - alumni.yaml
+---
+
+::: {#intro  .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-white .text-center .d-flex .flex-column .justify-content-center}
+
+# About Us {.display-4 .fw-bold}
+
+:::
+
+# People {.px-4}
+
+::: {#people .container .px-4}
+
+:::
+
+# Alumni {.px-4}
+
+::: {#alumni .container .px-4}
+
+:::

@@ -1,0 +1,43 @@
+/*-- scss:defaults --*/
+@import "generated-variables";
+
+// Dark mode variables
+$navbar-bg: $color-neutral-dark-100;
+$navbar-fg: $color-neutral-dark-600;
+$body-bg: $color-neutral-dark-50;
+$body-color: $color-neutral-dark-600;
+$link-color: $color-brand-dark-500;
+
+// Bootstrap overrides for dark mode
+$primary: $color-brand-dark-500;
+$secondary: $color-neutral-dark-300;
+$success: #059669;
+$info: $color-brand-dark-400;
+$warning: #d97706;
+$danger: #dc2626;
+$light: $color-neutral-dark-600;
+$dark: $color-neutral-dark-50;
+
+// Font settings (same as light mode)
+$font-family-sans-serif: $font-sans;
+$font-family-serif: $font-serif;
+$font-family-monospace: $font-mono;
+
+// Additional Bootstrap customization (same as light mode)
+$border-radius: 0.375rem;
+$border-radius-sm: 0.25rem;
+$border-radius-lg: 0.5rem;
+
+/*-- scss:rules --*/
+.navbar {
+    border-bottom: 1px solid $color-neutral-dark-200;
+}
+
+.navbar-brand img {
+    height: 24px;
+    width: auto;
+}
+
+.quarto-dark-toggle {
+    cursor: pointer;
+}

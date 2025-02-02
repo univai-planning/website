@@ -1,0 +1,237 @@
+---
+format:
+  html:
+    page-layout: custom
+    toc: false
+    include-in-header:
+        - text: |
+            <style>
+            #health {
+                background-image: url("/assets/doctors2.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            #law {
+                background-image: url("/assets/law.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            #finance {
+                background-image: url("/assets/finance.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            #outro {
+                background-image: url("/assets/photo-of-man-holding-a-book-927022.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            </style>
+---
+::: {#health .p-0 .m-0 .bg-light .tw-bg-brand-600 .text-dark .text-center .vh-100 .d-flex .flex-column .justify-content-center}
+
+### Health {.display-5 .fw-bold}
+
+:::: {.fs-2 .fw-light .mt-3 .px-4}
+Engineering expertise and Machine Learning development for healthcare
+::::
+:::: {.fs-4 .start-left  .mt-3 .px-4}
+Adoption of healthcare AI technology has accelerated dramatically in recent years,
+with machine learning models now supporting everything from diagnosis to treatment planning.
+Our solutions help healthcare providers leverage these advances while maintaining the highest
+standards of patient care and data security.
+::::
+:::
+
+::: {.p-0 .m-0 .bg-primary .tw-bg-brand-200 .text-white .text-center .d-flex .flex-column .justify-content-center}
+
+### Case Studies {.text-center}
+
+:::: {.container .px-4}
+::::: {.grid}
+
+::::: {.g-col-12 .g-col-md-4 .text-start}
+#### Predictive Analytics & Healthcare Delivery Enhancement
+
+At a leading hospital network, we implemented an ML-powered patient flow optimization system that:
+
+- Reduced emergency department wait times by 35%
+- Improved bed allocation efficiency by 28%
+- Enhanced staff scheduling accuracy by 42%
+- Decreased length of stay variation by 23%
+
+:::::
+
+::::: {.g-col-12 .g-col-md-4 .text-start}
+#### VNLP for Personalized Care
+
+Developed a natural language processing system for a major healthcare provider that:
+
+- Analyzes clinical notes in real-time
+- Identifies high-risk patients with 94% accuracy
+- Automates routine documentation tasks
+- Enables personalized treatment recommendations
+
+:::::
+
+::::: {.g-col-12 .g-col-md-4 .text-start}
+
+#### Healthcare Business Process Optimization
+
+Our comprehensive process optimization solution delivered:
+
+- 40% reduction in administrative overhead
+- 65% faster insurance claim processing
+- Improved patient satisfaction scores
+- Enhanced regulatory compliance
+
+:::::
+
+:::::
+
+::::
+
+:::
+
+::: {#law .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-light .text-center .vh-100 .d-flex .flex-column .justify-content-center}
+
+### Law {.display-5 .fw-bold}
+
+:::: {.fs-2 .fw-light .mt-3 .px-4}
+Engineering expertise and Machine Learning development for legal firms
+::::
+:::: {.fs-4  .start-left .mt-3 .px-4}
+Modern legal practice requires sophisticated tools for document analysis,
+case research, and regulatory compliance. Our AI solutions help law firms and
+legal departments automate routine tasks while enhancing the quality of legal services.
+::::
+:::
+
+::: {.p-0 .m-0 .bg-primary .tw-bg-brand-200 .text-white .text-center .d-flex .flex-column .justify-content-center}
+
+### Case Studies {.text-center}
+
+:::: {.container .px-4}
+::::: {.grid}
+
+::::: {.g-col-12 .g-col-md-4 .text-start}
+#### Contract Analysis & Review Automation
+
+Implemented an AI-powered contract review system that:
+
+- Reduced review time by 75%
+- Increased accuracy of risk identification
+- Automated clause extraction and analysis
+- Standardized contract management processes
+
+:::::
+
+::::: {.g-col-12 .g-col-md-4 .text-start}
+#### Legal Research Enhancement
+
+Developed an advanced legal research platform featuring:
+
+- Intelligent case law analysis
+- Predictive outcome modeling
+- Automated document classification
+- Real-time regulatory compliance checking
+
+:::::
+
+::::: {.g-col-12 .g-col-md-4 .text-start}
+
+#### Legal Process Optimization
+
+Our process optimization solutions have achieved:
+
+- 50% reduction in document processing time
+- Enhanced accuracy in legal research
+- Improved case management efficiency
+- Streamlined client communication
+
+:::::
+
+:::::
+
+::::
+
+:::
+
+::: {#finance .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-dark .text-center .vh-100 .d-flex .flex-column .justify-content-center}
+
+### Finance{.display-5 .fw-bold}
+
+:::: {.fs-2 .fw-light .mt-3 .px-4}
+Engineering expertise and Machine Learning development for financial institutions
+::::
+:::: {.fs-4 .start-left .mt-3 .px-4}
+Financial services are being revolutionized by AI and machine learning,
+from algorithmic trading to risk assessment. Our solutions help financial
+institutions leverage cutting-edge technology while maintaining security and compliance.
+::::
+
+:::
+
+::: {.p-0 .m-0 .bg-primary .tw-bg-brand-200 .text-white .text-center .d-flex .flex-column .justify-content-center}
+
+### Case Studies {.text-center}
+
+:::: {.container .px-4}
+::::: {.grid}
+
+::::: {.g-col-12 .g-col-md-4 .text-start}
+#### Predictive Modeling & Market Analysis
+
+Delivered a comprehensive market analysis platform that:
+
+- Processes real-time market data
+- Generates accurate trading signals
+- Identifies market anomalies
+- Optimizes portfolio allocation
+
+:::::
+
+::::: {.g-col-12 .g-col-md-4 .text-start}
+#### NLP for Faster Deal Reviews
+
+Created an AI-powered document analysis system that:
+
+- Accelerates due diligence processes
+- Automates financial document review
+- Identifies potential risks
+- Ensures regulatory compliance
+
+:::::
+
+::::: {.g-col-12 .g-col-md-4 .text-start}
+
+#### Finance Business Process Optimization
+
+Our financial process optimization achievements include:
+
+- 60% faster transaction processing
+- Enhanced fraud detection accuracy
+- Improved customer service efficiency
+- Automated regulatory reporting
+
+:::::
+
+:::::
+
+::::
+
+:::
+
+
+::: {#outro .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-primary .text-center .vh-100 .d-flex .flex-column .justify-content-center}
+
+## Ready to Innovate? {.display-5 .fw-5}
+
+Let's transform your business with cutting-edge AI solutions.
+
+[Talk to an Expert]{.btn .btn-light .btn-lg}
+:::

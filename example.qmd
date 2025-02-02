@@ -1,0 +1,58 @@
+---
+title: "Styling Examples"
+---
+
+## Default Styled Components
+
+This section shows components with our global theme applied.
+
+::: {.card title="Hello"}
+#### Standard Card
+This card uses our default theme styling.
+:::
+
+## Custom Styled Components
+
+This section shows components with custom Tailwind classes applied.
+
+::: {.card .tw-bg-brand-400 .tw-border-brand-800 .tw-border-l-4 title="KKK"}
+#### Highlighted Card
+This card has custom background and border styling.
+:::
+
+```python
+def example():
+    # This code block uses our syntax highlighting
+    return "Hello, UnivAI!"
+```
+
+## Complex Layouts
+
+::: {.dashboard-grid}
+::: {.span-8}
+### Main Content
+Primary content area spanning 8 columns
+:::
+
+::: {.span-4}
+### Sidebar
+Sticky sidebar spanning 4 columns
+:::
+:::
+
+## Code Examples
+
+```python
+def example():
+    """
+    Example with custom syntax highlighting
+    that adapts to dark mode
+    """
+    return "Hello, UnivAI!"
+```
+
+## Dark Mode Compatible
+
+::: {.card .dark:tw-bg-gray-800 .dark:tw-text-white}
+This card adapts to dark mode automatically
+:::

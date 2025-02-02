@@ -1,0 +1,16 @@
+[
+  {
+    "listing": "/about.html",
+    "items": []
+  },
+  {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/boxloop.html",
+      "/posts/hello.html",
+      "/posts/votingforcongress/congress.html",
+      "/posts/lawoflargenumbers.html",
+      "/posts/vizasstory.html"
+    ]
+  }
+]
