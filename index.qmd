@@ -35,7 +35,7 @@ format:
 Engineering expertise and Machine Learning development for companies ready to innovate
 ::::
 
-[Talk to an Expert]{.btn .btn-light .btn-lg}
+[Talk to an Expert](https://forms.gle/1JDjVg7FQRUV8g5U9){.btn .btn-light .btn-lg}
 :::
 
 
@@ -162,5 +162,5 @@ Transforming financial services with intelligent automation and predictive analy
 
 Let's transform your business with cutting-edge AI solutions.
 
-[Talk to an Expert]{.btn .btn-light .btn-lg}
+[Talk to an Expert](https://forms.gle/1JDjVg7FQRUV8g5U9) {.btn .btn-light .btn-lg}
 :::
