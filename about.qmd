@@ -25,21 +25,6 @@ format:
                 background-repeat: no-repeat;
             }
             </style>
-    listing:
-        - type: default
-          id: people
-          image-height: "50"
-          image-align: left
-          categories: false
-          contents:
-            - people.yaml
-        - type: default
-          id: alumni
-          image-height: "50"
-          image-align: left
-          categories: false
-          contents:
-            - alumni.yaml
 ---
 
 ::: {#intro  .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-white .text-center .d-flex .flex-column .justify-content-center}
@@ -48,14 +33,3 @@ format:
 
 :::
 
-# People {.px-4}
-
-::: {#people .container .px-4}
-
-:::
-
-# Alumni {.px-4}
-
-::: {#alumni .container .px-4}
-
-:::
