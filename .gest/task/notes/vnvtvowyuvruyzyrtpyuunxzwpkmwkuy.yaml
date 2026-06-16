@@ -1,0 +1,6 @@
+id: vnvtvowyuvruyzyrtpyuunxzwpkmwkuy
+entity_id: kxmurpxxzuozoqwrprlvyztvzqzxkluy
+author_id: rqrsrsumzyvuyopsxrwnpwqnzuqntumm
+body: 'Done: Imported a lean rahuldave.com-inspired Quarto style stack into univ.ai with new light/dark SCSS themes, shared fonts include, site-specific landing/listing CSS, Quarto config updates, root CNAME restoration, generated docs refresh, frontend-design skill copied into .agents and .claude, and AGENTS.md updated with project/style/build/notebook-bundle guidance.\nVerification: pixi run build passed after running outside the sandbox for Quarto''s sysctl check; git diff --check passed; docs/CNAME exists and docs/AGENTS.html is absent; local docs server screenshots were checked for desktop and mobile home, desktop Solutions, and mobile Blog.\nTag classification: selected session, quarto, design; no new tags needed.\nDependency impact: No callable code/API contract changed; ast-grep not required. Quarto config/build output and CSS behavior changed.\nFollow-up: Notebook bundle runtime pipeline still needs a separate port from rahuldave.github.io scripts/assets with univ.ai URLs and docs/ output handling. The branch was committed and opened as PR #1; unrelated untracked brochure/temp artifacts remain excluded for separate review.'
+created_at: 2026-06-16T13:02:34.867782Z
+updated_at: 2026-06-16T13:13:58Z

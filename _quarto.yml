@@ -1,8 +1,16 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "posts/"
+    - "!AGENTS.md"
 
 website:
+  title: univ.ai
+  site-url: https://univ.ai
+  open-graph: true
   navbar:
+    title: false
     logo: /assets/bluelogo.svg
     left:
       - href: verticals.qmd
@@ -19,28 +27,12 @@ website:
 format:
   html:
     theme:
-      light: [cosmo, custom.scss]
-      dark: [darkly, custom-dark.scss] # Darkly is Bootstrap's dark theme
+      light: styles/modern-light.scss
+      dark: styles/modern-dark.scss
     css:
-      - output.css
       - styles.css
     toc: true
     include-in-header:
+      - includes/fonts.html
       - text: |
-          <link rel="icon" type="image/svg" href="/assets/favicon.svg"/>
-          <script>
-            function toggleDarkMode() {
-              document.body.classList.toggle('dark');
-              // Store preference
-              if (document.body.classList.contains('dark')) {
-                localStorage.setItem('quarto-color-scheme', 'dark');
-              } else {
-                localStorage.setItem('quarto-color-scheme', 'light');
-              }
-            }
-
-            // Check for stored preference
-            if (localStorage.getItem('quarto-color-scheme') === 'dark') {
-              document.body.classList.add('dark');
-            }
-          </script>
+          <link rel="icon" type="image/svg+xml" href="/assets/bluelogo.svg"/>
