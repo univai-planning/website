@@ -1,5 +1,7 @@
 project:
   type: website
+  resources:
+    - assets/download-bundle.js
   render:
     - "*.qmd"
     - "posts/"
@@ -36,3 +38,5 @@ format:
       - includes/fonts.html
       - text: |
           <link rel="icon" type="image/svg+xml" href="/assets/bluelogo.svg"/>
+    include-after-body:
+      - includes/download-bundle.html

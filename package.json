@@ -5,9 +5,11 @@
   "scripts": {
     "generate-vars": "node generate-scss.js",
     "build-tailwind": "tailwindcss -i tailwind.css -o output.css --no-source-map",
+    "build-bundles": "python3 _scripts/generate_bundles.py --site-dir docs --posts-dir posts",
+    "test-bundles": "python3 _scripts/test_bundles.py --site-dir docs --report docs/test-report.json --timeout 600",
     "dev": "tailwindcss -i custom.scss -o output.css --map --watch",
     "build-dev": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && quarto render",
-    "build": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && quarto render --output-dir=docs"
+    "build": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && quarto render --output-dir=docs && npm run build-bundles"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.0",
