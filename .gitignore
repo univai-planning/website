@@ -6,3 +6,6 @@
 _site/
 node_modules/
 .DS_Store
+
+**/*.quarto_ipynb
+.gest/gest.db
