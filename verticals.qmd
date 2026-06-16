@@ -8,83 +8,84 @@ format:
             <style>
             #intro {
                 background-image: url("/assets/Frame+1000006623.png");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
             }
             #outro {
                 background-image: url("/assets/photo-of-man-holding-a-book-927022.png");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-            }
-            #software-systems,
-            #software-systems h2,
-            #software-systems h3,
-            #software-systems p {
-                color: #1a2634 !important;
-            }
-            #outro,
-            #outro h2,
-            #outro p {
-                color: #ffffff !important;
             }
             </style>
 ---
 
-::: {#intro .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-white .text-center .d-flex .flex-column .justify-content-center}
+::: {#intro .site-hero .text-center}
 
-# Solutions {.display-4 .fw-bold}
+# Solutions
 
-:::: {.fs-2 .fw-light .mt-3 .px-4}
+:::: {.site-hero__lead .mt-3}
 AI systems for messy, high-value business problems.
 ::::
 
-:::: {.fs-4 .fw-light .mt-3 .mx-auto .px-4 .col-lg-8}
+:::: {.site-hero__body .mt-3}
 Univ.AI combines machine-learning depth, software engineering, and business
 translation to build systems that survive contact with real workflows.
 ::::
 
 :::
 
-::: {.p-0 .m-0 .bg-primary .tw-bg-brand-200 .text-dark .text-center .d-flex .flex-column .justify-content-center}
+::: {.site-section}
 
-## Software Systems {.display-5 .fw-bold}
+:::: {.container}
 
-:::: {.fs-4 .fw-light .mt-3 .mx-auto .text-start .col-lg-9 .px-4}
+:::: {.site-section__header}
+## Software Systems
+
+::: {.site-lede}
 We build tools where models, documents, evaluation loops, and human review
 become working software. These projects often start as research spikes or
 operational prototypes and end as APIs, dashboards, traces, workflows, and
 documentation that client teams can keep using.
+:::
 ::::
 
-:::: {.container .px-4 .mt-4}
-::::: {.grid}
+::::: {.grid .site-card-grid}
 
-::::: {.g-col-12 .g-col-md-6 .text-start}
+::::: {.g-col-12 .g-col-md-6 .site-card}
+::: {.site-card__eyebrow}
+Evaluation infrastructure
+:::
+
 ### ExtractoPrimo
 
-Evaluation loops for agents: benchmark model, prompt, setup, and agent
-combinations across documents, with run tracking, prompt versions, judges,
-human review, composite scores, Elo comparisons, MLflow traces, and next
-actions.
+Benchmark model, prompt, setup, and agent combinations across documents, with
+run tracking, prompt versions, judges, human review, composite scores, Elo
+comparisons, MLflow traces, and next actions.
 :::::
 
-::::: {.g-col-12 .g-col-md-6 .text-start}
+::::: {.g-col-12 .g-col-md-6 .site-card}
+::: {.site-card__eyebrow}
+Domain analytics
+:::
+
 ### CricsDB
 
-FastAPI, React, Semiotic, and SQLite turning ball-by-ball cricket data into
+FastAPI, React, Semiotic, and SQLite turn ball-by-ball cricket data into
 deep-linked team, player, matchup, and scorecard views.
 :::::
 
-::::: {.g-col-12 .g-col-md-6 .text-start}
+::::: {.g-col-12 .g-col-md-6 .site-card}
+::: {.site-card__eyebrow}
+Developer platforms
+:::
+
 ### DeeBase
 
 Async SQLAlchemy with dataclass tables, foreign-key navigation, full-text
 search, migrations, and FastAPI CRUD routers.
 :::::
 
-::::: {.g-col-12 .g-col-md-6 .text-start}
+::::: {.g-col-12 .g-col-md-6 .site-card}
+::: {.site-card__eyebrow}
+Document intelligence
+:::
+
 ### MEAI and DAIS
 
 Document analysis and contract-review systems for XML/PDF uploads, retrieval,
@@ -96,20 +97,23 @@ structured answers, citations, redlines, rationale, and reviewer signoff.
 
 :::
 
-::: {.p-0 .m-0 .bg-primary .tw-bg-brand-300 .text-white .text-center .d-flex .flex-column .justify-content-center}
+::: {.site-section .site-section--surface}
 
-## Domain Work {.display-5 .fw-bold}
+:::: {.container}
 
-:::: {.fs-4 .fw-light .mt-3 .mx-auto .text-start .col-lg-9 .px-4}
+:::: {.site-section__header}
+## Domain Work
+
+::: {.site-lede}
 We pair modeling skill with domain constraints: audit trails, document
 citations, physical plausibility, deployment inside enterprise systems, and
 human review where it matters.
+:::
 ::::
 
-:::: {.container .px-4 .mt-4}
-::::: {.grid}
+::::: {.grid .site-card-grid}
 
-::::: {.g-col-12 .g-col-md-6 .text-start}
+::::: {.g-col-12 .g-col-md-6 .site-card}
 ### Healthcare Insurance
 
 Fraud prevention for claims operations: suspicious claim patterns,
@@ -117,7 +121,7 @@ review-ready analytics, and investigator workflows shaped around model outputs
 that fit the way claims teams actually work.
 :::::
 
-::::: {.g-col-12 .g-col-md-6 .text-start}
+::::: {.g-col-12 .g-col-md-6 .site-card}
 ### Finance
 
 Risk scoring, anomaly detection, recommender systems, financial document
@@ -125,14 +129,14 @@ extraction, model monitoring, and stakeholder-ready dashboards for high-stakes
 decisions.
 :::::
 
-::::: {.g-col-12 .g-col-md-6 .text-start}
+::::: {.g-col-12 .g-col-md-6 .site-card}
 ### Legal and Credit
 
 Systems that search, reason over, and cite long contracts and loan documents,
 turning dense PDFs into structured, reviewable answers.
 :::::
 
-::::: {.g-col-12 .g-col-md-6 .text-start}
+::::: {.g-col-12 .g-col-md-6 .site-card}
 ### Energy and Oilfield
 
 Convolutional neural-network approximations for reservoir physics, including
@@ -145,28 +149,36 @@ reservoir inputs.
 
 :::
 
-::: {.p-0 .m-0 .bg-primary .tw-bg-brand-400 .text-white .text-center .d-flex .flex-column .justify-content-center}
+::: {.site-section}
 
-## Engagements {.display-5 .fw-bold}
+:::: {.container}
 
-:::: {.container .px-4 .mt-4}
-::::: {.grid}
+:::: {.site-section__header}
+## Engagements
 
-::::: {.g-col-12 .g-col-md-4 .text-start}
+::: {.site-lede}
+Our engagements are scoped around work products that teams can inspect, run,
+and improve after the handoff.
+:::
+::::
+
+::::: {.grid .site-card-grid}
+
+::::: {.g-col-12 .g-col-md-4 .site-card}
 ### What we take on
 
 Custom AI builds, research spikes, prototypes, production hardening, corporate
 courses, and team enablement.
 :::::
 
-::::: {.g-col-12 .g-col-md-4 .text-start}
+::::: {.g-col-12 .g-col-md-4 .site-card}
 ### What we deliver
 
 Code, APIs, dashboards, experiment traces, model documentation, workflows,
 training material, and deployment handoffs.
 :::::
 
-::::: {.g-col-12 .g-col-md-4 .text-start}
+::::: {.g-col-12 .g-col-md-4 .site-card}
 ### How we work
 
 Problem definition, model construction, business translation, deployment,
@@ -178,9 +190,9 @@ monitoring, and training.
 
 :::
 
-::: {#outro .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-white .text-center .d-flex .flex-column .justify-content-center}
+::: {#outro .site-cta .text-center}
 
-## Ready to scope the work? {.display-5 .fw-bold}
+## Ready to scope the work?
 
 Email rahuldave@univ.ai with the problem, data context, and desired business
 outcome.
