@@ -1,0 +1,6 @@
+id: wlloslnkwkpvwspvznqyzzkkqqzpxvrm
+entity_id: wvntwlnvtmuynunlysustrpvwxynzzll
+author_id: rqrsrsumzyvuyopsxrwnpwqnzuqntumm
+body: 'Done: Replaced the Univ.ai blog source folder with LLN, Visualization As Story, DeeBase, and CricsDB/T20 posts from the sibling rahuldave.github.io site; copied CricsDB image assets; removed the sibling-site-only collections.html link from DeeBase; and rebuilt rendered docs. Verification: pixi run build succeeded; git diff --check passed; grep checks found no stale boxloop, hello, congress, collections.html, or Quarto button syntax in posts/docs posts output; browser is visible at http://127.0.0.1:8765/posts.html with four listing titles and zero broken images reported. Tag classification: used session, leaf, quarto, blog, content. Dependency impact: content-only Quarto migration; no callable code/API affected; ast-grep not required.'
+created_at: 2026-06-16T13:47:50.493588Z
+updated_at: 2026-06-16T13:47:50.493588Z
