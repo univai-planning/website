@@ -1,0 +1,50 @@
+// ==============================================
+// Notebook and Math Output
+// ==============================================
+
+.cell,
+.cell-output,
+.cell-output-display,
+div.sourceCode,
+pre.sourceCode {
+  max-width: 100%;
+}
+
+#quarto-content,
+#quarto-document-content {
+  min-width: 0;
+}
+
+#quarto-document-content {
+  overflow-x: hidden;
+}
+
+div.sourceCode,
+pre.sourceCode,
+.cell-output-display:not(.no-overflow-x),
+.knitsql-table:not(.no-overflow-x) {
+  overflow-x: auto !important;
+  overflow-y: hidden;
+}
+
+pre.sourceCode {
+  margin-bottom: 0;
+}
+
+.cell-output-display img,
+.cell-output-display svg {
+  height: auto;
+  max-width: 100%;
+}
+
+mjx-container[display="true"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.2rem;
+}
+
+mjx-container[display="true"] > mjx-math {
+  min-width: max-content;
+}

@@ -1,0 +1,36 @@
+id: pxtporvypwvnpqzyrzolynropouxostp
+title: Redo Solutions page from brochure positioning
+status: done
+assigned_to: rqrsrsumzyvuyopsxrwnpwqnzuqntumm
+description: Back up the current Solutions page content into a non-rendered repo area, then replace verticals.qmd with a brochure-aligned Solutions page split into software systems and domain work, using the latest brochure content as source material.
+tags:
+- content
+- design
+- development
+- leaf
+- quarto
+- solutions
+metadata:
+  classification:
+    tags:
+      new: solutions
+      reviewed: true
+  depth: 2
+  impact:
+    ast_grep:
+      required: false
+  review:
+    depth: solo
+  test:
+    scope: browser
+    strategy: exploratory
+  vcs:
+    branch: codex/solutions-notebook-bundles
+    branch_mode: development-branch
+    execution: main-worktree
+    tool: git
+  workflow:
+    kind: development
+created_at: 2026-06-16T15:11:53.585503Z
+updated_at: 2026-06-16T18:37:06.396659Z
+resolved_at: 2026-06-16T18:37:06.396659Z
