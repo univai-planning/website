@@ -33,6 +33,13 @@ ColorBrewer Blues, light/dark SCSS themes, and restrained scholarly card/code
 styling. Do not blindly copy the sibling site's content-specific features into
 this site; adapt them to the business-site pages and `docs/` publishing model.
 
+Before changing visual design, page layout, section/card styling, or the shared
+`site.css` layer, read `internal_docs/design-system.md`. It records the current
+Univ.AI page system: restrained white/off-white sections, dark image hero/CTA
+treatments, consistent card scale, and the rule to avoid Bootstrap `display-*`
+classes on Quarto headings because Quarto copies heading classes to generated
+section wrappers.
+
 The project-local frontend design skill has been copied from the sibling repo
 to `.agents/skills/frontend-design/` and `.claude/skills/frontend-design/`.
 Use it for styling, page design, layout, and visual polish tasks, after also
