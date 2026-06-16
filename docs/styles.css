@@ -172,27 +172,23 @@
 }
 
 .tw-bg-brand-600 {
-  background:
-    linear-gradient(145deg, rgba(8, 48, 107, 0.96), rgba(8, 81, 156, 0.92)),
-    var(--color-primary) !important;
+  background-color: var(--color-primary) !important;
+  background-image: linear-gradient(145deg, rgba(8, 48, 107, 0.96), rgba(8, 81, 156, 0.92));
 }
 
 .tw-bg-brand-400 {
-  background:
-    linear-gradient(145deg, rgba(33, 113, 181, 0.95), rgba(8, 69, 148, 0.92)),
-    var(--color-primary) !important;
+  background-color: var(--color-primary) !important;
+  background-image: linear-gradient(145deg, rgba(33, 113, 181, 0.95), rgba(8, 69, 148, 0.92));
 }
 
 .tw-bg-brand-300 {
-  background:
-    linear-gradient(145deg, rgba(66, 146, 198, 0.95), rgba(33, 113, 181, 0.9)),
-    var(--color-primary-muted) !important;
+  background-color: var(--color-primary-muted) !important;
+  background-image: linear-gradient(145deg, rgba(66, 146, 198, 0.95), rgba(33, 113, 181, 0.9));
 }
 
 .tw-bg-brand-200 {
-  background:
-    linear-gradient(180deg, var(--color-surface-sunken), var(--color-background)),
-    var(--color-surface-sunken) !important;
+  background-color: var(--color-surface-sunken) !important;
+  background-image: linear-gradient(180deg, var(--color-surface-sunken), var(--color-background));
 }
 
 .tw-bg-brand-200 h1,
@@ -222,6 +218,82 @@
 
 .page-layout-custom main.content > div:not(#intro):not(#services):not(#outro):not(#health):not(#law):not(#finance) {
   padding: var(--univ-section-pad) clamp(1.25rem, 5vw, 4rem);
+}
+
+.page-layout-custom > .tw-bg-brand-400,
+.page-layout-custom > .tw-bg-brand-300 {
+  color: #ffffff;
+  min-height: clamp(520px, 76vh, 760px);
+  padding: var(--univ-section-pad) clamp(1.25rem, 5vw, 4rem);
+}
+
+.page-layout-custom > .tw-bg-brand-400.vh-100,
+.page-layout-custom > .tw-bg-brand-300.vh-100 {
+  height: auto !important;
+}
+
+.page-layout-custom > .tw-bg-brand-400 h1,
+.page-layout-custom > .tw-bg-brand-400 h2,
+.page-layout-custom > .tw-bg-brand-400 p,
+.page-layout-custom > .tw-bg-brand-400 li,
+.page-layout-custom > .tw-bg-brand-300 > h1,
+.page-layout-custom > .tw-bg-brand-300 > h2 {
+  color: #ffffff;
+}
+
+.page-layout-custom > .tw-bg-brand-400 .fs-2,
+.page-layout-custom > .tw-bg-brand-400 .fs-2 *,
+.page-layout-custom > .tw-bg-brand-300 > p {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.page-layout-custom > .tw-bg-brand-400 h1,
+.page-layout-custom > .tw-bg-brand-300 > h1 {
+  font-size: clamp(2rem, 4.8vw, 4.5rem);
+  line-height: 1.05;
+  margin-inline: auto;
+  max-width: 14ch;
+}
+
+#industries-we-are-transforming .grid > #law,
+#industries-we-are-transforming .grid > #finance {
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  color: var(--color-text);
+  isolation: auto;
+  min-height: 0;
+  overflow: visible;
+  padding: clamp(1.25rem, 2.4vw, 1.75rem);
+}
+
+#industries-we-are-transforming .grid > #law::before,
+#industries-we-are-transforming .grid > #finance::before {
+  content: none;
+}
+
+#industries-we-are-transforming .grid > #law > *,
+#industries-we-are-transforming .grid > #finance > * {
+  position: static;
+}
+
+#industries-we-are-transforming .grid > #law h3,
+#industries-we-are-transforming .grid > #finance h3 {
+  color: var(--color-text);
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  line-height: 1.25;
+  margin-inline: 0;
+  max-width: none;
+}
+
+#industries-we-are-transforming .grid > #law p,
+#industries-we-are-transforming .grid > #law li,
+#industries-we-are-transforming .grid > #finance p,
+#industries-we-are-transforming .grid > #finance li {
+  color: var(--color-text-secondary);
+}
+
+#services #our-services > h1 {
+  color: #ffffff;
+  text-shadow: 0 2px 14px rgba(3, 8, 16, 0.42);
 }
 
 .page-layout-custom .container {

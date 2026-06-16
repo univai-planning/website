@@ -7,60 +7,60 @@
     "text": "There is this pretty famous book by Steve Krug, called “Dont Make Me Think”. Its a call to respect conventions for web elements, such as shopping carts (a cart should be on the upper right), so that the web experience is obvious to users.\n\n\n\nIn visualization, as in web development, your audience does not want to spend cognitive effort on things you could just show them, by convention, or by explicit writing. So, just point out the key facts and insights.\nFor example, in this great article in the financial times https://www.ft.com/content/0f11b219-0f1b-420e-8188-6651d1e749ff?hcb=1, the main point “Vaccines have made Covid-19 far less lethal” is written up-front.\n\n\n\nThe implications are made clear in the second sentence, comparing vaccinated 80 year-olds to un-vaccinated 50 year-olds. This implication is illustrated in the visualization as well, with a horizontal black line, and a caption.\nInstead of point markers, downwards pointing arrows are used on lines to reinforce the notion of lower risk. Captions and annotations are used to point out key insights. Extraneous frames and tick marks are removed.\nThis is an example of framing. It grabs the audience and leads it through the insights you want to share.\n\n\n\nThere’s been a lot of worry about breakthrough vaccination, especially with the news about the Provincetown cluster. Here is another visualization from the same article, telling us why the large number of breakthrough infections are to be expected.\n\n\n\nIt walks us through the entire calculation visually. And does it in two scenarios: high vaccination rates and low vaccination rates. We can ourselves see the larger hospitalization numbers in the low-vaccination scenario.\nThe visualization and explanation could have been framed in terms of base rates and conditional probabilities, but by illustrating the concepts with an example, they are made accessible to everyone. And the framing drives home the story: go get your shot!\nRead more on how to make good visualizations using R in this book by @khealy . If you are a pythonista, learn how to make good plots in @matplotlib using https://end-to-end-machine-learning.teachable.com/p/navigating-matplotlib-tutorial-how-to/ by @_brohrer_ ."
   },
   {
-    "objectID": "posts/lawoflargenumbers.html",
-    "href": "posts/lawoflargenumbers.html",
-    "title": "The LLN",
-    "section": "",
-    "text": "Suppose that you toss a fair coin and catch it to see if you got heads or tails. Then you have this intuition that while you might get a streak of several heads in a row, in the long run the heads and tails are balanced.\nThis is actually an example of a famous law: the Law of Large numbers (LLN), which states that if you have a random variable X with a mean, the average value of X over a sample of size N converges i.e. gets close and closer to this mean as N becomes larger and larger.\n\n\n\nThe LLN was first proved by Jakob Bernoulli in Ars Conjectandi, published posthumously by his nephew Niklaus Bernoulli, who appropriated entire passages of it for his treatise on law. It is the basis of much of modern statistics, including the Monte-Carlo method.\nLets parse the law. A random variable is one that can take multiple values, each with some probability. So if X represents the flip of a coin, it will take values Heads and Tails with some probability. We’ll assign Heads the value 1 and Tails the value 0.\nThe probabilities attatched to the values a random variable takes is called a distribution, or probability mass function (pmf). For a fair coin, the “Bernoulli” Distribution attaches the probabilities 0.5 to value 1 and 0.5 to value 0. These probabilities must add to 1.\n\n\n\nAn unfair coin thats more likely to land on heads might have a distribution where 0 has attached probability 0.4 and 1 has attached probability 0.6. In this case the mean µ of the distribution is 0.4 x 0 + 0.6 x 1 = 0.6.\n\n\n\nThis mean does not need to be one of the allowed values of the distribution (here 0 and 1). The mean here simply indicates whats more likely: 0.6 means that heads is more likely than tails. What is the mean in the case of the fair coin?\nNow let us simulate the case of the fair coin. We’ll toss a sample of N coins, or 1 coin N times, using the magic of numpy. We’ll find the average of these N tosses. This is the fraction of heads! We’ll plot this sample average against the sample size N.\n\n\n\nWe find that these sample averages are quite close to 0.5. And, as we increase the sample size N, these sample averages become super close to 0.5. Indeed, as N becomes infinite, the sample averages approach the mean µ=0.5. This is the Law of Large Numbers.\n\n\n\nThe LLN can be tautologically used to define the probability of a fair coin showing heads as the asymptotic (infinite N) sampling average. This is the frequentist definition of “sampling probability”, the population frequency µ.\nBut we might also treat the mean µ as an intrinsic fraction of heads, a “parameter” of the Bernoulli distribution. Where does it come from in the first place? The value µ can be thought of as an “inferential probability” derived from symmetry and lack of knowledge.\n\n\n\nIf you have a coin (2 sides, 2 possibilities), and no additional information about the coin and toss physics (thus fair), you would guess fraction µ=0.5 for heads. The LLN then says that sampling probabilities converge to this “inferential probability”.\n\nwh"
-  },
-  {
     "objectID": "verticals.html#ready-to-innovate",
     "href": "verticals.html#ready-to-innovate",
     "title": "univ.ai",
     "section": "Ready to Innovate?",
-    "text": "Ready to Innovate?\nLet’s transform your business with cutting-edge AI solutions.\nTalk to an Expert {.btn .btn-light .btn-lg}"
+    "text": "Ready to Innovate?\nLet’s transform your business with cutting-edge AI solutions.\nTalk to an Expert"
   },
   {
-    "objectID": "posts.html",
-    "href": "posts.html",
-    "title": "univ.ai",
+    "objectID": "posts/cricsdb/index.html",
+    "href": "posts/cricsdb/index.html",
+    "title": "CricsDB — A T20 Cricket Analytics Platform",
     "section": "",
-    "text": "Box’s Loop\n\n\n\nmodels\n\n\nprobabilistic modeling\n\n\n\nModeling is not the end, its just the beginning!\n\n\n\n\n\n\nSep 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nQuarto Basics\n\n\n\n\n\n\n\n\n\nJan 13, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSome Data Analysis about Congress\n\n\n\nmodel-comparison\n\n\ncongress\n\n\n\nHow to sitting president’s parties do with congress?\n\n\n\n\n\n\nJun 6, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nThe LLN\n\n\n\nStatistics\n\n\nMonteCarlo\n\n\n\nProbably the most important theorem in frequentist statistics\n\n\n\n\n\n\nDec 3, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nVisualization As Story\n\n\n\nVisualization\n\n\nCommunication\n\n\nStorytelling\n\n\n\nHow should you communicate your insights in Visualization?\n\n\n\n\n\n\nDec 3, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "CricsDB is a T20 cricket analytics platform I built around the wonderful open data from cricsheet.org. It covers 12,940 matches across international cricket and 18 club leagues, 2.95 million ball-by-ball deliveries, and 160K wickets — all queryable via a React frontend with deep-linkable URLs.\nLive at https://t20.rahuldave.com/. Source on GitHub."
   },
   {
-    "objectID": "index.html#ready-to-innovate",
-    "href": "index.html#ready-to-innovate",
+    "objectID": "posts/cricsdb/index.html#what-you-can-do-with-it",
+    "href": "posts/cricsdb/index.html#what-you-can-do-with-it",
+    "title": "CricsDB — A T20 Cricket Analytics Platform",
+    "section": "What you can do with it",
+    "text": "What you can do with it\n\nBrowse teams with split men’s/women’s stats, head-to-head records, and per-season trajectories.\nDrill into batters and bowlers — by innings, by over, by phase (powerplay / middle / death), by season, by opponent, with dismissal breakdowns.\nLook up any head-to-head matchup between a batter and a bowler across the entire dataset.\nBrowse matches and open a scorecard with worm chart, Manhattan chart, and a per-delivery innings grid that colors every ball by outcome.\n\n\n\n\nThe batting page — by-phase breakdowns, vs-bowlers scatter, and inter-wicket analysis.\n\n\n\n\n\nTeams page — gender-aware aggregation across 18 club leagues plus internationals.\n\n\n\n\n\nMatches list with filters that round-trip through the URL for deep linking."
+  },
+  {
+    "objectID": "posts/cricsdb/index.html#the-stack",
+    "href": "posts/cricsdb/index.html#the-stack",
+    "title": "CricsDB — A T20 Cricket Analytics Platform",
+    "section": "The stack",
+    "text": "The stack\n\nDatabase — SQLite (435 MB, WAL mode) accessed through deebase, a small async ORM I’d been working on.\nBackend — FastAPI, async, raw parameterised SQL via db.q(sql, params). The bind-parameter support was a small PR back to deebase.\nFrontend — React 19 + TypeScript + Tailwind v4, charts in Semiotic v3, build via Vite 8.\nDeploy — pla.sh, single-command deploys with the database persisted on the host between code-only pushes."
+  },
+  {
+    "objectID": "posts/cricsdb/index.html#design-notes",
+    "href": "posts/cricsdb/index.html#design-notes",
+    "title": "CricsDB — A T20 Cricket Analytics Platform",
+    "section": "Design notes",
+    "text": "Design notes\nA handful of small decisions ended up shaping the whole project.\nOver numbering: 0-indexed in the DB, 1-indexed in the API. Cricsheet stores overs as 0–19, so the database stays faithful to the source. The API adds 1 before returning, so consumers see 1–20 everywhere. The mental cost is one +1 in each router; the win is that joins against cricsheet always line up.\nLegal balls vs all deliveries. Batting strike rate counts only legal balls (no wides, no no-balls). Bowling runs-conceded counts all deliveries because the bowler is charged for the extras. Mixing these two up is the single most common bug in amateur cricket dashboards; isolating them in two separate SQL paths kept the rest of the codebase honest.\nURL is the source of truth. Every page’s filter, tab, and selected player lives in ?search=params. A custom useSetUrlParams() hook does atomic multi-param updates so the back button always lands somewhere sensible and any view is a copy-pasteable link.\nWisden-almanack visual identity. The first cut was generic Tailwind — blue/grey, Inter, default shadows. Functional, forgettable. The redesign pass swapped in a cream page (#FAF7F0), warm dark-brown ink, oxblood as the only accent, and Fraunces for display type. No card chrome — hierarchy comes from rules, whitespace, and typography. Two files in the entire frontend contain raw color literals; everything else references named tokens."
+  },
+  {
+    "objectID": "posts/cricsdb/index.html#things-i-learned",
+    "href": "posts/cricsdb/index.html#things-i-learned",
+    "title": "CricsDB — A T20 Cricket Analytics Platform",
+    "section": "Things I learned",
+    "text": "Things I learned\n\nSemiotic v3 is a lovely chart library but the high-level Scatterplot helper doesn’t expose per-point click handlers — to wire scatter↔︎table linking in both directions you have to drop down to XYFrame directly.\nIdentity ambiguity is the hardest problem in a sports database. ~110 team names appear in both men’s and women’s matches in cricsheet (every international side, every IPL/WPL franchise pair…). A team page with no gender filter aggregating both squads is statistically meaningless. The fix is contextual: when a tournament filter is set, auto-fill the gender; when it isn’t, show a banner.\nDouble-encoded JSON snuck into one column (wicket.fielders) because both my import script and deebase’s JSON column type called json.dumps. The matches scorecard router still parses twice as a workaround; the real fix is a five-line diff plus a 15-minute DB rebuild."
+  },
+  {
+    "objectID": "posts/cricsdb/index.html#whats-next",
+    "href": "posts/cricsdb/index.html#whats-next",
+    "title": "CricsDB — A T20 Cricket Analytics Platform",
+    "section": "What’s next",
+    "text": "What’s next\nA mechanically-generated ball-by-ball commentary tab on the scorecard page is the next big feature — cricsheet doesn’t ship editorial prose, but the structured data is rich enough to render 19.6 — Bumrah to Kohli — 4 runs (FOUR) style feeds, linked bidirectionally to the innings grid.\nRun it locally, file an issue, or just go look up your favourite batter’s death-overs strike rate against left-arm wrist spin — https://t20.rahuldave.com/."
+  },
+  {
+    "objectID": "methods.html#ready-to-innovate",
+    "href": "methods.html#ready-to-innovate",
     "title": "univ.ai",
     "section": "Ready to Innovate?",
-    "text": "Ready to Innovate?\nLet’s transform your business with cutting-edge AI solutions.\nTalk to an Expert {.btn .btn-light .btn-lg}"
-  },
-  {
-    "objectID": "challenge.html#our-work",
-    "href": "challenge.html#our-work",
-    "title": "univ.ai",
-    "section": "Our work",
-    "text": "Our work\nWe partner with industry leaders to deliver transformative AI solutions that drive real business impact. Our portfolio spans from developing cutting-edge machine learning models to implementing enterprise-wide AI strategies.\n\n\nHealthcare Analytics Platform\nDeveloped a comprehensive analytics platform for a leading healthcare provider, enabling real-time patient monitoring and predictive care recommendations.\n\nAdvanced ML models for patient outcome prediction\nReal-time data integration pipeline\nCustom visualization dashboard\n\n\n\nFinancial Risk Assessment System\nCreated an AI-powered risk assessment system for a major financial institution, improving decision accuracy by 35%.\n\nAutomated risk scoring\nAnomaly detection\nRegulatory compliance integration"
-  },
-  {
-    "objectID": "challenge.html#industries",
-    "href": "challenge.html#industries",
-    "title": "univ.ai",
-    "section": "Industries",
-    "text": "Industries\n\n\nHealthcare\n\nPatient outcome prediction\nResource optimization\nDiagnostic assistance\n\n\n\nFinance\n\nRisk assessment\nFraud detection\nAlgorithmic trading\n\n\n\nManufacturing\n\nProcess optimization\nQuality control\nPredictive maintenance\n\n\n\nRetail\n\nCustomer analytics\nInventory optimization\nDemand forecasting"
-  },
-  {
-    "objectID": "challenge.html#ready-to-innovate",
-    "href": "challenge.html#ready-to-innovate",
-    "title": "univ.ai",
-    "section": "Ready to Innovate",
-    "text": "Ready to Innovate\nTalk to an Expert"
-  },
-  {
-    "objectID": "challenge.html#lets-talk",
-    "href": "challenge.html#lets-talk",
-    "title": "univ.ai",
-    "section": "Let’s Talk!",
-    "text": "Let’s Talk!\nWe are always open to discuss your project, improve your online presence and help with your AI/ML development challenges."
+    "text": "Ready to Innovate?\nLet’s transform your business with cutting-edge AI solutions.\nTalk to an Expert"
   },
   {
     "objectID": "example.html",
@@ -105,38 +105,87 @@
     "text": "Dark Mode Compatible\n\nThis card adapts to dark mode automatically"
   },
   {
-    "objectID": "methods.html#ready-to-innovate",
-    "href": "methods.html#ready-to-innovate",
+    "objectID": "about.html#practical-ai-built-with-care",
+    "href": "about.html#practical-ai-built-with-care",
+    "title": "univ.ai",
+    "section": "Practical AI, built with care",
+    "text": "Practical AI, built with care\n\nuniv.ai helps organizations turn AI ideas into working systems. We combine strategy, engineering, applied machine learning, and product judgment to move from ambiguous business questions to deployed tools that teams can actually use.\nOur work spans discovery, prototyping, implementation, and education. We partner closely with clients so the resulting systems fit the people, data, workflows, and constraints already inside the organization."
+  },
+  {
+    "objectID": "about.html#people",
+    "href": "about.html#people",
+    "title": "univ.ai",
+    "section": "People",
+    "text": "People\n\n\n\nRahul Dave\n\n\nPatrick Ohiomoba\n\n\nAbate De-May\n\n\nShubham Misar"
+  },
+  {
+    "objectID": "challenge.html#our-work",
+    "href": "challenge.html#our-work",
+    "title": "univ.ai",
+    "section": "Our work",
+    "text": "Our work\nWe partner with industry leaders to deliver transformative AI solutions that drive real business impact. Our portfolio spans from developing cutting-edge machine learning models to implementing enterprise-wide AI strategies.\n\n\nHealthcare Analytics Platform\nDeveloped a comprehensive analytics platform for a leading healthcare provider, enabling real-time patient monitoring and predictive care recommendations.\n\nAdvanced ML models for patient outcome prediction\nReal-time data integration pipeline\nCustom visualization dashboard\n\n\n\nFinancial Risk Assessment System\nCreated an AI-powered risk assessment system for a major financial institution, improving decision accuracy by 35%.\n\nAutomated risk scoring\nAnomaly detection\nRegulatory compliance integration"
+  },
+  {
+    "objectID": "challenge.html#industries",
+    "href": "challenge.html#industries",
+    "title": "univ.ai",
+    "section": "Industries",
+    "text": "Industries\n\n\nHealthcare\n\nPatient outcome prediction\nResource optimization\nDiagnostic assistance\n\n\n\nFinance\n\nRisk assessment\nFraud detection\nAlgorithmic trading\n\n\n\nManufacturing\n\nProcess optimization\nQuality control\nPredictive maintenance\n\n\n\nRetail\n\nCustomer analytics\nInventory optimization\nDemand forecasting"
+  },
+  {
+    "objectID": "challenge.html#ready-to-innovate",
+    "href": "challenge.html#ready-to-innovate",
+    "title": "univ.ai",
+    "section": "Ready to Innovate",
+    "text": "Ready to Innovate\nTalk to an Expert"
+  },
+  {
+    "objectID": "challenge.html#lets-talk",
+    "href": "challenge.html#lets-talk",
+    "title": "univ.ai",
+    "section": "Let’s Talk!",
+    "text": "Let’s Talk!\nWe are always open to discuss your project, improve your online presence and help with your AI/ML development challenges."
+  },
+  {
+    "objectID": "index.html#ready-to-innovate",
+    "href": "index.html#ready-to-innovate",
     "title": "univ.ai",
     "section": "Ready to Innovate?",
-    "text": "Ready to Innovate?\nLet’s transform your business with cutting-edge AI solutions.\n {.btn .btn-light .btn-lg}"
+    "text": "Ready to Innovate?\nLet’s transform your business with cutting-edge AI solutions.\nTalk to an Expert"
   },
   {
-    "objectID": "posts/hello.html",
-    "href": "posts/hello.html",
-    "title": "Quarto Basics",
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "univ.ai",
     "section": "",
-    "text": "For a demonstration of a line plot on a polar axis, see Figure 1.\n\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'}\n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\nFigure 1"
+    "text": "CricsDB — A T20 Cricket Analytics Platform\n\n\n\ndata\n\n\nvisualization\n\n\n\nA full-stack T20 cricket analytics site built on FastAPI, React, Semiotic, and SQLite — with a Wisden-almanack visual identity and ball-by-ball data from cricsheet.org.\n\n\n\n\n\n\nApr 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nDeeBase — An Async, Fastlite-Inspired ORM\n\n\n\ndata\n\n\n\nDeeBase is a small async SQLAlchemy-based library with a fastlite-inspired API: dataclass tables, FK navigation, FTS, views, migrations, and a FastAPI integration that…\n\n\n\n\n\n\nJan 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nThe LLN\n\n\n\nstatistics\n\n\nmontecarlo\n\n\n\nThe Law of Large Numbers says the sample average converges to the true mean as sample size grows. We illustrate this with coin flips and connect frequentist sampling…\n\n\n\n\n\n\nDec 3, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nVisualization As Story\n\n\n\nvisualization\n\n\n\nGood visualizations frame data as a story, using annotations and conventions so the audience doesn’t have to think. We walk through Financial Times COVID vaccine charts as…\n\n\n\n\n\n\nDec 3, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/boxloop.html",
-    "href": "posts/boxloop.html",
-    "title": "Box’s Loop",
+    "objectID": "posts/deebase/index.html",
+    "href": "posts/deebase/index.html",
+    "title": "DeeBase — An Async, Fastlite-Inspired ORM",
     "section": "",
-    "text": "In the 1960’s, the great statistician Box, along with his collaborators, formulated the notion of a loop to understand the nature of the scientific method. This loop is called Box’s loop by Blei et. al., 1, and illustrated in the diagram (taken from the above linked paper) below:\nBox himself focussed on the scientific method, but the loop is applicable at large to other examples of probabilistic modelling, such as the building of an information retrieval or recommendation system, exploratory data analysis, etc, etc\nWe:\nIf we are Bayesians, we compute the posterior distribution (the distribution of the parameters conditioned on the data) of the (hidden) parameters of the model. Here we assume that the data is fixed and our stochasticity is in the parameters.\nIf we are Frequentists, we assume our data is a sample from a population and compute the parameters of our models abd confidence intervals for those parameters. Here we assume that the data is stochastic as in we could get multiple different samplkes, but that the parameter is fixed and given.\nWe could have mis-specified our model. It might be too simple or too complex. If so we go back to (1) and try again with another model specification."
+    "text": "DeeBase is an async SQLAlchemy-based database library with a fastlite-inspired API that makes async database operations simple across multiple backends.\nIt’s the ORM that powers CricsDB."
   },
   {
-    "objectID": "posts/boxloop.html#footnotes",
-    "href": "posts/boxloop.html#footnotes",
-    "title": "Box’s Loop",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nBlei, David M. “Build, compute, critique, repeat: Data analysis with latent variable models.” Annual Review of Statistics and Its Application 1 (2014): 203-232.↩︎"
+    "objectID": "posts/deebase/index.html#example",
+    "href": "posts/deebase/index.html#example",
+    "title": "DeeBase — An Async, Fastlite-Inspired ORM",
+    "section": "Example",
+    "text": "Example\nfrom dataclasses import dataclass\nfrom datetime import datetime\nfrom deebase import Database, ForeignKey, Text\n\n@dataclass\nclass User:\n    id: int\n    name: str\n    email: str\n    status: str = \"active\"\n\n@dataclass\nclass Post:\n    id: int\n    author_id: ForeignKey[int, \"user\"]\n    title: str\n    content: Text\n    created_at: datetime\n\ndb = Database(\"sqlite+aiosqlite:///blog.db\")\nusers = await db.create(User, pk='id')\nposts = await db.create(Post, pk='id')\n\nalice = await users.insert(User(id=None, name=\"Alice\", email=\"alice@example.com\"))\npost = await posts.insert(Post(\n    id=None, author_id=alice.id, title=\"Hello\",\n    content=\"First post!\", created_at=datetime.now()\n))\n\n# FK navigation\nauthor = await posts.fk.author_id(post)\nprint(author.name)  # \"Alice\"\n\n# Query\nall_posts = await posts()\npost = await posts[1]"
   },
   {
-    "objectID": "posts/votingforcongress/congress.html",
-    "href": "posts/votingforcongress/congress.html",
-    "title": "Some Data Analysis about Congress",
+    "objectID": "posts/deebase/index.html#features",
+    "href": "posts/deebase/index.html#features",
+    "title": "DeeBase — An Async, Fastlite-Inspired ORM",
+    "section": "Features",
+    "text": "Features\n\nAsync/await first — built on SQLAlchemy 2.0+ with aiosqlite and asyncpg drivers\nErgonomic API — await users[1], await users(), await users.lookup(email=\"...\")\nType safety — optional @dataclass support with IDE autocomplete; or start with plain classes and call .dataclass() later\nRich type system — str, Text, int, float, bool, bytes, dict (JSON), datetime, date, time, Optional[T]\nForeign keys and defaults — ForeignKey[int, \"user\"] type annotation; SQL defaults from class field defaults\nFK navigation — await posts.fk.author_id(post) to fetch parent; await users.get_children(user, \"post\", \"author_id\") for children\nIndexes — simple, composite, unique, and named indexes via Index or create_index()\nFull-text search — BM25-ranked search via SQLite FTS5 and PostgreSQL pg_textsearch with automatic index sync\nViews — db.create_view() for JOINs and CTEs with full query API\nxtra() filtering — create scoped table views that auto-apply filters on all operations including inserts\nTransactions — atomic multi-operation commits with rollback\nDatabase reflection — await db.reflect() to work with existing databases; access tables via db.t.tablename\nCode generation — create_mod_from_tables() exports schemas as Python dataclasses\nCLI — deebase init, deebase table create, deebase migrate, deebase sql, deebase data, and more\nMigrations — schema migrations with up/down support and version tracking\nFastAPI integration — create_crud_router() auto-generates CRUD endpoints with Swagger docs and FK validation\nAdmin interface — Django-like admin UI at /admin/ via deebase api serve --admin\nValidation layer — shared validation for CLI, admin, and API"
+  },
+  {
+    "objectID": "posts/lawoflargenumbers.html",
+    "href": "posts/lawoflargenumbers.html",
+    "title": "The LLN",
     "section": "",
-    "text": "import pandas as pd\n\n\ntbl = pd.read_html(\"https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections\")\n\n\ndf = tbl[0]\ndf.columns = df.columns.to_flat_index()\ndf\n\n\n\n\n\n\n\n\n(Unnamed: 0_level_0, Year)\n(Unnamed: 1_level_0, Lame Duck?)\n(Unnamed: 2_level_0, President)\n(Unnamed: 3_level_0, President'sParty)\n(President's Job Approval Percentage (Gallup) As of:, Early Aug)\n(President's Job Approval Percentage (Gallup) As of:, Late Aug)\n(President's Job Approval Percentage (Gallup) As of:, Early Sep)\n(President's Job Approval Percentage (Gallup) As of:, Late Sep)\n(President's Job Approval Percentage (Gallup) As of:, Early Oct)\n(President's Job Approval Percentage (Gallup) As of:, Late Oct)\n(President's Party, House Seatsto Defend)\n(President's Party, Senate Seatsto Defend)\n(Seat Change, President's Party, House Seats)\n(Seat Change, President's Party, Senate Seats)\n\n\n\n\n0\n1934\nNaN\nFranklin D. Roosevelt\nD\n--\n--\n--\n--\n--\n--\n313\n14\n+9\n+9\n\n\n1\n1938\nNaN\nFranklin D. Roosevelt\nD\n--\n--\n--\n--\n--\n60\n334\n27\n-81\n-7\n\n\n2\n1942\nNaN\nFranklin D. Roosevelt\nD\n74\n--\n74\n--\n--\n--\n267\n25\n-46\n-9\n\n\n3\n1946\nNaN\nHarry S. Truman\nD\n--\n--\n33\n--\n--\n27\n244\n21\n-45\n-12\n\n\n4\n1950\nLD*\nHarry S. Truman\nD\nnd\n43\n35\n35\n43\n41\n263\n21\n-29\n-6\n\n\n5\n1954\nNaN\nDwight D. Eisenhower\nR\n67\n62\n--\n66\n62\n--\n221\n11\n-18\n-1\n\n\n6\n1958\nLD\nDwight D. Eisenhower\nR\n58\n56\n56\n54\n57\n--\n203\n20\n-48\n-13\n\n\n7\n1962\nNaN\nJohn F. Kennedy\nD\n--\n67\n--\n63\n--\n61\n264\n18\n-4\n+3\n\n\n8\n1966\n†\nLyndon B. Johnson\nD\n51\n47\n--\n--\n44\n44\n295\n21\n-47\n-4\n\n\n9\n1970\nNaN\nRichard Nixon\nR\n55\n55\n57\n51\n58\n--\n192\n7\n-12\n+2\n\n\n10\n1974\n±\nGerald R. Ford (Nixon)\nR\n71\n--\n66\n50\n53\n--\n192\n15\n-48\n-5\n\n\n11\n1978\nNaN\nJimmy Carter\nD\n43\n43\n48\n--\n49\n45\n292\n14\n-15\n-3\n\n\n12\n1982\nNaN\nRonald Reagan\nR\n41\n42\n--\n42\n--\n42\n192\n12\n-26\n+1\n\n\n13\n1986\nLD\nRonald Reagan\nR\n--\n64\n--\n63\n64\n--\n181\n22\n-5\n-8\n\n\n14\n1990\nNaN\nGeorge Bush\nR\n75\n73\n54\n--\n--\n57\n175\n17\n-8\n-1\n\n\n15\n1994\nNaN\nWilliam J. Clinton\nD\n43\n40\n40\n44\n43\n48\n258\n17\n-52\n-8\n\n\n16\n1998\nLD\nWilliam J. Clinton\nD\n65\n62\n63\n66\n65\n65\n207\n18\n+5\n0\n\n\n17\n2002\nNaN\nGeorge W. Bush\nR\n--\n66\n66\n66\n68\n67\n220\n20\n+8\n+2\n\n\n18\n2006\nLD\nGeorge W. Bush\nR\n37\n42\n39\n44\n37\n37\n233\n15\n-30\n-6\n\n\n19\n2010\nNaN\nBarack Obama\nD\n44\n44\n45\n45\n45\n45\n257\n15\n-63\n-6\n\n\n20\n2014\nLD\nBarack Obama\nD\n42\n42\n41\n43\n42\n41\n201\n20\n-13\n-9\n\n\n21\n2018\nNaN\nDonald J. Trump\nR\n41\n41\n39\n41\n44\n44\n241\n9\n-40\n+2\n\n\n22\n2022\nNaN\nJoseph R. Biden\nD\n38\n44\n44\n42\n42\nNaN\n222\n14\nTBD\nTBD"
+    "text": "Suppose that you toss a fair coin and catch it to see if you got heads or tails. Then you have this intuition that while you might get a streak of several heads in a row, in the long run the heads and tails are balanced.\nThis is actually an example of a famous law: the Law of Large numbers (LLN), which states that if you have a random variable X with a mean, the average value of X over a sample of size N converges i.e. gets close and closer to this mean as N becomes larger and larger.\n\n\n\nThe LLN was first proved by Jakob Bernoulli in Ars Conjectandi, published posthumously by his nephew Niklaus Bernoulli, who appropriated entire passages of it for his treatise on law. It is the basis of much of modern statistics, including the Monte-Carlo method.\nLets parse the law. A random variable is one that can take multiple values, each with some probability. So if X represents the flip of a coin, it will take values Heads and Tails with some probability. We’ll assign Heads the value 1 and Tails the value 0.\nThe probabilities attatched to the values a random variable takes is called a distribution, or probability mass function (pmf). For a fair coin, the “Bernoulli” Distribution attaches the probabilities 0.5 to value 1 and 0.5 to value 0. These probabilities must add to 1.\n\n\n\nAn unfair coin thats more likely to land on heads might have a distribution where 0 has attached probability 0.4 and 1 has attached probability 0.6. In this case the mean µ of the distribution is 0.4 x 0 + 0.6 x 1 = 0.6.\n\n\n\nThis mean does not need to be one of the allowed values of the distribution (here 0 and 1). The mean here simply indicates whats more likely: 0.6 means that heads is more likely than tails. What is the mean in the case of the fair coin?\nNow let us simulate the case of the fair coin. We’ll toss a sample of N coins, or 1 coin N times, using the magic of numpy. We’ll find the average of these N tosses. This is the fraction of heads! We’ll plot this sample average against the sample size N.\n\n\n\nWe find that these sample averages are quite close to 0.5. And, as we increase the sample size N, these sample averages become super close to 0.5. Indeed, as N becomes infinite, the sample averages approach the mean µ=0.5. This is the Law of Large Numbers.\n\n\n\nThe LLN can be tautologically used to define the probability of a fair coin showing heads as the asymptotic (infinite N) sampling average. This is the frequentist definition of “sampling probability”, the population frequency µ.\nBut we might also treat the mean µ as an intrinsic fraction of heads, a “parameter” of the Bernoulli distribution. Where does it come from in the first place? The value µ can be thought of as an “inferential probability” derived from symmetry and lack of knowledge.\n\n\n\nIf you have a coin (2 sides, 2 possibilities), and no additional information about the coin and toss physics (thus fair), you would guess fraction µ=0.5 for heads. The LLN then says that sampling probabilities converge to this “inferential probability”.\n\nwh"
   }
 ]

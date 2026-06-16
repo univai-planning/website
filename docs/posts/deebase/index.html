@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-09-23">
-<meta name="description" content="Modeling is not the end, its just the beginning!">
+<meta name="dcterms.date" content="2026-01-20">
+<meta name="description" content="DeeBase is a small async SQLAlchemy-based library with a fastlite-inspired API: dataclass tables, FK navigation, FTS, views, migrations, and a FastAPI integration that auto-generates CRUD endpoints.">
 
-<title>Box’s Loop – univ.ai</title>
+<title>DeeBase — An Async, Fastlite-Inspired ORM – univ.ai</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,30 +19,64 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-363b0c9ab1af2075668914f2502e5e44.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-84c54097087b4ce699c42411059b969b.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7eb743bc122a0078a0d81ec6a94597bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4da17196778c3efafdca2931ec85ec97.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-363b0c9ab1af2075668914f2502e5e44.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-84c54097087b4ce699c42411059b969b.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-7eb743bc122a0078a0d81ec6a94597bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-4da17196778c3efafdca2931ec85ec97.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,16 +111,13 @@ ul.task-list li input[type="checkbox"] {
 
 <!-- Bootstrap Icons for brand mark and UI elements -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="../assets/bluelogo.svg">
+<link rel="icon" type="image/svg+xml" href="../../assets/bluelogo.svg">
 
 
-<link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="Box’s Loop – univ.ai">
-<meta property="og:description" content="Modeling is not the end, its just the beginning!">
-<meta property="og:image" content="https://univ.ai/posts/images/boxloop.png">
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="DeeBase — An Async, Fastlite-Inspired ORM – univ.ai">
+<meta property="og:description" content="DeeBase is a small async SQLAlchemy-based library with a fastlite-inspired API: dataclass tables, FK navigation, FTS, views, migrations, and a FastAPI integration that auto-generates CRUD endpoints.">
 <meta property="og:site_name" content="univ.ai">
-<meta property="og:image:height" content="290">
-<meta property="og:image:width" content="618">
 </head>
 
 <body class="nav-fixed">
@@ -96,8 +127,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../assets/bluelogo.svg" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/bluelogo.svg" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -107,21 +138,21 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../verticals.html"> 
+    <a class="nav-link" href="../../verticals.html">
 <span class="menu-text">Solutions</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../methods.html"> 
+    <a class="nav-link" href="../../methods.html">
 <span class="menu-text">Our Method</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../posts.html"> 
+    <a class="nav-link" href="../../posts.html">
 <span class="menu-text">Blog</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../about.html">
 <span class="menu-text">About Us</span></a>
-  </li>  
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -134,69 +165,121 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+
+  <ul>
+  <li><a href="#example" id="toc-example" class="nav-link active" data-scroll-target="#example">Example</a></li>
+  <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features">Features</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Box’s Loop</h1>
+<h1 class="title">DeeBase — An Async, Fastlite-Inspired ORM</h1>
+<p class="subtitle lead">An ergonomic async database library that works across SQLite and PostgreSQL.</p>
   <div class="quarto-categories">
-    <div class="quarto-category">models</div>
-    <div class="quarto-category">probabilistic modeling</div>
+    <div class="quarto-category">data</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Modeling is not the end, its just the beginning!
+    DeeBase is a small async SQLAlchemy-based library with a fastlite-inspired API: dataclass tables, FK navigation, FTS, views, migrations, and a FastAPI integration that auto-generates CRUD endpoints.
   </div>
 </div>
 
 
 <div class="quarto-title-meta">
 
-    
+
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 23, 2024</p>
+      <p class="date">January 20, 2026</p>
     </div>
   </div>
-  
-    
+
+
   </div>
-  
+
 
 
 </header>
 
 
-<p>In the 1960’s, the great statistician Box, along with his collaborators, formulated the notion of a loop to understand the nature of the scientific method. This loop is called Box’s loop by Blei et. al., <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and illustrated in the diagram (taken from the above linked paper) below:</p>
-<p><img src="images/boxloop.png" class="img-fluid"></p>
-<p>Box himself focussed on the scientific method, but the loop is applicable at large to other examples of probabilistic modelling, such as the building of an information retrieval or recommendation system, exploratory data analysis, etc, etc</p>
-<p>We:</p>
-<ol type="1">
-<li>first build a model. This is as much as an art as a science if we are of the philosophical bent that we desire explainability. We bring in domain experts.</li>
-<li>We compute a model using the observed data.</li>
-<li>We then critique our model, studying how they succeed or fail and how they predict future data or on held out sets.</li>
-<li>If we are satisfied with the performance of our model we apply it in the context of a predictive or explanatory system. If we are not, we go back to 1.</li>
-</ol>
-<p>If we are <strong>Bayesians</strong>, we compute the <em>posterior</em> distribution (the distribution of the parameters conditioned on the data) of the (hidden) parameters of the model. Here we assume that the data is fixed and our stochasticity is in the parameters.</p>
-<p>If we are <strong>Frequentists</strong>, we assume our data is a sample from a population and compute the parameters of our models abd confidence intervals for those parameters. Here we assume that the data is stochastic as in we could get multiple different samplkes, but that the parameter is fixed and given.</p>
-<p>We could have mis-specified our model. It might be too simple or too complex. If so we go back to (1) and try again with another model specification.</p>
+<p><a href="https://github.com/rahulcredcore/deebase">DeeBase</a> is an async SQLAlchemy-based database library with a fastlite-inspired API that makes async database operations simple across multiple backends.</p>
+<p>It’s the ORM that powers <a href="https://t20.rahuldave.com/">CricsDB</a>.</p>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> deebase <span class="im">import</span> Database, ForeignKey, Text</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> User:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    email: <span class="bu">str</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    status: <span class="bu">str</span> <span class="op">=</span> <span class="st">"active"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Post:</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    author_id: ForeignKey[<span class="bu">int</span>, <span class="st">"user"</span>]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    title: <span class="bu">str</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    content: Text</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    created_at: datetime</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> Database(<span class="st">"sqlite+aiosqlite:///blog.db"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>users <span class="op">=</span> <span class="cf">await</span> db.create(User, pk<span class="op">=</span><span class="st">'id'</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>posts <span class="op">=</span> <span class="cf">await</span> db.create(Post, pk<span class="op">=</span><span class="st">'id'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>alice <span class="op">=</span> <span class="cf">await</span> users.insert(User(<span class="bu">id</span><span class="op">=</span><span class="va">None</span>, name<span class="op">=</span><span class="st">"Alice"</span>, email<span class="op">=</span><span class="st">"alice@example.com"</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> <span class="cf">await</span> posts.insert(Post(</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span><span class="op">=</span><span class="va">None</span>, author_id<span class="op">=</span>alice.<span class="bu">id</span>, title<span class="op">=</span><span class="st">"Hello"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    content<span class="op">=</span><span class="st">"First post!"</span>, created_at<span class="op">=</span>datetime.now()</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># FK navigation</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>author <span class="op">=</span> <span class="cf">await</span> posts.fk.author_id(post)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(author.name)  <span class="co"># "Alice"</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Query</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>all_posts <span class="op">=</span> <span class="cf">await</span> posts()</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> <span class="cf">await</span> posts[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="features" class="level2">
+<h2 class="anchored" data-anchor-id="features">Features</h2>
+<ul>
+<li><strong>Async/await first</strong> — built on SQLAlchemy 2.0+ with <code>aiosqlite</code> and <code>asyncpg</code> drivers</li>
+<li><strong>Ergonomic API</strong> — <code>await users[1]</code>, <code>await users()</code>, <code>await users.lookup(email="...")</code></li>
+<li><strong>Type safety</strong> — optional <code>@dataclass</code> support with IDE autocomplete; or start with plain classes and call <code>.dataclass()</code> later</li>
+<li><strong>Rich type system</strong> — <code>str</code>, <code>Text</code>, <code>int</code>, <code>float</code>, <code>bool</code>, <code>bytes</code>, <code>dict</code> (JSON), <code>datetime</code>, <code>date</code>, <code>time</code>, <code>Optional[T]</code></li>
+<li><strong>Foreign keys and defaults</strong> — <code>ForeignKey[int, "user"]</code> type annotation; SQL defaults from class field defaults</li>
+<li><strong>FK navigation</strong> — <code>await posts.fk.author_id(post)</code> to fetch parent; <code>await users.get_children(user, "post", "author_id")</code> for children</li>
+<li><strong>Indexes</strong> — simple, composite, unique, and named indexes via <code>Index</code> or <code>create_index()</code></li>
+<li><strong>Full-text search</strong> — BM25-ranked search via SQLite FTS5 and PostgreSQL pg_textsearch with automatic index sync</li>
+<li><strong>Views</strong> — <code>db.create_view()</code> for JOINs and CTEs with full query API</li>
+<li><strong><code>xtra()</code> filtering</strong> — create scoped table views that auto-apply filters on all operations including inserts</li>
+<li><strong>Transactions</strong> — atomic multi-operation commits with rollback</li>
+<li><strong>Database reflection</strong> — <code>await db.reflect()</code> to work with existing databases; access tables via <code>db.t.tablename</code></li>
+<li><strong>Code generation</strong> — <code>create_mod_from_tables()</code> exports schemas as Python dataclasses</li>
+<li><strong>CLI</strong> — <code>deebase init</code>, <code>deebase table create</code>, <code>deebase migrate</code>, <code>deebase sql</code>, <code>deebase data</code>, and more</li>
+<li><strong>Migrations</strong> — schema migrations with <code>up</code>/<code>down</code> support and version tracking</li>
+<li><strong>FastAPI integration</strong> — <code>create_crud_router()</code> auto-generates CRUD endpoints with Swagger docs and FK validation</li>
+<li><strong>Admin interface</strong> — Django-like admin UI at <code>/admin/</code> via <code>deebase api serve --admin</code></li>
+<li><strong>Validation layer</strong> — shared validation for CLI, admin, and API</li>
+</ul>
 
 
+</section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>Blei, David M. “Build, compute, critique, repeat: Data analysis with latent variable models.” <em>Annual Review of Statistics and Its Application</em> 1 (2014): 203-232.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -216,7 +299,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       toggleBodyColorMode(bsSheetEl);
     }
   }
-  toggleBodyColorPrimary();  
+  toggleBodyColorPrimary();
   const disableStylesheet = (stylesheets) => {
     for (let i=0; i < stylesheets.length; i++) {
       const stylesheet = stylesheets[i];
@@ -289,7 +372,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggle = toggles[i];
       if (toggle) {
         if (alternate) {
-          toggle.classList.add("alternate");     
+          toggle.classList.add("alternate");
         } else {
           toggle.classList.remove("alternate");
         }
@@ -303,13 +386,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       setTimeout(() => {
         window.scrollTo(0, 0);
         manageTransitions("body", true);
-      }, 40);  
+      }, 40);
     }
   }
-  const isFileUrl = () => { 
+  const isFileUrl = () => {
     return window.location.protocol === 'file:';
   }
-  const hasAlternateSentinel = () => {  
+  const hasAlternateSentinel = () => {
     let styleSentinel = getColorSchemeSentinel();
     if (styleSentinel !== null) {
       return styleSentinel === "alternate";
@@ -337,7 +420,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
+    // Read the current dark / light value
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
@@ -370,7 +453,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
+      if (clz.startsWith('code-annotation-')) {
         return true;
       }
     }
@@ -390,11 +473,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
       button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
+      tooltip = new bootstrap.Tooltip(button,
+        { trigger: "manual",
           customClass: "code-copy-button-tooltip",
           offset: [0, -8]});
-      tooltip.show();    
+      tooltip.show();
     }
     setTimeout(function() {
       if (tooltip) {
@@ -470,7 +553,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     if (onUntriggerFn) {
       config.onUntrigger = onUntriggerFn;
     }
-    window.tippy(el, config); 
+    window.tippy(el, config);
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
   for (var i=0; i<noterefs.length; i++) {
@@ -545,7 +628,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     tippyHover(xref, undefined, function(instance) {
       instance.disable();
       let url = xref.getAttribute('href');
-      let hash = undefined; 
+      let hash = undefined;
       if (url.startsWith('#')) {
         hash = url;
       } else {
@@ -573,7 +656,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             if (note !== null) {
               const html = processXRef(id, note);
               instance.setContent(html);
-            } 
+            }
           }).finally(() => {
             instance.enable();
             instance.show();
@@ -597,7 +680,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             const html = processXRef(null, note);
             instance.setContent(html);
-          } 
+          }
         }).finally(() => {
           instance.enable();
           instance.show();
@@ -637,7 +720,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             height = bottom - top;
           }
           if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
+            // cook up a div (if necessary) and position it
             let div = window.document.getElementById("code-annotation-line-highlight");
             if (div === null) {
               div = window.document.createElement("div");

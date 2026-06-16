@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-01-13">
+<meta name="dcterms.date" content="2026-04-08">
+<meta name="description" content="A full-stack T20 cricket analytics site built on FastAPI, React, Semiotic, and SQLite — with a Wisden-almanack visual identity and ball-by-ball data from cricsheet.org.">
 
-<title>Quarto Basics – univ.ai</title>
+<title>CricsDB — A T20 Cricket Analytics Platform – univ.ai</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,64 +19,30 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-363b0c9ab1af2075668914f2502e5e44.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-84c54097087b4ce699c42411059b969b.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7eb743bc122a0078a0d81ec6a94597bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4da17196778c3efafdca2931ec85ec97.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-363b0c9ab1af2075668914f2502e5e44.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-84c54097087b4ce699c42411059b969b.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-7eb743bc122a0078a0d81ec6a94597bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-4da17196778c3efafdca2931ec85ec97.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,13 +77,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- Bootstrap Icons for brand mark and UI elements -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="../assets/bluelogo.svg">
+<link rel="icon" type="image/svg+xml" href="../../assets/bluelogo.svg">
 
 
-<link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="Quarto Basics – univ.ai">
-<meta property="og:description" content="">
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="CricsDB — A T20 Cricket Analytics Platform – univ.ai">
+<meta property="og:description" content="A full-stack T20 cricket analytics site built on FastAPI, React, Semiotic, and SQLite — with a Wisden-almanack visual identity and ball-by-ball data from cricsheet.org.">
+<meta property="og:image" content="https://univ.ai/posts/cricsdb/assets/home.png">
 <meta property="og:site_name" content="univ.ai">
+<meta property="og:image:height" content="1600">
+<meta property="og:image:width" content="1280">
 </head>
 
 <body class="nav-fixed">
@@ -126,8 +96,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../assets/bluelogo.svg" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/bluelogo.svg" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -137,21 +107,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../verticals.html"> 
+    <a class="nav-link" href="../../verticals.html">
 <span class="menu-text">Solutions</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../methods.html"> 
+    <a class="nav-link" href="../../methods.html">
 <span class="menu-text">Our Method</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../posts.html"> 
+    <a class="nav-link" href="../../posts.html">
 <span class="menu-text">Blog</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../about.html">
 <span class="menu-text">About Us</span></a>
-  </li>  
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -164,61 +134,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+
+  <ul>
+  <li><a href="#what-you-can-do-with-it" id="toc-what-you-can-do-with-it" class="nav-link active" data-scroll-target="#what-you-can-do-with-it">What you can do with it</a></li>
+  <li><a href="#the-stack" id="toc-the-stack" class="nav-link" data-scroll-target="#the-stack">The stack</a></li>
+  <li><a href="#design-notes" id="toc-design-notes" class="nav-link" data-scroll-target="#design-notes">Design notes</a></li>
+  <li><a href="#things-i-learned" id="toc-things-i-learned" class="nav-link" data-scroll-target="#things-i-learned">Things I learned</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s next</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Quarto Basics</h1>
-</div>
+<h1 class="title">CricsDB — A T20 Cricket Analytics Platform</h1>
+<p class="subtitle lead">12,940 matches, 2.95M deliveries, every ball searchable.</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">data</div>
+    <div class="quarto-category">visualization</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    A full-stack T20 cricket analytics site built on FastAPI, React, Semiotic, and SQLite — with a Wisden-almanack visual identity and ball-by-ball data from cricsheet.org.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
-    
+
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 13, 2025</p>
+      <p class="date">April 8, 2026</p>
     </div>
   </div>
-  
-    
+
+
   </div>
-  
+
 
 
 </header>
 
 
-<p>For a demonstration of a line plot on a polar axis, see <a href="#fig-polar" class="quarto-xref">Figure&nbsp;1</a>.</p>
-<div id="fig-polar" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode cell-code" id="fig-polar"><pre class="sourceCode python cell code-with-copy"><code class="sourceCode python"><span id="fig-polar-1"><a href="#fig-polar-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="fig-polar-2"><a href="#fig-polar-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="fig-polar-3"><a href="#fig-polar-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="fig-polar-4"><a href="#fig-polar-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
-<span id="fig-polar-5"><a href="#fig-polar-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
-<span id="fig-polar-6"><a href="#fig-polar-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(</span>
-<span id="fig-polar-7"><a href="#fig-polar-7" aria-hidden="true" tabindex="-1"></a>  subplot_kw <span class="op">=</span> {<span class="st">'projection'</span>: <span class="st">'polar'</span>}</span>
-<span id="fig-polar-8"><a href="#fig-polar-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="fig-polar-9"><a href="#fig-polar-9" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, r)</span>
-<span id="fig-polar-10"><a href="#fig-polar-10" aria-hidden="true" tabindex="-1"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
-<span id="fig-polar-11"><a href="#fig-polar-11" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="fig-polar-12"><a href="#fig-polar-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
-</figcaption>
+<p><a href="https://t20.rahuldave.com/">CricsDB</a> is a T20 cricket analytics platform I built around the wonderful open data from <a href="https://cricsheet.org">cricsheet.org</a>. It covers <strong>12,940 matches</strong> across international cricket and 18 club leagues, <strong>2.95 million ball-by-ball deliveries</strong>, and <strong>160K wickets</strong> — all queryable via a React frontend with deep-linkable URLs.</p>
+<p>Live at <a href="https://t20.rahuldave.com/" class="uri">https://t20.rahuldave.com/</a>. Source on <a href="https://github.com/rahuldave/cricsdb">GitHub</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/home.png" class="img-fluid figure-img"></p>
+<figcaption>The home page — a Wisden-almanack inspired editorial identity with cream page, oxblood accent, and Fraunces display serif.</figcaption>
 </figure>
 </div>
+<section id="what-you-can-do-with-it" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-can-do-with-it">What you can do with it</h2>
+<ul>
+<li>Browse <strong>teams</strong> with split men’s/women’s stats, head-to-head records, and per-season trajectories.</li>
+<li>Drill into <strong>batters</strong> and <strong>bowlers</strong> — by innings, by over, by phase (powerplay / middle / death), by season, by opponent, with dismissal breakdowns.</li>
+<li>Look up any <strong>head-to-head</strong> matchup between a batter and a bowler across the entire dataset.</li>
+<li>Browse <strong>matches</strong> and open a <strong>scorecard</strong> with worm chart, Manhattan chart, and a per-delivery innings grid that colors every ball by outcome.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/batting.png" class="img-fluid figure-img"></p>
+<figcaption>The batting page — by-phase breakdowns, vs-bowlers scatter, and inter-wicket analysis.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/teams.png" class="img-fluid figure-img"></p>
+<figcaption>Teams page — gender-aware aggregation across 18 club leagues plus internationals.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/matches.png" class="img-fluid figure-img"></p>
+<figcaption>Matches list with filters that round-trip through the URL for deep linking.</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-stack" class="level2">
+<h2 class="anchored" data-anchor-id="the-stack">The stack</h2>
+<ul>
+<li><strong>Database</strong> — SQLite (435 MB, WAL mode) accessed through <a href="../deebase/">deebase</a>, a small async ORM I’d been working on.</li>
+<li><strong>Backend</strong> — FastAPI, async, raw parameterised SQL via <code>db.q(sql, params)</code>. The bind-parameter support was a small <a href="https://github.com/rahulcredcore/deebase/pull/8">PR back to deebase</a>.</li>
+<li><strong>Frontend</strong> — React 19 + TypeScript + Tailwind v4, charts in <a href="https://github.com/nteract/semiotic">Semiotic v3</a>, build via Vite 8.</li>
+<li><strong>Deploy</strong> — <a href="https://pla.sh">pla.sh</a>, single-command deploys with the database persisted on the host between code-only pushes.</li>
+</ul>
+</section>
+<section id="design-notes" class="level2">
+<h2 class="anchored" data-anchor-id="design-notes">Design notes</h2>
+<p>A handful of small decisions ended up shaping the whole project.</p>
+<p><strong>Over numbering: 0-indexed in the DB, 1-indexed in the API.</strong> Cricsheet stores overs as 0–19, so the database stays faithful to the source. The API adds 1 before returning, so consumers see 1–20 everywhere. The mental cost is one <code>+1</code> in each router; the win is that joins against cricsheet always line up.</p>
+<p><strong>Legal balls vs all deliveries.</strong> Batting strike rate counts only legal balls (no wides, no no-balls). Bowling runs-conceded counts <em>all</em> deliveries because the bowler is charged for the extras. Mixing these two up is the single most common bug in amateur cricket dashboards; isolating them in two separate SQL paths kept the rest of the codebase honest.</p>
+<p><strong>URL is the source of truth.</strong> Every page’s filter, tab, and selected player lives in <code>?search=params</code>. A custom <code>useSetUrlParams()</code> hook does atomic multi-param updates so the back button always lands somewhere sensible and any view is a copy-pasteable link.</p>
+<p><strong>Wisden-almanack visual identity.</strong> The first cut was generic Tailwind — blue/grey, Inter, default shadows. Functional, forgettable. The redesign pass swapped in a cream page (<code>#FAF7F0</code>), warm dark-brown ink, oxblood as the only accent, and Fraunces for display type. No card chrome — hierarchy comes from rules, whitespace, and typography. Two files in the entire frontend contain raw color literals; everything else references named tokens.</p>
+</section>
+<section id="things-i-learned" class="level2">
+<h2 class="anchored" data-anchor-id="things-i-learned">Things I learned</h2>
+<ul>
+<li><strong>Semiotic v3</strong> is a lovely chart library but the high-level <code>Scatterplot</code> helper doesn’t expose per-point click handlers — to wire scatter↔︎table linking in both directions you have to drop down to <code>XYFrame</code> directly.</li>
+<li><strong>Identity ambiguity is the hardest problem in a sports database.</strong> ~110 team names appear in <em>both</em> men’s and women’s matches in cricsheet (every international side, every IPL/WPL franchise pair…). A team page with no gender filter aggregating both squads is statistically meaningless. The fix is contextual: when a tournament filter is set, auto-fill the gender; when it isn’t, show a banner.</li>
+<li><strong>Double-encoded JSON</strong> snuck into one column (<code>wicket.fielders</code>) because both my import script <em>and</em> deebase’s JSON column type called <code>json.dumps</code>. The matches scorecard router still parses twice as a workaround; the real fix is a five-line diff plus a 15-minute DB rebuild.</li>
+</ul>
+</section>
+<section id="whats-next" class="level2">
+<h2 class="anchored" data-anchor-id="whats-next">What’s next</h2>
+<p>A mechanically-generated ball-by-ball commentary tab on the scorecard page is the next big feature — cricsheet doesn’t ship editorial prose, but the structured data is rich enough to render <code>19.6 — Bumrah to Kohli — 4 runs (FOUR)</code> style feeds, linked bidirectionally to the innings grid.</p>
+<p>Run it locally, file an issue, or just go look up your favourite batter’s death-overs strike rate against left-arm wrist spin — <a href="https://t20.rahuldave.com/" class="uri">https://t20.rahuldave.com/</a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -240,7 +273,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       toggleBodyColorMode(bsSheetEl);
     }
   }
-  toggleBodyColorPrimary();  
+  toggleBodyColorPrimary();
   const disableStylesheet = (stylesheets) => {
     for (let i=0; i < stylesheets.length; i++) {
       const stylesheet = stylesheets[i];
@@ -313,7 +346,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggle = toggles[i];
       if (toggle) {
         if (alternate) {
-          toggle.classList.add("alternate");     
+          toggle.classList.add("alternate");
         } else {
           toggle.classList.remove("alternate");
         }
@@ -327,13 +360,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       setTimeout(() => {
         window.scrollTo(0, 0);
         manageTransitions("body", true);
-      }, 40);  
+      }, 40);
     }
   }
-  const isFileUrl = () => { 
+  const isFileUrl = () => {
     return window.location.protocol === 'file:';
   }
-  const hasAlternateSentinel = () => {  
+  const hasAlternateSentinel = () => {
     let styleSentinel = getColorSchemeSentinel();
     if (styleSentinel !== null) {
       return styleSentinel === "alternate";
@@ -361,7 +394,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
+    // Read the current dark / light value
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
@@ -394,7 +427,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
+      if (clz.startsWith('code-annotation-')) {
         return true;
       }
     }
@@ -414,11 +447,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
       button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
+      tooltip = new bootstrap.Tooltip(button,
+        { trigger: "manual",
           customClass: "code-copy-button-tooltip",
           offset: [0, -8]});
-      tooltip.show();    
+      tooltip.show();
     }
     setTimeout(function() {
       if (tooltip) {
@@ -494,7 +527,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     if (onUntriggerFn) {
       config.onUntrigger = onUntriggerFn;
     }
-    window.tippy(el, config); 
+    window.tippy(el, config);
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
   for (var i=0; i<noterefs.length; i++) {
@@ -569,7 +602,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     tippyHover(xref, undefined, function(instance) {
       instance.disable();
       let url = xref.getAttribute('href');
-      let hash = undefined; 
+      let hash = undefined;
       if (url.startsWith('#')) {
         hash = url;
       } else {
@@ -597,7 +630,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             if (note !== null) {
               const html = processXRef(id, note);
               instance.setContent(html);
-            } 
+            }
           }).finally(() => {
             instance.enable();
             instance.show();
@@ -621,7 +654,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             const html = processXRef(null, note);
             instance.setContent(html);
-          } 
+          }
         }).finally(() => {
           instance.enable();
           instance.show();
@@ -661,7 +694,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             height = bottom - top;
           }
           if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
+            // cook up a div (if necessary) and position it
             let div = window.document.getElementById("code-annotation-line-highlight");
             if (div === null) {
               div = window.document.createElement("div");

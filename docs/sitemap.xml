@@ -2,50 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://univ.ai/posts/vizasstory.html</loc>
-    <lastmod>2022-12-03T20:31:29.736Z</lastmod>
-  </url>
-  <url>
-    <loc>https://univ.ai/posts/lawoflargenumbers.html</loc>
-    <lastmod>2023-01-21T21:59:11.681Z</lastmod>
+    <lastmod>2026-06-16T13:46:00.589Z</lastmod>
   </url>
   <url>
     <loc>https://univ.ai/verticals.html</loc>
-    <lastmod>2025-02-03T22:12:56.797Z</lastmod>
+    <lastmod>2026-06-16T13:30:46.875Z</lastmod>
   </url>
   <url>
-    <loc>https://univ.ai/posts.html</loc>
-    <lastmod>2025-01-16T14:36:42.809Z</lastmod>
+    <loc>https://univ.ai/posts/cricsdb/index.html</loc>
+    <lastmod>2026-06-16T13:46:00.641Z</lastmod>
   </url>
   <url>
-    <loc>https://univ.ai/index.html</loc>
-    <lastmod>2025-02-03T22:12:28.580Z</lastmod>
-  </url>
-  <url>
-    <loc>https://univ.ai/challenge.html</loc>
-    <lastmod>2025-01-16T14:25:36.560Z</lastmod>
-  </url>
-  <url>
-    <loc>https://univ.ai/about.html</loc>
-    <lastmod>2025-06-11T18:41:53.660Z</lastmod>
+    <loc>https://univ.ai/methods.html</loc>
+    <lastmod>2026-06-16T13:30:47.016Z</lastmod>
   </url>
   <url>
     <loc>https://univ.ai/example.html</loc>
     <lastmod>2025-01-15T18:12:43.120Z</lastmod>
   </url>
   <url>
-    <loc>https://univ.ai/methods.html</loc>
-    <lastmod>2025-02-03T22:13:16.594Z</lastmod>
+    <loc>https://univ.ai/about.html</loc>
+    <lastmod>2026-06-16T13:52:46.472Z</lastmod>
   </url>
   <url>
-    <loc>https://univ.ai/posts/hello.html</loc>
-    <lastmod>2025-01-15T21:33:51.730Z</lastmod>
+    <loc>https://univ.ai/challenge.html</loc>
+    <lastmod>2025-01-16T14:25:36.560Z</lastmod>
   </url>
   <url>
-    <loc>https://univ.ai/posts/boxloop.html</loc>
-    <lastmod>2024-10-13T22:14:12.883Z</lastmod>
+    <loc>https://univ.ai/index.html</loc>
+    <lastmod>2026-06-16T13:30:46.748Z</lastmod>
   </url>
   <url>
-    <loc>https://univ.ai/posts/votingforcongress/congress.html</loc>
-    <lastmod>2025-01-08T16:40:20.034Z</lastmod>
+    <loc>https://univ.ai/posts.html</loc>
+    <lastmod>2025-01-16T14:36:42.809Z</lastmod>
+  </url>
+  <url>
+    <loc>https://univ.ai/posts/deebase/index.html</loc>
+    <lastmod>2026-06-16T13:46:08.978Z</lastmod>
+  </url>
+  <url>
+    <loc>https://univ.ai/posts/lawoflargenumbers.html</loc>
+    <lastmod>2026-06-16T13:46:00.586Z</lastmod>
   </url>
 </urlset>

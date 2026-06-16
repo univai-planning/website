@@ -33,3 +33,50 @@ format:
 
 :::
 
+::: {.p-0 .m-0 .bg-primary .tw-bg-brand-200 .text-center .d-flex .flex-column .justify-content-center}
+
+:::: {.container .px-4}
+
+## Practical AI, built with care {.display-5 .fw-bold}
+
+:::: {.fs-4 .fw-light .mt-3 .mx-auto .text-start .col-lg-9}
+univ.ai helps organizations turn AI ideas into working systems. We combine
+strategy, engineering, applied machine learning, and product judgment to move
+from ambiguous business questions to deployed tools that teams can actually use.
+
+Our work spans discovery, prototyping, implementation, and education. We partner
+closely with clients so the resulting systems fit the people, data, workflows,
+and constraints already inside the organization.
+::::
+
+::::
+
+:::
+
+::: {.p-0 .m-0 .pb-5 .bg-primary .tw-bg-brand-300 .text-white .text-center .d-flex .flex-column .justify-content-center}
+
+## People {.display-5 .fw-bold}
+
+:::: {.container .px-4 .mt-4}
+::::: {.grid}
+
+::::: {.g-col-12 .g-col-md-3 .text-start}
+### Rahul Dave
+:::::
+
+::::: {.g-col-12 .g-col-md-3 .text-start}
+### Patrick Ohiomoba
+:::::
+
+::::: {.g-col-12 .g-col-md-3 .text-start}
+### Abate De-May
+:::::
+
+::::: {.g-col-12 .g-col-md-3 .text-start}
+### Shubham Misar
+:::::
+
+:::::
+::::
+
+:::
