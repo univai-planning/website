@@ -18,21 +18,21 @@
     "href": "verticals.html#software-systems",
     "title": "univ.ai",
     "section": "Software Systems",
-    "text": "Software Systems\n\nWe build tools where models, documents, evaluation loops, and human review become working software. These projects often start as research spikes or operational prototypes and end as APIs, dashboards, traces, workflows, and documentation that client teams can keep using.\n\n\n\n\nExtractoPrimo\nEvaluation loops for agents: benchmark model, prompt, setup, and agent combinations across documents, with run tracking, prompt versions, judges, human review, composite scores, Elo comparisons, MLflow traces, and next actions.\n\n\nCricsDB\nFastAPI, React, Semiotic, and SQLite turning ball-by-ball cricket data into deep-linked team, player, matchup, and scorecard views.\n\n\nDeeBase\nAsync SQLAlchemy with dataclass tables, foreign-key navigation, full-text search, migrations, and FastAPI CRUD routers.\n\n\nMEAI and DAIS\nDocument analysis and contract-review systems for XML/PDF uploads, retrieval, structured answers, citations, redlines, rationale, and reviewer signoff."
+    "text": "Software Systems\n\nWe build tools where models, documents, evaluation loops, and human review become working software. These projects often start as research spikes or operational prototypes and end as APIs, dashboards, traces, workflows, and documentation that client teams can keep using."
   },
   {
     "objectID": "verticals.html#domain-work",
     "href": "verticals.html#domain-work",
     "title": "univ.ai",
     "section": "Domain Work",
-    "text": "Domain Work\n\nWe pair modeling skill with domain constraints: audit trails, document citations, physical plausibility, deployment inside enterprise systems, and human review where it matters.\n\n\n\n\nHealthcare Insurance\nFraud prevention for claims operations: suspicious claim patterns, review-ready analytics, and investigator workflows shaped around model outputs that fit the way claims teams actually work.\n\n\nFinance\nRisk scoring, anomaly detection, recommender systems, financial document extraction, model monitoring, and stakeholder-ready dashboards for high-stakes decisions.\n\n\nLegal and Credit\nSystems that search, reason over, and cite long contracts and loan documents, turning dense PDFs into structured, reviewable answers.\n\n\nEnergy and Oilfield\nConvolutional neural-network approximations for reservoir physics, including pressure fields, water saturation, and oil saturation across rock strata from reservoir inputs."
+    "text": "Domain Work\n\nWe pair modeling skill with domain constraints: audit trails, document citations, physical plausibility, deployment inside enterprise systems, and human review where it matters."
   },
   {
     "objectID": "verticals.html#engagements",
     "href": "verticals.html#engagements",
     "title": "univ.ai",
     "section": "Engagements",
-    "text": "Engagements\n\n\n\nWhat we take on\nCustom AI builds, research spikes, prototypes, production hardening, corporate courses, and team enablement.\n\n\nWhat we deliver\nCode, APIs, dashboards, experiment traces, model documentation, workflows, training material, and deployment handoffs.\n\n\nHow we work\nProblem definition, model construction, business translation, deployment, monitoring, and training."
+    "text": "Engagements\n\nOur engagements are scoped around work products that teams can inspect, run, and improve after the handoff."
   },
   {
     "objectID": "verticals.html#ready-to-scope-the-work",
@@ -84,6 +84,13 @@
     "text": "What’s next\nA mechanically-generated ball-by-ball commentary tab on the scorecard page is the next big feature — cricsheet doesn’t ship editorial prose, but the structured data is rich enough to render 19.6 — Bumrah to Kohli — 4 runs (FOUR) style feeds, linked bidirectionally to the innings grid.\nRun it locally, file an issue, or just go look up your favourite batter’s death-overs strike rate against left-arm wrist spin — https://t20.rahuldave.com/."
   },
   {
+    "objectID": "methods.html#how-the-work-moves",
+    "href": "methods.html#how-the-work-moves",
+    "title": "univ.ai",
+    "section": "How the work moves",
+    "text": "How the work moves\n\nThe process is deliberately simple: clarify the problem, build the model and software around it, translate results into business terms, then deploy with monitoring and team handoff."
+  },
+  {
     "objectID": "methods.html#ready-to-innovate",
     "href": "methods.html#ready-to-innovate",
     "title": "univ.ai",
@@ -133,46 +140,53 @@
     "text": "Dark Mode Compatible\n\nThis card adapts to dark mode automatically"
   },
   {
-    "objectID": "about.html#practical-ai-built-with-care",
-    "href": "about.html#practical-ai-built-with-care",
+    "objectID": "about.html#univ.ai",
+    "href": "about.html#univ.ai",
     "title": "univ.ai",
-    "section": "Practical AI, built with care",
-    "text": "Practical AI, built with care\n\nuniv.ai helps organizations turn AI ideas into working systems. We combine strategy, engineering, applied machine learning, and product judgment to move from ambiguous business questions to deployed tools that teams can actually use.\nOur work spans discovery, prototyping, implementation, and education. We partner closely with clients so the resulting systems fit the people, data, workflows, and constraints already inside the organization."
+    "section": "Univ.AI",
+    "text": "Univ.AI\n\nuniv.ai helps organizations turn AI ideas into working systems. We combine strategy, engineering, applied machine learning, and product judgment to move from ambiguous business questions to deployed tools that teams can actually use.\nOur work spans discovery, prototyping, implementation, and education. We partner closely with clients so the resulting systems fit the people, data, workflows, and constraints already inside the organization."
   },
   {
     "objectID": "about.html#people",
     "href": "about.html#people",
     "title": "univ.ai",
     "section": "People",
-    "text": "People\n\n\n\nRahul Dave\n\n\nPatrick Ohiomoba\n\n\nAbate De-May\n\n\nShubham Misar"
+    "text": "People"
   },
   {
     "objectID": "challenge.html#our-work",
     "href": "challenge.html#our-work",
     "title": "univ.ai",
     "section": "Our work",
-    "text": "Our work\nWe partner with industry leaders to deliver transformative AI solutions that drive real business impact. Our portfolio spans from developing cutting-edge machine learning models to implementing enterprise-wide AI strategies.\n\n\nHealthcare Analytics Platform\nDeveloped a comprehensive analytics platform for a leading healthcare provider, enabling real-time patient monitoring and predictive care recommendations.\n\nAdvanced ML models for patient outcome prediction\nReal-time data integration pipeline\nCustom visualization dashboard\n\n\n\nFinancial Risk Assessment System\nCreated an AI-powered risk assessment system for a major financial institution, improving decision accuracy by 35%.\n\nAutomated risk scoring\nAnomaly detection\nRegulatory compliance integration"
+    "text": "Our work\n\nWe partner with teams to deliver AI systems that drive business impact. The work ranges from machine-learning models to enterprise workflows and tools."
   },
   {
     "objectID": "challenge.html#industries",
     "href": "challenge.html#industries",
     "title": "univ.ai",
     "section": "Industries",
-    "text": "Industries\n\n\nHealthcare\n\nPatient outcome prediction\nResource optimization\nDiagnostic assistance\n\n\n\nFinance\n\nRisk assessment\nFraud detection\nAlgorithmic trading\n\n\n\nManufacturing\n\nProcess optimization\nQuality control\nPredictive maintenance\n\n\n\nRetail\n\nCustomer analytics\nInventory optimization\nDemand forecasting"
+    "text": "Industries"
   },
   {
-    "objectID": "challenge.html#ready-to-innovate",
-    "href": "challenge.html#ready-to-innovate",
+    "objectID": "index.html#ideate-implement-and-innovate",
+    "href": "index.html#ideate-implement-and-innovate",
     "title": "univ.ai",
-    "section": "Ready to Innovate",
-    "text": "Ready to Innovate\nTalk to an Expert"
+    "section": "Ideate, Implement and Innovate",
+    "text": "Ideate, Implement and Innovate\n\nAt univ.ai, we transform possibilities into reality. Our team of expert consultants combines deep technical knowledge with strategic thinking to deliver AI solutions that drive real business value.\n\n\n\nCustom AI solutions tailored to your needs\nEnd-to-end implementation support\nContinuous innovation and optimization"
   },
   {
-    "objectID": "challenge.html#lets-talk",
-    "href": "challenge.html#lets-talk",
+    "objectID": "index.html#our-services",
+    "href": "index.html#our-services",
     "title": "univ.ai",
-    "section": "Let’s Talk!",
-    "text": "Let’s Talk!\nWe are always open to discuss your project, improve your online presence and help with your AI/ML development challenges."
+    "section": "Our Services",
+    "text": "Our Services"
+  },
+  {
+    "objectID": "index.html#industries-we-are-transforming",
+    "href": "index.html#industries-we-are-transforming",
+    "title": "univ.ai",
+    "section": "Industries We Are Transforming",
+    "text": "Industries We Are Transforming"
   },
   {
     "objectID": "index.html#ready-to-innovate",
@@ -186,7 +200,7 @@
     "href": "posts.html",
     "title": "univ.ai",
     "section": "",
-    "text": "CricsDB — A T20 Cricket Analytics Platform\n\n\n\ndata\n\n\nvisualization\n\n\n\nA full-stack T20 cricket analytics site built on FastAPI, React, Semiotic, and SQLite — with a Wisden-almanack visual identity and ball-by-ball data from cricsheet.org.\n\n\n\n\n\n\nApr 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nDeeBase — An Async, Fastlite-Inspired ORM\n\n\n\ndata\n\n\n\nDeeBase is a small async SQLAlchemy-based library with a fastlite-inspired API: dataclass tables, FK navigation, FTS, views, migrations, and a FastAPI integration that…\n\n\n\n\n\n\nJan 20, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nEntropy and Maximum Entropy\n\n\n\ninformation-theory\n\n\nprobability\n\n\nstatistics\n\n\n\nIntroduces information entropy as a measure of uncertainty and derives maximum entropy distributions. Shows how constraints on moments lead naturally to the exponential…\n\n\n\n\n\n\nFeb 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHow Sigmoids Combine\n\n\n\nneural-networks\n\n\noptimization\n\n\nvisualization\n\n\n\nExplores how sigmoid activation functions combine in MLPs to create increasingly complex function approximations. Trains neural networks with varying architectures —…\n\n\n\n\n\n\nMar 19, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nThe LLN\n\n\n\nstatistics\n\n\nmontecarlo\n\n\n\nThe Law of Large Numbers says the sample average converges to the true mean as sample size grows. We illustrate this with coin flips and connect frequentist sampling…\n\n\n\n\n\n\nDec 3, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nVisualization As Story\n\n\n\nvisualization\n\n\n\nGood visualizations frame data as a story, using annotations and conventions so the audience doesn’t have to think. We walk through Financial Times COVID vaccine charts as…\n\n\n\n\n\n\nDec 3, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "CricsDB — A T20 Cricket Analytics Platform\n\n\n\ndata\n\nvisualization\n\n\n\nA full-stack T20 cricket analytics site built on FastAPI, React, Semiotic, and SQLite — with a Wisden-almanack visual identity and ball-by-ball data from cricsheet.org.\n\n\n\n\n\n\nApr 8, 2026\n\n\n\n\n\n\n\n\n\n\n\nDeeBase — An Async, Fastlite-Inspired ORM\n\n\n\ndata\n\n\n\nDeeBase is a small async SQLAlchemy-based library with a fastlite-inspired API: dataclass tables, FK navigation, FTS, views, migrations, and a FastAPI integration that…\n\n\n\n\n\n\nJan 20, 2026\n\n\n\n\n\n\n\n\n\n\n\nEntropy and Maximum Entropy\n\n\n\ninformation-theory\n\nprobability\n\nstatistics\n\n\n\nIntroduces information entropy as a measure of uncertainty and derives maximum entropy distributions. Shows how constraints on moments lead naturally to the exponential…\n\n\n\n\n\n\nFeb 12, 2025\n\n\n\n\n\n\n\n\n\n\n\nHow Sigmoids Combine\n\n\n\nneural-networks\n\noptimization\n\nvisualization\n\n\n\nExplores how sigmoid activation functions combine in MLPs to create increasingly complex function approximations. Trains neural networks with varying architectures —…\n\n\n\n\n\n\nMar 19, 2025\n\n\n\n\n\n\n\n\n\n\n\nThe LLN\n\n\n\nstatistics\n\nmontecarlo\n\n\n\nThe Law of Large Numbers says the sample average converges to the true mean as sample size grows. We illustrate this with coin flips and connect frequentist sampling…\n\n\n\n\n\n\nDec 3, 2022\n\n\n\n\n\n\n\n\n\n\n\nVisualization As Story\n\n\n\nvisualization\n\n\n\nGood visualizations frame data as a story, using annotations and conventions so the audience doesn’t have to think. We walk through Financial Times COVID vaccine charts as…\n\n\n\n\n\n\nDec 3, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/deebase/index.html",

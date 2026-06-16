@@ -8,38 +8,28 @@ format:
             <style>
             #intro {
                 background-image: url("/assets/Frame+1000006623.png");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-            }
-            #services {
-                background-image: url("/assets/Frame+1000006623.png");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-            }
-            #outro {
-                background-image: url("/assets/photo-of-man-holding-a-book-927022.png");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
             }
             </style>
 ---
 
-::: {#intro  .p-0 .m-0 .bg-primary .tw-bg-brand-600 .text-white .text-center .d-flex .flex-column .justify-content-center}
+::: {#intro .site-hero .text-center}
 
-# About Us {.display-4 .fw-bold}
+# About Us
+
+:::: {.site-hero__lead .mt-3}
+Practical AI, built with care.
+::::
 
 :::
 
-::: {.p-0 .m-0 .bg-primary .tw-bg-brand-200 .text-center .d-flex .flex-column .justify-content-center}
+::: {.site-section}
 
-:::: {.container .px-4}
+:::: {.container}
 
-## Practical AI, built with care {.display-5 .fw-bold}
+:::: {.site-section__header}
+## Univ.AI
 
-:::: {.fs-4 .fw-light .mt-3 .mx-auto .text-start .col-lg-9}
+::: {.site-lede}
 univ.ai helps organizations turn AI ideas into working systems. We combine
 strategy, engineering, applied machine learning, and product judgment to move
 from ambiguous business questions to deployed tools that teams can actually use.
@@ -47,32 +37,36 @@ from ambiguous business questions to deployed tools that teams can actually use.
 Our work spans discovery, prototyping, implementation, and education. We partner
 closely with clients so the resulting systems fit the people, data, workflows,
 and constraints already inside the organization.
+:::
 ::::
 
 ::::
 
 :::
 
-::: {.p-0 .m-0 .pb-5 .bg-primary .tw-bg-brand-300 .text-white .text-center .d-flex .flex-column .justify-content-center}
+::: {.site-section .site-section--surface}
 
-## People {.display-5 .fw-bold}
+:::: {.container}
 
-:::: {.container .px-4 .mt-4}
-::::: {.grid}
+:::: {.site-section__header}
+## People
+::::
 
-::::: {.g-col-12 .g-col-md-3 .text-start}
+::::: {.grid .site-card-grid}
+
+::::: {.g-col-12 .g-col-md-3 .site-card}
 ### Rahul Dave
 :::::
 
-::::: {.g-col-12 .g-col-md-3 .text-start}
+::::: {.g-col-12 .g-col-md-3 .site-card}
 ### Patrick Ohiomoba
 :::::
 
-::::: {.g-col-12 .g-col-md-3 .text-start}
+::::: {.g-col-12 .g-col-md-3 .site-card}
 ### Abate De-May
 :::::
 
-::::: {.g-col-12 .g-col-md-3 .text-start}
+::::: {.g-col-12 .g-col-md-3 .site-card}
 ### Shubham Misar
 :::::
 

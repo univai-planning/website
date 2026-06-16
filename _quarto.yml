@@ -32,7 +32,7 @@ format:
       light: styles/modern-light.scss
       dark: styles/modern-dark.scss
     css:
-      - styles.css
+      - site.css
     toc: true
     include-in-header:
       - includes/fonts.html

@@ -3,100 +3,110 @@ format:
   html:
     toc: false
     page-layout: custom
+    include-in-header:
+        - text: |
+            <style>
+            #intro {
+                background-image: url("/assets/Frame+1000006623.png");
+            }
+            </style>
 ---
 
-::: {.container-fluid .p-0}
+::: {#intro .site-hero .text-center}
 
-::: {.px-4 .py-5 .text-center}
-# Whatever the scope of your challenge.. {.display-4 .fw-normal}
+# Whatever the scope of your challenge
 
-![Team collaborating on AI solutions](images/team-collaboration.jpg){.img-fluid .mt-4 .mb-4}
+:::: {.site-hero__body .mt-3}
+Our team brings together technical expertise and strategic thinking to tackle
+complex AI challenges, from early-stage ideation to full-scale deployment.
+::::
 
-Our team of experts brings together deep technical expertise and strategic thinking to tackle your most complex AI challenges. From early-stage ideation to full-scale deployment, we're here to guide your journey.
+[Talk to an Expert](https://forms.gle/1JDjVg7FQRUV8g5U9){.btn .btn-light .btn-lg}
 :::
 
-## Our work {.text-center .mt-5 .mb-4}
+::: {.site-section}
 
-We partner with industry leaders to deliver transformative AI solutions that drive real business impact. Our portfolio spans from developing cutting-edge machine learning models to implementing enterprise-wide AI strategies.
+:::: {.container}
 
-::: {.grid .mt-5}
+:::: {.site-section__header}
+## Our work
 
-::: {.g-col-12 .g-col-md-6 .mb-4}
+::: {.site-lede}
+We partner with teams to deliver AI systems that drive business impact. The
+work ranges from machine-learning models to enterprise workflows and tools.
+:::
+::::
+
+::::: {.grid .site-card-grid}
+
+::::: {.g-col-12 .g-col-md-6 .site-card}
 ### Healthcare Analytics Platform
-Developed a comprehensive analytics platform for a leading healthcare provider, enabling real-time patient monitoring and predictive care recommendations.
+
+Developed analytics for patient monitoring and predictive care recommendations.
 
 - Advanced ML models for patient outcome prediction
 - Real-time data integration pipeline
 - Custom visualization dashboard
-:::
+:::::
 
-::: {.g-col-12 .g-col-md-6 .mb-4}
+::::: {.g-col-12 .g-col-md-6 .site-card}
 ### Financial Risk Assessment System
-Created an AI-powered risk assessment system for a major financial institution, improving decision accuracy by 35%.
+
+Created AI-powered risk assessment for financial decisioning and compliance.
 
 - Automated risk scoring
 - Anomaly detection
 - Regulatory compliance integration
-:::
+:::::
+
+:::::
+::::
 
 :::
 
-## Industries {.mt-5 .mb-4}
+::: {.site-section .site-section--surface}
 
-::: {.grid}
+:::: {.container}
 
-::: {.g-col-12 .g-col-md-3}
+:::: {.site-section__header}
+## Industries
+::::
+
+::::: {.grid .site-card-grid}
+
+::::: {.g-col-12 .g-col-md-3 .site-card}
 ### Healthcare
+
 - Patient outcome prediction
 - Resource optimization
 - Diagnostic assistance
-:::
+:::::
 
-::: {.g-col-12 .g-col-md-3}
+::::: {.g-col-12 .g-col-md-3 .site-card}
 ### Finance
+
 - Risk assessment
 - Fraud detection
 - Algorithmic trading
-:::
+:::::
 
-::: {.g-col-12 .g-col-md-3}
+::::: {.g-col-12 .g-col-md-3 .site-card}
 ### Manufacturing
+
 - Process optimization
 - Quality control
 - Predictive maintenance
-:::
+:::::
 
-::: {.g-col-12 .g-col-md-3}
+::::: {.g-col-12 .g-col-md-3 .site-card}
 ### Retail
+
 - Customer analytics
 - Inventory optimization
 - Demand forecasting
-:::
+:::::
 
-:::
-
-::: {.text-center .py-5}
-## Ready to Innovate {.display-5}
-
-[Talk to an Expert]{.btn .btn-warning .btn-lg}
-:::
-
-::: {.footer .bg-dark .text-white .py-5}
-::: {.container}
-::: {.row}
-
-::: {.col-md-6}
-## Let's Talk!
-
-We are always open to discuss your project, improve your online presence and help with your AI/ML development challenges.
-:::
-
-::: {.col-md-6 .text-end}
-[Instagram]{.btn .btn-link} [Twitter]{.btn .btn-link} [Facebook]{.btn .btn-link}
-:::
-
-:::
-:::
-:::
+:::::
+::::
 
 :::

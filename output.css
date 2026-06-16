@@ -110,24 +110,9 @@
   border-left-width: 4px !important
 }
 
-.tw-bg-brand-200 {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(113 163 224 / var(--tw-bg-opacity, 1)) !important
-}
-
-.tw-bg-brand-300 {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(64 134 208 / var(--tw-bg-opacity, 1)) !important
-}
-
 .tw-bg-brand-400 {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(48 105 178 / var(--tw-bg-opacity, 1)) !important
-}
-
-.tw-bg-brand-600 {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(28 54 114 / var(--tw-bg-opacity, 1)) !important
 }
 
 @media (prefers-color-scheme: dark) {

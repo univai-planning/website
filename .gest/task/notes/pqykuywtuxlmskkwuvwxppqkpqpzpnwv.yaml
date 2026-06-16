@@ -1,0 +1,9 @@
+id: pqykuywtuxlmskkwuvwxppqkpqpzpnwv
+entity_id: mpkyozwxtklwllkyqxrsovzyzxrqvlrm
+author_id: rqrsrsumzyvuyopsxrwnpwqnzuqntumm
+body: |-
+  Done: Reworked the custom page visual system around shared site-hero, site-section, site-card, site-lede, and site-cta classes; renamed the custom CSS layer to site.css to break stale styles.css cache; restrained Solutions, Home, Our Method, About, and Challenge pages to white/off-white sections with dark image hero/CTA treatment; removed the Quarto display-class pattern that caused oversized card copy; added internal_docs/design-system.md with page-level design guidance.
+  Verification: npm run build passed with Quarto render and bundle generation; browser audit on http://127.0.0.1:8765 found no horizontal overflow, no failed loaded images, custom page card titles around 19.72px and card bodies 17px on desktop and 390px mobile, with blog cards preserved around 18px; direct curl verified the CricsDB listing image returns 200; npm run test-bundles passed 2/2 with escalation for uv cache; git diff --check passed after generated HTML whitespace cleanup.
+  Follow-up: Browser screenshot capture timed out in this session, but the in-app browser is visible on the updated local Solutions page for direct inspection.
+created_at: 2026-06-16T20:49:19.326831Z
+updated_at: 2026-06-16T20:49:19.326831Z
