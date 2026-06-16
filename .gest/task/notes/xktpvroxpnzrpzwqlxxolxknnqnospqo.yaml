@@ -1,0 +1,9 @@
+id: xktpvroxpnzrpzwqlxxolxknnqnospqo
+entity_id: kxmurpxxzuozoqwrprlvyztvzqzxkluy
+author_id: rqrsrsumzyvuyopsxrwnpwqnzuqntumm
+body: |-
+  Done: PR https://github.com/univai-planning/website/pull/1 merged into main with a merge commit. Merge commit: f08668f29873266383d3e1d6ff19b402d57734a3.
+  Verification: gh pr view reports PR #1 MERGED at 2026-06-16T13:18:02Z by rahuldave; git log shows main and origin/main at f08668f; git fetch --prune removed origin/codex/quarto-style-import.
+  Follow-up: Port notebook bundle runtime from rahuldave.github.io for future univ.ai blog posts; unrelated brochure/temp artifacts remain untracked and excluded.
+created_at: 2026-06-16T13:18:54.616009Z
+updated_at: 2026-06-16T13:18:54.616009Z

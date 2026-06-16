@@ -10,6 +10,11 @@ tags:
 - session
 metadata:
   depth: 2
+  github:
+    merge_method: merge
+    merged_commit: f08668f29873266383d3e1d6ff19b402d57734a3
+    pr: 1
+    pr_url: https://github.com/univai-planning/website/pull/1
   review:
     depth: solo
   test:
@@ -23,5 +28,5 @@ metadata:
   workflow:
     kind: session
 created_at: 2026-06-16T12:42:35.850165Z
-updated_at: 2026-06-16T13:02:46.389732Z
+updated_at: 2026-06-16T13:19:14.867808Z
 resolved_at: 2026-06-16T13:02:46.389732Z
