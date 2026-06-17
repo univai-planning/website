@@ -1,8 +1,0 @@
-id: lxsoqrsslpkunpmxyvmtrlknvuruvwkl
-table_name: tasks
-row_id: xwtsvowksvulrnvrnrykmmmntnrovkuo
-event_type: modified
-semantic_type: completed
-old_value: in-progress
-new_value: done
-created_at: 2026-06-16T18:37:08.886327Z

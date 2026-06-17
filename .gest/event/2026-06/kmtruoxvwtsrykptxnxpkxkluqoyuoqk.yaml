@@ -1,8 +1,0 @@
-id: kmtruoxvwtsrykptxnxpkxkluqoyuoqk
-table_name: tasks
-row_id: mpkyozwxtklwllkyqxrsovzyzxrqvlrm
-event_type: modified
-semantic_type: status-change
-old_value: open
-new_value: in-progress
-created_at: 2026-06-16T20:37:33.939906Z
