@@ -32,7 +32,7 @@ format:
 # Step into the future
 
 :::: {.site-hero__lead .mt-3}
-Engineering expertise and Machine Learning development for companies ready to innovate
+AI and Machine Learning science and engineering for companies ready to innovate
 ::::
 
 [Talk to an Expert](https://forms.gle/1JDjVg7FQRUV8g5U9){.btn .btn-light .btn-lg}
@@ -50,7 +50,7 @@ At univ.ai, we transform possibilities into reality. Our team of expert consulta
 ::::
 
 ::: {.site-callout}
-* Custom AI solutions tailored to your needs
+* Custom AI and ML solutions tailored to your needs
 * End-to-end implementation support
 * Continuous innovation and optimization
 :::
@@ -69,38 +69,60 @@ At univ.ai, we transform possibilities into reality. Our team of expert consulta
 
 ::::: {.grid .site-card-grid}
 
-::::: {.g-col-12 .g-col-md-4 .site-card}
+::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
 ### User-Centric Design
 
 We build AI solutions that put your users first. Our approach combines technical excellence with deep understanding of human-centered design principles.
 
 * User research and analysis
-* Interface optimization
+* Interface and visualization research
 * Workflow integration
 * Usability testing
+* Dashboards
 
 :::::
 
-::::: {.g-col-12 .g-col-md-4 .site-card}
+::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
 ### Generative AI
 
 Harness the power of generative AI to create new possibilities for your business. From content generation to creative problem-solving.
 
 * Custom language models
-* Image generation systems
-* Text-to-speech solutions
-* Content optimization
+* Physics driven AI
+* Memory systems for agents
+* Evals driven by KPIs
 :::::
 
-::::: {.g-col-12 .g-col-md-4 .site-card}
+::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
+### Machine Learning
+
+We build ML systems that connect data, model behavior, and business metrics across training, deployment, and monitoring.
+
+* Outlier and drift detection
+* Supervised and self-supervised embeddings
+* Model training and inference
+* Continual learning as new data comes in
+* Mapping model outputs to KPIs
+:::::
+
+::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
+### Systems and Data Engineering
+
+We design the data and software systems that support reliable AI products in production.
+
+* Database and system design
+* Data pipeline orchestration
+* Agent system architecture
+:::::
+
+::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
 ### AI Research
 
-Stay at the forefront of AI innovation with our dedicated research team. We turn cutting-edge research into practical business solutions.
+Stay at the forefront of AI innovation with our research team. We turn cutting-edge research into practical business solutions.
 
 * Applied research projects
 * Proof of concepts
 * Performance optimization
-* Innovation consulting
 :::::
 
 :::::
