@@ -1,9 +1,0 @@
-id: kwvovtrwzrkoykzsnuzvrvulozvxxmky
-entity_id: xwtsvowksvulrnvrnrykmmmntnrovkuo
-author_id: rqrsrsumzyvuyopsxrwnpwqnzuqntumm
-body: |-
-  Done: Ported notebook bundle support into this Quarto site: copied/adapted bundle generation, metadata injection, bundle test scripts, download button include/JS, and SCSS; wired _quarto.yml and package.json so pixi run build renders docs and generates docs/bundles.json plus zip files. Added posts/entropy and posts/nnreg from ~/Websites/rahuldave.github.io, including entropy image assets, and added notebook overflow styling for code, outputs, and MathJax.
-  Verification: pixi run build passed after the final changes and created entropy.zip and nnreg.zip. npm run test-bundles passed against the final generated zips: 2 pass, 0 fail, 0 error, 0 timeout. Browser checks confirmed /posts.html lists Entropy and Maximum Entropy plus How Sigmoids Combine; /posts/entropy/ and /posts/nnreg/ show Download and Run buttons, have no broken images, and have no horizontal page overflow at 390x844. git diff --check is clean.
-  Tag/dependency note: classified as development/leaf/quarto/blog/content with the new notebook-bundles tag. Dependency impact is the build/runtime surface: _quarto.yml include-after-body/resources, package scripts, assets/download-bundle.js, styles imports, generated docs manifest/zips, and copied notebook posts. ast-grep was not useful for these Quarto/Python/JS asset paths; literal path checks, build, zip inspection, bundle execution, and browser verification covered the affected contracts.
-created_at: 2026-06-16T18:37:00.990426Z
-updated_at: 2026-06-16T18:37:00.990426Z

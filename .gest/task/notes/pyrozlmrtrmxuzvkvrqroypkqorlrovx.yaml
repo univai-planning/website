@@ -1,6 +1,0 @@
-id: pyrozlmrtrmxuzvkvrqroypkqorlrovx
-entity_id: nwwlvyztnmytkorvzsqvswspqszmnkln
-author_id: rqrsrsumzyvuyopsxrwnpwqnzuqntumm
-body: 'Done: Added an About page company blurb and a People section listing Rahul Dave, Patrick Ohiomoba, Abate De-May, and Shubham Misar, then rebuilt docs/about.html. Verification: pixi run build succeeded; browser reloaded http://127.0.0.1:8765/about.html and reported headings for the new blurb and all four people, zero broken images, and no horizontal text/card overflow at the current viewport; git diff --check passed. Review: local GRV pass inspected about.qmd/docs/about.html diff, staged diff, and Gest searches for about-page review/regression; findings none. Tag classification: selected session, leaf, quarto, design, content; added about-page. Dependency impact: content-only Quarto page update; ast-grep not required. Commit decision: skipped commit for now because this branch is carrying earlier uncommitted site work and the user is still iterating visually.'
-created_at: 2026-06-16T13:54:55.455824Z
-updated_at: 2026-06-16T13:54:55.455824Z
