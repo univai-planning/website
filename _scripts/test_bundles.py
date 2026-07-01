@@ -96,8 +96,10 @@ def main():
     if args.report is None:
         args.report = str(site_dir / "test-report.json")
 
-    # Find all zip bundles
+    # Find canonical zip bundles. /blog contains aliases copied from /posts, so
+    # testing it too would duplicate the same notebooks.
     zips = sorted(site_dir.glob("posts/*/*.zip"))
+    zips.extend(sorted(site_dir.glob("learning/*/*.zip")))
     if args.slug:
         zips = [z for z in zips if z.stem == args.slug]
 

@@ -2,6 +2,8 @@ project:
   type: website
   resources:
     - assets/download-bundle.js
+    - assets/llm-explain.js
+    - assets/llm-prompts.json
     - assets/learning-paths.js
     - assets/learning-paths.json
     - assets/brochure/univ-ai-promotional-brochure.pdf
@@ -33,6 +35,9 @@ website:
       - href: about.qmd
         text: About Us
 
+filters:
+  - _filters/cell-markers.lua
+
 format:
   html:
     theme:
@@ -46,5 +51,6 @@ format:
       - text: |
           <link rel="icon" type="image/svg+xml" href="/assets/bluelogo.svg"/>
     include-after-body:
+      - includes/llm-explain.html
       - includes/download-bundle.html
       - includes/learning-paths.html
