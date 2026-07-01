@@ -12,6 +12,12 @@ node_modules/
 
 **/*.quarto_ipynb
 .gest/
+.cx/state.json
+.cx/graph.json
+.cx/tmp/
+.cx/inputs/
+.cx/stamps/
+.cx/cache/
 
 # Generated learning-path artifacts.
 /assets/learning-paths.json

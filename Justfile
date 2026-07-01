@@ -6,6 +6,18 @@ deploy_dir := "/tmp/univai-gh-pages-deploy"
 default:
     @just --list
 
+cx-prepare:
+    mkdir -p .cx/inputs .cx/stamps .cx/cache {{out_dir}}
+
+cx-lint:
+    bash -c 'cx lint'
+
+site-build-inputs: cx-prepare
+    python3 _scripts/write_cx_manifest.py --target site-build --out .cx/inputs/site-build.json --arg out_dir={{out_dir}}
+
+bundle-inputs: cx-prepare
+    python3 _scripts/write_cx_manifest.py --target bundles --out .cx/inputs/bundles.json --arg out_dir={{out_dir}}
+
 generate-vars:
     npm run generate-vars
 
@@ -18,8 +30,11 @@ compile-prompts:
 render:
     quarto render
 
-build-bundles:
+build-bundles-raw:
     python3 _scripts/generate_bundles.py --site-dir {{out_dir}} --content-root posts:posts:/posts:/blog --content-root courses:courses:/learning
+
+build-bundles: bundle-inputs
+    cx --in .cx/inputs/bundles.json --out {{out_dir}}/bundles.json --out .cx/stamps/bundles -- _scripts/stamp_command.sh .cx/stamps/bundles python3 _scripts/generate_bundles.py --site-dir {{out_dir}} --content-root posts:posts:/posts:/blog --content-root courses:courses:/learning
 
 generate-learning-paths:
     python3 _scripts/generate_learning_paths.py
@@ -41,7 +56,7 @@ test-learning-paths:
     python3 -m unittest tests.test_generate_learning_paths
 
 test-runtime:
-    python3 -m unittest tests.test_generate_bundles tests.test_generate_llm_context
+    python3 -m unittest tests.test_generate_bundles tests.test_generate_llm_context tests.test_cx_manifest tests.test_test_bundles tests.test_execute_notebooks tests.test_import_notebook
 
 test-content-migration:
     python3 -m unittest tests.test_content_migration_manifest
@@ -50,7 +65,8 @@ brochure:
     mkdir -p assets/brochure
     typst compile --creation-timestamp 0 brochure/univ_ai_promotional_brochure.typ assets/brochure/univ-ai-promotional-brochure.pdf
 
-build: generate-vars build-tailwind compile-prompts generate-learning-paths render build-jupyterlite llm-context build-bundles publish-routes
+build: site-build-inputs
+    cx --in .cx/inputs/site-build.json --out {{out_dir}}/index.html --out {{out_dir}}/bundles.json --out {{out_dir}}/llms.txt --out {{out_dir}}/learning/index.html --out {{out_dir}}/blog/index.html --out .cx/stamps/site-build -- _scripts/stamp_command.sh .cx/stamps/site-build _scripts/build_site.sh {{out_dir}}
 
 build-dev:
     npm run build-dev
@@ -61,12 +77,17 @@ preview:
 serve port="8765": build
     python3 -m http.server {{port}} --directory {{out_dir}}
 
-test-bundles slug="" timeout="1200": build
-    if [[ -n "{{slug}}" ]]; then \
-      python3 _scripts/test_bundles.py --site-dir {{out_dir}} --report {{out_dir}}/test-report.json --timeout {{timeout}} --slug "{{slug}}"; \
-    else \
-      python3 _scripts/test_bundles.py --site-dir {{out_dir}} --report {{out_dir}}/test-report.json --timeout {{timeout}}; \
-    fi
+test-bundles slugs="" timeout="1200": build
+    python3 _scripts/test_bundles.py --site-dir {{out_dir}} --report {{out_dir}}/test-report.json --cache-report .cx/cache/test-bundles.json --timeout {{timeout}} --slugs "{{slugs}}"
+
+execute-notebooks selectors timeout="1200":
+    python3 _scripts/execute_notebooks.py --timeout {{timeout}} --selectors "{{selectors}}"
+
+execute-notebook selector timeout="1200": (execute-notebooks selector timeout)
+
+prepare-notebook selector timeout="1200": (execute-notebooks selector timeout) (test-bundles selector timeout)
+
+verify-notebooks slugs="" timeout="1200": (test-bundles slugs timeout)
 
 smoke: build
     test -f {{out_dir}}/index.html
@@ -101,7 +122,7 @@ smoke: build
 diff-check:
     git diff --check
 
-verify: smoke test-routes test-learning-paths test-runtime test-content-migration test-bundles diff-check
+verify slugs="" timeout="1200": smoke test-routes test-learning-paths test-runtime test-content-migration (test-bundles slugs timeout) diff-check
 
 clean:
     rm -rf {{out_dir}}

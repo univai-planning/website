@@ -22,9 +22,14 @@ It applies to markdown, QMD, and notebook pages.
 3. For notebooks, refresh outputs when needed.
 
    ```bash
-   uv run _scripts/execute_notebook.py <path-to-index.ipynb>
-   uv run _scripts/execute_notebook.py --timeout 1200 <path-to-slow-index.ipynb>
+   just execute-notebook blog/<slug> 1200
+   just execute-notebook learning/<slug> 1200
    ```
+
+   Direct paths such as `posts/<slug>/index.ipynb` and
+   `courses/<slug>/index.ipynb` are also accepted. This source execution step
+   must happen before publication because Quarto renders stored notebook
+   outputs.
 
 4. Render through the project contract.
 
@@ -46,6 +51,7 @@ It applies to markdown, QMD, and notebook pages.
 
    ```bash
    just smoke
+   just verify-notebooks <slug> 1200
    just diff-check
    ```
 
@@ -55,3 +61,5 @@ It applies to markdown, QMD, and notebook pages.
   output to `gh-pages`.
 - Do not duplicate learning-path content in the blog. Blog teasers should link
   to `/learning/` pages.
+- `just prepare-notebook <selector> 1200` combines source execution, site
+  build, and focused bundle verification for a new or edited notebook.

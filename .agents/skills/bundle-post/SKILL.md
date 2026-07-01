@@ -44,12 +44,24 @@ Skip markdown-only and QMD pages.
 
    ```bash
    just build
-   python3 _scripts/test_bundles.py --site-dir _site --report _site/test-report.json --timeout 600 --slug <slug>
+   just verify-notebooks <slug> 1200
    ```
 
 5. Check public route behavior.
    Blog notebooks should work at `/posts/<slug>/` and `/blog/<slug>/`.
    Learning notebooks should work at `/learning/<slug>/` after route publishing.
+
+6. Execute source notebooks before publication.
+   Bundle testing proves the downloadable zip can run; it does not refresh
+   stored outputs in the source notebook. Run:
+
+   ```bash
+   just execute-notebook blog/<slug> 1200
+   just execute-notebook learning/<slug> 1200
+   ```
+
+   For a new notebook, `just prepare-notebook <selector> 1200` executes the
+   source notebook, builds the site, and focused-verifies the generated bundle.
 
 ## Notes
 

@@ -12,14 +12,15 @@ publication when outputs matter.
 ## Commands
 
 ```bash
-uv run _scripts/execute_notebook.py posts/<slug>/index.ipynb
-uv run _scripts/execute_notebook.py courses/<slug>/index.ipynb
+just execute-notebook blog/<slug> 1200
+just execute-notebook learning/<slug> 1200
 ```
 
-For slow notebooks:
+Direct source paths are accepted too:
 
 ```bash
-uv run _scripts/execute_notebook.py --timeout 1200 <notebook>
+just execute-notebook posts/<slug>/index.ipynb 1200
+just execute-notebook courses/<slug>/index.ipynb 1200
 ```
 
 For debugging without output capture:
@@ -35,6 +36,7 @@ After execution:
 ```bash
 python3 -m json.tool <notebook> >/dev/null
 just build
+just verify-notebooks <slug> 1200
 ```
 
 Spot-check that code cells have expected outputs and no transient local paths

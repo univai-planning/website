@@ -16,6 +16,12 @@ Follow the repository VCS rules in `AGENTS.md` first.
    just verify
    ```
 
+   For new or edited notebook content, run source execution before this:
+
+   ```bash
+   just prepare-notebook <selector> 1200
+   ```
+
 2. Review source changes.
 
    ```bash
