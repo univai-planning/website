@@ -63,6 +63,12 @@ this repo's `_site/` output directory and `gh-pages` deployment branch, and
 preserve the rule that notebook downloads use zip bundles rather than
 `ipynb: default`.
 
+The notebook/content workflow skills have been ported into `.agents/skills/`:
+`bundle-post`, `finalize-post`, `execute-notebook`, `caption-images`,
+`port-pymc3`, `edit-notebook`, and `publish`. Use them for notebook imports,
+course/blog content finalization, PyMC3 migration, and deployment, after
+applying the higher-priority GTW/Gest and VCS instructions in this file.
+
 Visual QA matters for CSS/layout work. Build the site, serve `_site/` locally,
 and inspect desktop and mobile viewports before handing off substantial visual
 changes.
