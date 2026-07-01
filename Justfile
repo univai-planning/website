@@ -18,11 +18,17 @@ render:
 build-bundles:
     python3 _scripts/generate_bundles.py --site-dir {{out_dir}} --posts-dir posts
 
+publish-routes:
+    python3 _scripts/publish_routes.py --site-dir {{out_dir}}
+
+test-routes:
+    python3 -m unittest tests.test_publish_routes
+
 brochure:
     mkdir -p assets/brochure
     typst compile --creation-timestamp 0 brochure/univ_ai_promotional_brochure.typ assets/brochure/univ-ai-promotional-brochure.pdf
 
-build: generate-vars build-tailwind render build-bundles
+build: generate-vars build-tailwind render build-bundles publish-routes
 
 build-dev:
     npm run build-dev
@@ -44,14 +50,17 @@ smoke: build
     test -f {{out_dir}}/index.html
     test -f {{out_dir}}/CNAME
     test -f {{out_dir}}/bundles.json
+    test -f {{out_dir}}/learning/index.html
+    test -f {{out_dir}}/blog/index.html
     test -f {{out_dir}}/assets/brochure/univ-ai-promotional-brochure.pdf
+    test ! -e {{out_dir}}/courses
     test ! -e {{out_dir}}/internal_docs
     test ! -e {{out_dir}}/AGENTS.html
 
 diff-check:
     git diff --check
 
-verify: smoke diff-check
+verify: smoke test-routes diff-check
 
 clean:
     rm -rf {{out_dir}}

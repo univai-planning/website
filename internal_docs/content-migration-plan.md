@@ -15,6 +15,10 @@ Status as of this checkpoint:
   intentionally deferred.
 - The next implementation work starts at the course/learning route and copied
   runtime features; the publishing-model setup is complete.
+- Runtime affordances are not learning-only. The LLM explain, Pyodide/Run in
+  Browser, and download-bundle features must work for both the new `/learning/`
+  course area and the existing blog/posts area (`/posts/` today, and `/blog/`
+  too if a friendlier blog route is introduced).
 
 ## New Session Handoff
 
@@ -30,6 +34,13 @@ Status as of this checkpoint:
   material.
 - Create a new implementation branch/task for rollout step 3 before writing
   files.
+- Carry forward the amended requirement that LLM explain, Pyodide/Run in
+  Browser, and download bundles are section-agnostic across learning pages and
+  blog pages.
+- Copy/adapt the relevant sibling skills and workflow guidance before the bulk
+  notebook/content import, so future agents use the Univ.AI-specific build,
+  bundle, LLM, Pyodide, and publishing contract instead of the sibling Makefile
+  assumptions.
 - Keep `internal_docs/` private; it is excluded in `_quarto.yml` and checked by
   `just smoke`.
 - Verify publishing after deploy with GitHub Pages build status plus live probes
@@ -89,14 +100,18 @@ appear in `_site/` or on `gh-pages`; `just smoke` explicitly checks that
 ## Runtime Features
 
 - Port notebook zip bundle behavior for imported course notebooks.
+- Keep notebook zip bundle behavior available for blog notebooks as well as
+  imported course notebooks. Bundle manifests and runtime JavaScript should be
+  able to represent both public URL roots.
 - Preserve the rule that notebook downloads use zip bundles rather than
   `ipynb: default`.
-- Extend bundle generation and tests to understand course roots and public
-  `/learning/` URLs.
+- Extend bundle generation and tests to understand both blog roots and course
+  roots, including public `/learning/` URLs and existing blog/post URLs.
 - Port the JupyterLite/Pyodide runner from the sibling repo for compatible
   notebooks.
 - Keep a machine-readable compatibility manifest so the UI can show "Run in
-  browser" only when the notebook is appropriate for Pyodide.
+  browser" only when the notebook is appropriate for Pyodide, regardless of
+  whether the notebook lives under the blog or learning area.
 - Port the LLM explain feature:
   - `_filters/cell-markers.lua`
   - `_llm-config.yml`
@@ -106,7 +121,8 @@ appear in `_site/` or on `gh-pages`; `just smoke` explicitly checks that
   - `includes/llm-explain.html`
   - `styles/_llm-explain.scss`
 - Adapt all hardcoded sibling URLs to `https://univ.ai` and the public
-  `/learning/` route.
+  `/learning/` route, while preserving correct blog/post URLs for existing and
+  future blog notebooks.
 - Treat copied CSS and JavaScript as an integration project, not a blind file
   copy. The sibling LLM and notebook-runner code may depend on specific DOM
   hooks, Quarto output structure, classes, CSS variables, bundle bar markup,
@@ -121,7 +137,7 @@ appear in `_site/` or on `gh-pages`; `just smoke` explicitly checks that
   - learning route generation
   - JupyterLite build
   - LLM prompt/context generation
-  - bundle generation for `courses/`
+  - bundle generation for both `posts/` and `courses/`
 - Use `cx` only around durable file-producing pipeline stages where explicit
   inputs and outputs are known. Do not wrap tests, lint, or ordinary Quarto
   render checks in `cx`.
@@ -129,7 +145,11 @@ appear in `_site/` or on `gh-pages`; `just smoke` explicitly checks that
   emit `AGENT_TASK v1` packets.
 - Copy relevant workflow guidance from sibling `CLAUDE.md` and skills into
   this repo's `AGENTS.md` and `.agents/skills/`, adapting it to Codex/Gest and
-  the `gh-pages` deployment model.
+  the `gh-pages` deployment model. At minimum, review and port the sibling
+  notebook/content skills that govern bundling, finalization, execution,
+  captioning, PyMC3-to-PyMC migration, publishing, and notebook editing; do not
+  leave agents relying on the sibling repo's Makefile paths or `/posts/`-only
+  assumptions.
 
 ## Verification
 
@@ -146,10 +166,12 @@ appear in `_site/` or on `gh-pages`; `just smoke` explicitly checks that
 - Browser-check desktop and mobile pages for:
   - `/learning/`
   - the sampling learning path
+  - one blog notebook page with download/LLM controls
   - one Pyodide-compatible notebook page
   - one Pyodide-incompatible notebook page
   - the blog teaser that links to the sampling learning path
-- Verify LLM explain controls on at least one rendered notebook page.
+- Verify LLM explain controls on at least one rendered learning notebook page
+  and one rendered blog notebook page.
 - Verify copied CSS/JS does not break existing Univ.AI pages, dark mode,
   download bundle controls, or the planned `/learning/` course pages.
 - Verify `origin/gh-pages` after deploy contains the expected learning/course
@@ -161,7 +183,9 @@ appear in `_site/` or on `gh-pages`; `just smoke` explicitly checks that
 2. Switch GitHub Pages to branch `gh-pages`, folder `/`. Done.
 3. Add the `courses/` to `/learning/` route mechanism and smoke checks.
 4. Port the sampling learning path and blog teaser.
-5. Port bundle, Pyodide, and LLM infrastructure against one notebook fixture.
+5. Port bundle, Pyodide, and LLM infrastructure against one notebook fixture,
+   proving the shared runtime works for both `/learning/` and blog notebook
+   pages.
 6. Copy the selected course posts and software collection entries.
 7. Run full bundle, browser, LLM, and deploy verification.
 

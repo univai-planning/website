@@ -1,0 +1,34 @@
+---
+title: "Learning"
+description: "Structured technical material from Univ.AI."
+page-layout: full
+---
+
+::: {.site-section}
+:::: {.container}
+:::: {.site-section__header}
+## Practical AI and data systems learning
+
+::: {.site-lede}
+Course notebooks and guided paths are moving here as a focused learning library
+for statistical computing, machine learning, and production data systems.
+:::
+::::
+
+:::: {.grid .site-card-grid}
+::: {.g-col-12 .g-col-md-6 .site-card}
+### Guided paths
+
+Structured sequences connect foundations, runnable notebooks, and applied
+systems work.
+:::
+
+::: {.g-col-12 .g-col-md-6 .site-card}
+### Runnable notebooks
+
+Selected notebooks will include download bundles and browser-run support when
+their dependencies fit the in-browser runtime.
+:::
+::::
+::::
+:::
