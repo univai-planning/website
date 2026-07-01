@@ -43,6 +43,9 @@ test-learning-paths:
 test-runtime:
     python3 -m unittest tests.test_generate_bundles tests.test_generate_llm_context
 
+test-content-migration:
+    python3 -m unittest tests.test_content_migration_manifest
+
 brochure:
     mkdir -p assets/brochure
     typst compile --creation-timestamp 0 brochure/univ_ai_promotional_brochure.typ assets/brochure/univ-ai-promotional-brochure.pdf
@@ -77,9 +80,15 @@ smoke: build
     test -f {{out_dir}}/learning/index.html
     test -f {{out_dir}}/learning/intro-to-sampling.html
     test -f {{out_dir}}/learning/intro-to-sampling-card.png
+    test -f {{out_dir}}/learning/corr/index.html
+    test -f {{out_dir}}/learning/boxloop.html
+    test -f {{out_dir}}/learning/software/index.html
+    test -f {{out_dir}}/learning/software/awk.html
     test -f {{out_dir}}/learning/probability/cells.json
     test -f {{out_dir}}/learning/probability/_content.md
     test -f {{out_dir}}/learning/probability/probability.zip
+    test ! -e {{out_dir}}/learning/seasons
+    test ! -e {{out_dir}}/learning/votingforcongress
     test -f {{out_dir}}/blog/index.html
     test -f {{out_dir}}/blog/entropy/cells.json
     test -f {{out_dir}}/blog/entropy/_content.md
@@ -92,7 +101,7 @@ smoke: build
 diff-check:
     git diff --check
 
-verify: smoke test-routes test-learning-paths test-runtime diff-check
+verify: smoke test-routes test-learning-paths test-runtime test-content-migration diff-check
 
 clean:
     rm -rf {{out_dir}}

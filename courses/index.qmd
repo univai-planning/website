@@ -16,7 +16,7 @@ for statistical computing, machine learning, and production data systems.
 ::::
 
 :::: {.grid .site-card-grid}
-::: {.g-col-12 .g-col-md-6 .site-card}
+::: {.g-col-12 .g-col-md-4 .site-card}
 ### Guided paths
 
 Start with probability fundamentals, move through the central limit theorem,
@@ -25,11 +25,20 @@ and finish with Monte Carlo and sampling algorithms.
 [Introduction to Sampling](/learning/intro-to-sampling.html){.btn .btn-primary}
 :::
 
-::: {.g-col-12 .g-col-md-6 .site-card}
-### Runnable notebooks
+::: {.g-col-12 .g-col-md-4 .site-card}
+### Course notebooks
 
-Selected notebooks will include download bundles and browser-run support when
-their dependencies fit the in-browser runtime.
+The migrated course archive includes 71 runnable notebooks and 10 markdown or
+Quarto notes from the selected source set.
+:::
+
+::: {.g-col-12 .g-col-md-4 .site-card}
+### Software notes
+
+Short notes on practical tools for data processing, orchestration, and
+pipeline design.
+
+[Browse software notes](/learning/software/){.btn .btn-primary}
 :::
 ::::
 ::::

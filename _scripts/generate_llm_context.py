@@ -67,6 +67,31 @@ def slugify(text: str) -> str:
     return slug
 
 
+def parse_frontmatter(text: str) -> dict:
+    """Parse simple top-level YAML frontmatter scalars."""
+    result = {}
+    if not text.startswith("---"):
+        return result
+    parts = text.split("---", 2)
+    if len(parts) < 3:
+        return result
+    for line in parts[1].splitlines():
+        if ":" not in line or line.startswith((" ", "-")):
+            continue
+        key, value = line.split(":", 1)
+        result[key.strip()] = value.strip().strip('"').strip("'")
+    return result
+
+
+def llm_context_enabled(source_file: Path) -> bool:
+    """Return whether a source file opts into generated LLM context."""
+    if source_file.suffix not in {".md", ".qmd"}:
+        return True
+    frontmatter = parse_frontmatter(source_file.read_text(errors="replace"))
+    value = frontmatter.get("llm-context", frontmatter.get("llm_context", "true"))
+    return value.lower() not in {"false", "no", "0"}
+
+
 def source_page_base(root: ContentRoot, slug: str, source_file: Path) -> str:
     """Return the public URL base used to resolve relative images."""
     if source_file.name.startswith("index."):
@@ -179,18 +204,12 @@ def process_qmd_or_md(file_path: Path, page_url_base: str = "") -> tuple[str, di
 
     title = ""
     body = text
-    if text.startswith("---"):
+    frontmatter = parse_frontmatter(text)
+    if frontmatter:
+        title = frontmatter.get("title", "")
         parts = text.split("---", 2)
         if len(parts) >= 3:
-            frontmatter = parts[1]
             body = parts[2].strip()
-            match = re.search(
-                r'^title:\s*["\']?(.+?)["\']?\s*$',
-                frontmatter,
-                re.MULTILINE,
-            )
-            if match:
-                title = match.group(1)
 
     cells = []
     current_lines = []
@@ -359,6 +378,10 @@ def main():
             continue
 
         for slug, source_file in iter_sources(root):
+            if not llm_context_enabled(source_file):
+                print(f"Skipping {root.public_route}/{slug}: llm-context=false")
+                continue
+
             print(f"Processing {root.public_route}/{slug}...", end=" ")
 
             try:

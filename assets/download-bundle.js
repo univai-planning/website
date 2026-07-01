@@ -27,6 +27,8 @@
 
   manifestCheck.then(function (manifest) {
     var meta = findManifestEntry(manifest, key, route, slug);
+    if (manifest && !meta) return;
+
     var zipUrl = meta && meta.zip ? meta.zip : defaultZipUrl;
 
     fetch(zipUrl, { method: "HEAD" })

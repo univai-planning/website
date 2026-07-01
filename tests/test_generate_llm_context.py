@@ -44,6 +44,11 @@ class LlmContextGeneratorTest(unittest.TestCase):
 
         self.assertEqual(base, "https://univ.ai/learning/probability/")
 
+    def test_frontmatter_can_disable_llm_context(self):
+        source = ROOT / "courses" / "software" / "index.qmd"
+
+        self.assertFalse(self.generator.llm_context_enabled(source))
+
 
 if __name__ == "__main__":
     unittest.main()

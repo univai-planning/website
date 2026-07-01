@@ -2,6 +2,7 @@
   // Gate: only activate on individual content pages.
   var routeInfo = currentRoute();
   if (!routeInfo) return;
+  if (document.querySelector('[data-llm-context="false"]')) return;
 
   var route = routeInfo.route;
   var slug = routeInfo.slug;
