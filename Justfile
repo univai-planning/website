@@ -61,11 +61,11 @@ preview:
 serve port="8765": build
     python3 -m http.server {{port}} --directory {{out_dir}}
 
-test-bundles slug="": build
+test-bundles slug="" timeout="1200": build
     if [[ -n "{{slug}}" ]]; then \
-      python3 _scripts/test_bundles.py --site-dir {{out_dir}} --report {{out_dir}}/test-report.json --timeout 600 --slug "{{slug}}"; \
+      python3 _scripts/test_bundles.py --site-dir {{out_dir}} --report {{out_dir}}/test-report.json --timeout {{timeout}} --slug "{{slug}}"; \
     else \
-      python3 _scripts/test_bundles.py --site-dir {{out_dir}} --report {{out_dir}}/test-report.json --timeout 600; \
+      python3 _scripts/test_bundles.py --site-dir {{out_dir}} --report {{out_dir}}/test-report.json --timeout {{timeout}}; \
     fi
 
 smoke: build
@@ -101,7 +101,7 @@ smoke: build
 diff-check:
     git diff --check
 
-verify: smoke test-routes test-learning-paths test-runtime test-content-migration diff-check
+verify: smoke test-routes test-learning-paths test-runtime test-content-migration test-bundles diff-check
 
 clean:
     rm -rf {{out_dir}}

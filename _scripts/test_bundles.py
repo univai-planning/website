@@ -154,8 +154,12 @@ def main():
           f"{counts.get('error', 0)} error, {counts.get('timeout', 0)} timeout")
     print(f"Report written to {report_path}")
 
-    # Exit with non-zero if any failures (but don't block CI for now)
-    if counts.get("fail", 0) > 0 or counts.get("error", 0) > 0:
+    # Exit with non-zero if any notebook could not complete successfully.
+    if (
+        counts.get("fail", 0) > 0
+        or counts.get("error", 0) > 0
+        or counts.get("timeout", 0) > 0
+    ):
         sys.exit(1)
 
 

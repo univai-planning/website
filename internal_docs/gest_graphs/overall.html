@@ -16,15 +16,9 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Gest Overall Task Graph</h1>
-    <a href="http://127.0.0.1:2300" target="_blank" rel="noreferrer">gest serve</a>
-  </header>
-  <main>
-    <p class="hint">Generated from Gest task JSON at checkpoint time. Click nodes after starting <code>gest serve</code>.</p>
-    <div class="graph"><pre class="mermaid">flowchart TB
+  <header><h1>Gest Overall Task Graph</h1><a href="http://127.0.0.1:2300" target="_blank" rel="noreferrer">gest serve</a></header>
+  <main><p class="hint">Generated from Gest task JSON at checkpoint time. Click nodes after starting <code>gest serve</code>.</p><div class="graph"><pre class="mermaid">flowchart TB
   classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
-  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
   classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
   classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
   classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
@@ -119,9 +113,17 @@
   T_prsvuvylyzmk[&quot;prsvuvyl | Copy selected course and<br/>software content | done&quot;]
   class T_prsvuvylyzmk done;
   click T_prsvuvylyzmk &quot;http://127.0.0.1:2300/tasks/prsvuvylyzmkwwqtpsspzzlpxoxowptq&quot; _blank
-  T_vovqoqmunuxr[&quot;vovqoqmu | Verify migrated content end<br/>to end | inprogress&quot;]
-  class T_vovqoqmunuxr progress;
+  T_vovqoqmunuxr[&quot;vovqoqmu | Verify migrated content end<br/>to end | done&quot;]
+  class T_vovqoqmunuxr done;
   click T_vovqoqmunuxr &quot;http://127.0.0.1:2300/tasks/vovqoqmunuxrtxsnoonyrsxuzqrutlqm&quot; _blank
+  T_nnmqpvulqlqn[&quot;nnmqpvul | Wire and run notebook bundle<br/>execution tests | done&quot;]
+  class T_nnmqpvulqlqn done;
+  click T_nnmqpvulqlqn &quot;http://127.0.0.1:2300/tasks/nnmqpvulqlqnxmprkklxprkvzroynloy&quot; _blank
+  T_tnwntwnltukr[&quot;tnwntwnl | Investigate notebooks<br/>exceeding 20 minute juv<br/>execution | open&quot;]
+  class T_tnwntwnltukr open;
+  click T_tnwntwnltukr &quot;http://127.0.0.1:2300/tasks/tnwntwnltukrollrwrslrwpokouvvlrq&quot; _blank
+  T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_tnwntwnltukr
+  T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_nnmqpvulqlqn
   T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_vovqoqmunuxr
   T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_prsvuvylyzmk
   T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_xlknuolnxozs
@@ -130,11 +132,7 @@
   T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_mvuzonxylyno
   T_yvsuqnwstusl -- &quot;child&quot; --&gt; T_zyrnzxywlzqw
   T_yvsuqnwstusl -- &quot;child&quot; --&gt; T_yqnkvnyxrmkw
-  T_yvsuqnwstusl -- &quot;child&quot; --&gt; T_ppwrwxyzpzvu</pre></div>
-  </main>
-  <script type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-    mermaid.initialize({ startOnLoad: true, theme: "dark", securityLevel: "loose" });
-  </script>
+  T_yvsuqnwstusl -- &quot;child&quot; --&gt; T_ppwrwxyzpzvu</pre></div></main>
+  <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs"; mermaid.initialize({ startOnLoad: true, theme: "dark", securityLevel: "loose" });</script>
 </body>
 </html>
