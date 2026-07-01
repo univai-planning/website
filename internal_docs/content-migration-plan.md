@@ -9,10 +9,28 @@ Status as of this checkpoint:
   `_site/` output deployed to `gh-pages`.
 - `origin/gh-pages` exists and contains the current site build, including the
   brochure PDF.
-- GitHub Pages settings still need to be switched manually to branch
-  `gh-pages`, folder `/`.
+- GitHub Pages is configured for branch `gh-pages`, folder `/`, and the latest
+  deploy checked during this handoff built successfully.
 - The brochure is preserved as source/PDF, but linking it into the site is
   intentionally deferred.
+- The next implementation work starts at the course/learning route and copied
+  runtime features; the publishing-model setup is complete.
+
+## New Session Handoff
+
+- Start from `main` and run `git status --short --branch`; at this handoff it
+  was clean and matched `origin/main`.
+- Use Gest before implementation. Relevant completed anchors:
+  - `yvsuqnws`: moved publishing to `_site` plus `gh-pages`.
+  - `ppwrwxyz`: wrote this content migration plan and publication guard.
+- Treat `/Users/rahul/Websites/rahuldave.github.io` as read-only reference
+  material.
+- Create a new implementation branch/task for rollout step 3 before writing
+  files.
+- Keep `internal_docs/` private; it is excluded in `_quarto.yml` and checked by
+  `just smoke`.
+- Verify publishing after deploy with GitHub Pages build status plus live probes
+  for `https://univ.ai/` and a newly deployed asset.
 
 ## Information Architecture
 
@@ -136,8 +154,8 @@ appear in `_site/` or on `gh-pages`; `just smoke` explicitly checks that
 
 ## Rollout Order
 
-1. Finish and merge the publishing-model PR.
-2. Switch GitHub Pages to branch `gh-pages`, folder `/`.
+1. Finish and merge the publishing-model PR. Done.
+2. Switch GitHub Pages to branch `gh-pages`, folder `/`. Done.
 3. Add the `courses/` to `/learning/` route mechanism and smoke checks.
 4. Port the sampling learning path and blog teaser.
 5. Port bundle, Pyodide, and LLM infrastructure against one notebook fixture.
