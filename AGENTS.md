@@ -23,15 +23,17 @@ request, it must say why in the final response.
   `/Users/rahul/Websites/rahuldave.github.io`, published at
   `https://rahuldave.com`.
 - Main source files: root `*.qmd`, `posts/`, `_quarto.yml`, `styles/`,
-  `includes/`, and `assets/`.
-- Rendered output: `docs/` on this repo's main branch.
+  `includes/`, `assets/`, and `brochure/`.
+- Rendered output: `_site/` locally; `_site/` is ignored on source branches.
+- Published output: root of the `gh-pages` branch, populated by `just deploy`.
 - Detailed workflow playbook: `.agents/skills/gtw/references/gest_codex_workflow.md`
 
 This site currently borrows the modern Quarto design language from
 `rahuldave.com`: Bitter headings, Source Serif 4 body text, IBM Plex Mono code,
 ColorBrewer Blues, light/dark SCSS themes, and restrained scholarly card/code
 styling. Do not blindly copy the sibling site's content-specific features into
-this site; adapt them to the business-site pages and `docs/` publishing model.
+this site; adapt them to the business-site pages and `gh-pages` publishing
+model.
 
 Before changing visual design, page layout, section/card styling, or the shared
 `site.css` layer, read `internal_docs/design-system.md`. It records the current
@@ -45,6 +47,11 @@ to `.agents/skills/frontend-design/` and `.claude/skills/frontend-design/`.
 Use it for styling, page design, layout, and visual polish tasks, after also
 respecting the higher-priority Codex frontend instructions in this session.
 
+The promotional brochure is versioned as Typst source under `brochure/`, with
+its published PDF at `assets/brochure/univ-ai-promotional-brochure.pdf`.
+Regenerate it deliberately with `just brochure`; normal builds copy the
+committed PDF into `_site/assets/brochure/` without rewriting it.
+
 Notebook bundles are a planned blog capability here too. The sibling repo has
 the reference implementation and workflow in `CLAUDE.md`, `.claude/skills/
 bundle-post.md`, `_scripts/inject_juv_metadata.py`,
@@ -52,10 +59,11 @@ bundle-post.md`, `_scripts/inject_juv_metadata.py`,
 `assets/download-bundle.js`, `styles/_download-bundle.scss`, and
 `includes/download-bundle.html`. When porting that pipeline, update hardcoded
 site URLs from `rahuldave.github.io`/`rahuldave.com` to `univ.ai`, account for
-this repo's `docs/` output directory, and preserve the rule that notebook
-downloads use zip bundles rather than `ipynb: default`.
+this repo's `_site/` output directory and `gh-pages` deployment branch, and
+preserve the rule that notebook downloads use zip bundles rather than
+`ipynb: default`.
 
-Visual QA matters for CSS/layout work. Build the site, serve `docs/` locally,
+Visual QA matters for CSS/layout work. Build the site, serve `_site/` locally,
 and inspect desktop and mobile viewports before handing off substantial visual
 changes.
 
@@ -220,25 +228,33 @@ verification, follow-ups, and graph links when that context is safe to expose.
 
 ## Project Command Contract
 
-Prefer a `Justfile` as the stable executable interface when present. Replace
-these placeholders with the project-specific mappings and arguments:
+Prefer the `Justfile` as the stable executable interface:
 
 ```bash
 pixi install
 npm install
-npm run generate-vars
-npm run build-tailwind
-npm run build
-npm run build-dev
-quarto preview
-python3 -m http.server 8765 --directory docs
+just generate-vars
+just build-tailwind
+just brochure
+just build
+just build-dev
+just preview
+just serve 8765
+just smoke
+just test-bundles
+just deploy
+just pages-source-gh-pages
 browser visual check: http://127.0.0.1:8765/ at desktop and mobile viewports
-git diff --check
+just diff-check
 ```
 
-There is no project `Justfile` yet. `npm run build` runs the current production
-pipeline (`generate-vars`, Tailwind build, and `quarto render --output-dir=docs`).
-Prefer the npm/pixi tasks above until a Justfile is introduced.
+`just build` runs the current production pipeline (`generate-vars`, Tailwind
+build, `quarto render` to `_site/`, and notebook bundle generation).
+`just deploy` adapts the sibling repo's `gh-pages` worktree deploy model:
+build `_site/`, copy it to a temporary `gh-pages` worktree with `rsync
+--delete`, commit, push, and remove the worktree. On first deployment, run
+`just deploy` before `just pages-source-gh-pages`; the Pages source cannot be
+switched until the `gh-pages` branch exists.
 
 When changing Just recipes, consult the Just manual rather than treating it like
 Make. The key reference for recipe ordering is:
@@ -283,7 +299,7 @@ recursion itself, it should report
 `outputs.recursion_trace.mode: local-recursion-supported`. If the result is
 missing or malformed, ask the subagent to restate it in `AGENT_RESULT v1` form
 or record a protocol failure. For recursive orchestration changes, run the live
-recursive lab in `docs/live_agent_result_recursive_lab.md`: the parent
+recursive lab in `internal_docs/live_agent_result_recursive_lab.md`: the parent
 delegates to a planner subagent, validates its partial result, delegates the
 approved child task to a worker subagent, validates the worker result, and
 records a final recursion trace.

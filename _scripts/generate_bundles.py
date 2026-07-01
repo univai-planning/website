@@ -6,10 +6,10 @@ Each notebook post gets a <slug>.zip containing:
   - assets/     (images, CSVs in assets/)
   - data/       (data files if present)
 
-Also generates docs/bundles.json by default.
+Also generates _site/bundles.json by default.
 
 Usage:
-    python3 _scripts/generate_bundles.py [--site-dir docs] [--posts-dir posts]
+    python3 _scripts/generate_bundles.py [--site-dir _site] [--posts-dir posts]
 """
 
 import argparse
@@ -207,7 +207,7 @@ def generate_bundle(post_dir: Path, site_dir: Path) -> dict | None:
 
 def main():
     parser = argparse.ArgumentParser(description="Generate notebook zip bundles")
-    parser.add_argument("--site-dir", default="docs", help="Site output directory")
+    parser.add_argument("--site-dir", default="_site", help="Site output directory")
     parser.add_argument("--posts-dir", default="posts", help="Posts source directory")
     args = parser.parse_args()
 
