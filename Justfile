@@ -20,9 +20,9 @@ build-bundles:
 
 brochure:
     mkdir -p assets/brochure
-    typst compile brochure/univ_ai_promotional_brochure.typ assets/brochure/univ-ai-promotional-brochure.pdf
+    typst compile --creation-timestamp 0 brochure/univ_ai_promotional_brochure.typ assets/brochure/univ-ai-promotional-brochure.pdf
 
-build: generate-vars build-tailwind brochure render build-bundles
+build: generate-vars build-tailwind render build-bundles
 
 build-dev:
     npm run build-dev
@@ -45,6 +45,7 @@ smoke: build
     test -f {{out_dir}}/CNAME
     test -f {{out_dir}}/bundles.json
     test -f {{out_dir}}/assets/brochure/univ-ai-promotional-brochure.pdf
+    test ! -e {{out_dir}}/internal_docs
     test ! -e {{out_dir}}/AGENTS.html
 
 diff-check:

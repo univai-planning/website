@@ -6,6 +6,7 @@ project:
   render:
     - "*.qmd"
     - "posts/"
+    - "!internal_docs/"
     - "!AGENTS.md"
 
 website:

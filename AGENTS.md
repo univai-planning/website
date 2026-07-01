@@ -49,8 +49,8 @@ respecting the higher-priority Codex frontend instructions in this session.
 
 The promotional brochure is versioned as Typst source under `brochure/`, with
 its published PDF at `assets/brochure/univ-ai-promotional-brochure.pdf`.
-Regenerate it with `just brochure`; `just build` runs this before Quarto so the
-PDF is copied into `_site/assets/brochure/`.
+Regenerate it deliberately with `just brochure`; normal builds copy the
+committed PDF into `_site/assets/brochure/` without rewriting it.
 
 Notebook bundles are a planned blog capability here too. The sibling repo has
 the reference implementation and workflow in `CLAUDE.md`, `.claude/skills/
