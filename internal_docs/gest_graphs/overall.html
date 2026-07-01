@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gest Relationship Graph</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101214;
+      --panel: #171a1f;
+      --text: #f4f4f5;
+      --muted: #9aa3ad;
+      --line: #2c333a;
+      --accent: #67b7dc;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.5 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    }
+    header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+    h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+    a { color: var(--accent); }
+    main { padding: 18px 22px 30px; }
+    .hint { color: var(--muted); }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      align-items: center;
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      display: inline-block;
+      border: 1px solid #6b7280;
+    }
+    .swatch.iteration { background: #17324d; border-color: #67b7dc; }
+    .swatch.open { background: #2f2f2f; border-color: #d6d6d6; }
+    .swatch.progress { background: #463814; border-color: #f2c94c; }
+    .swatch.done { background: #20382f; border-color: #7bd88f; }
+    .swatch.cancelled { background: #3d2525; border-color: #eb5757; }
+    .line {
+      width: 20px;
+      height: 0;
+      display: inline-block;
+      border-top: 2px solid #9aa3ad;
+    }
+    .line.dashed { border-top-style: dashed; }
+    .iteration-stack {
+      position: relative;
+      margin-left: 14px;
+      padding-left: 26px;
+      border-left: 2px dashed #49515a;
+    }
+    .iteration-section {
+      position: relative;
+      margin: 0 0 22px;
+    }
+    .section-marker {
+      position: absolute;
+      left: -34px;
+      top: 11px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--bg);
+    }
+    .iteration-section h2 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+    .iteration-section h2 span {
+      color: var(--muted);
+      font-weight: 500;
+      margin-left: 6px;
+    }
+    .phase-section {
+      margin: 10px 0 14px;
+    }
+    .phase-section h3 {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+    .graph {
+      overflow: auto;
+      min-height: 70vh;
+      padding: 16px;
+      border: 1px solid var(--line);
+      background: #0c0e10;
+    }
+    .graph-compact {
+      min-height: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Gest Relationship Graph</h1>
+    <a href="http://127.0.0.1:2300" target="_blank" rel="noreferrer">gest serve</a>
+  </header>
+  <main>
+    <p class="hint">
+      Click any iteration or task node to open it in gest serve. Start it with
+      <code>gest serve</code> if links do not load.
+    </p>
+    <div class="legend" aria-label="Legend">
+      <span><b class="swatch iteration"></b>iteration</span>
+      <span><b class="swatch open"></b>open task</span>
+      <span><b class="swatch progress"></b>in progress</span>
+      <span><b class="swatch done"></b>done/completed</span>
+      <span><b class="swatch cancelled"></b>cancelled</span>
+      <span><b class="line solid"></b>relationship</span>
+      <span><b class="line dashed"></b>iteration order</span>
+    </div>
+    <div class="iteration-stack"><section class="iteration-section">
+        <div class="section-marker" aria-hidden="true"></div>
+        <h2><a href="http://127.0.0.1:2300/iterations/ruzlwxyvpvxqrpmqxolszqrnkyxnppmt" target="_blank" rel="noreferrer">ruzlwxyv</a> Quarto style import <span>active</span></h2>
+        <div class="phase-section">
+          <h3>Phase 1</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_kxmurpxxzuoz[&quot;kxmurpxx | Import Quarto styles and&lt;br/&gt;agent guidance | done&quot;]
+  class T_kxmurpxxzuoz done;
+  click T_kxmurpxxzuoz &quot;http://127.0.0.1:2300/tasks/kxmurpxxzuozoqwrprlvyztvzqzxkluy&quot; _blank
+            </pre>
+          </div>
+        </div><div class="phase-section">
+          <h3>Phase 2</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_uvtutxnromkw[&quot;uvtutxnr | Draft Univ.AI Typst one-pager&lt;br/&gt;brochure | done&quot;]
+  class T_uvtutxnromkw done;
+  click T_uvtutxnromkw &quot;http://127.0.0.1:2300/tasks/uvtutxnromkwwkvvnvrvnklvmykkyvll&quot; _blank
+            </pre>
+          </div>
+        </div><div class="phase-section">
+          <h3>Phase 3</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_xqztorylnmsn[&quot;xqztoryl | Revise Univ.AI brochure layout&lt;br/&gt;second pass | done&quot;]
+  class T_xqztorylnmsn done;
+  click T_xqztorylnmsn &quot;http://127.0.0.1:2300/tasks/xqztorylnmsnkpytznsxqypxwmwqlqmr&quot; _blank
+            </pre>
+          </div>
+        </div><div class="phase-section">
+          <h3>Phase 4</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_psvqoqxzqrsn[&quot;psvqoqxz | Polish Univ.AI brochure third&lt;br/&gt;pass | done&quot;]
+  class T_psvqoqxzqrsn done;
+  click T_psvqoqxzqrsn &quot;http://127.0.0.1:2300/tasks/psvqoqxzqrsnyvmxsxmkqwnttmquylwl&quot; _blank
+  T_nwwlvyztnmyt[&quot;nwwlvyzt | Add About company blurb&lt;br/&gt;and people section | done&quot;]
+  class T_nwwlvyztnmyt done;
+  click T_nwwlvyztnmyt &quot;http://127.0.0.1:2300/tasks/nwwlvyztnmytkorvzsqvswspqszmnkln&quot; _blank
+            </pre>
+          </div>
+        </div><div class="phase-section">
+          <h3>Phase 5</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_xzszowmxumxy[&quot;xzszowmx | Anchor brochure footers | done&quot;]
+  class T_xzszowmxumxy done;
+  click T_xzszowmxumxy &quot;http://127.0.0.1:2300/tasks/xzszowmxumxyqszwxlunnqtzklvtzloz&quot; _blank
+  T_pumzrqqlxkyt[&quot;pumzrqql | Correct DAIS brochure blurb | done&quot;]
+  class T_pumzrqqlxkyt done;
+  click T_pumzrqqlxkyt &quot;http://127.0.0.1:2300/tasks/pumzrqqlxkytxrznpzzmprtwrvqvqoql&quot; _blank
+            </pre>
+          </div>
+        </div><div class="phase-section">
+          <h3>Phase 6</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_lzsuopoyrwnt[&quot;lzsuopoy | Update brochure legal workflow&lt;br/&gt;copy | done&quot;]
+  class T_lzsuopoyrwnt done;
+  click T_lzsuopoyrwnt &quot;http://127.0.0.1:2300/tasks/lzsuopoyrwntuvklksplqvrowsvytklk&quot; _blank
+            </pre>
+          </div>
+        </div><div class="phase-section">
+          <h3>Phase 7</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_zxylmqpvwmwr[&quot;zxylmqpv | Update page 2 brochure&lt;br/&gt;headings | done&quot;]
+  class T_zxylmqpvwmwr done;
+  click T_zxylmqpvwmwr &quot;http://127.0.0.1:2300/tasks/zxylmqpvwmwrzlpmynuoxswupvpkpsow&quot; _blank
+            </pre>
+          </div>
+        </div><div class="phase-section">
+          <h3>Phase 8</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_vkvztskuwztr[&quot;vkvztsku | Update software card labels | done&quot;]
+  class T_vkvztskuwztr done;
+  click T_vkvztskuwztr &quot;http://127.0.0.1:2300/tasks/vkvztskuwztrnqxnlslqonqlvpnvmsur&quot; _blank
+            </pre>
+          </div>
+        </div><div class="phase-section">
+          <h3>Phase 9</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_wuptswznyzts[&quot;wuptswzn | Update page 4 links&lt;br/&gt;and method pills | done&quot;]
+  class T_wuptswznyzts done;
+  click T_wuptswznyzts &quot;http://127.0.0.1:2300/tasks/wuptswznyztstooqxkvymttrsrzvslxn&quot; _blank
+            </pre>
+          </div>
+        </div>
+      </section>
+<section class="iteration-section">
+        <div class="section-marker" aria-hidden="true"></div>
+        <h2><a href="http://127.0.0.1:2300/iterations/mkurlmllylvlrmxvqsmozvxpqwzwxums" target="_blank" rel="noreferrer">mkurlmll</a> Blog content migration <span>active</span></h2>
+        <div class="phase-section">
+          <h3>Phase 1</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_wvntwlnvtmuy[&quot;wvntwlnv | Replace Univ.ai blog posts&lt;br/&gt;from sibling site | done&quot;]
+  class T_wvntwlnvtmuy done;
+  click T_wvntwlnvtmuy &quot;http://127.0.0.1:2300/tasks/wvntwlnvtmuynunlysustrpvwxynzzll&quot; _blank
+            </pre>
+          </div>
+        </div>
+      </section>
+<section class="iteration-section">
+        <div class="section-marker" aria-hidden="true"></div>
+        <h2><a href="http://127.0.0.1:2300/iterations/mtvrvytqwlzkvpqlupnvuorrouorxwyl" target="_blank" rel="noreferrer">mtvrvytq</a> Solutions and notebook bundle refresh <span>active</span></h2>
+        <div class="phase-section">
+          <h3>Phase 1</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_pxtporvypwvn[&quot;pxtporvy | Redo Solutions page from&lt;br/&gt;brochure positioning | done&quot;]
+  class T_pxtporvypwvn done;
+  click T_pxtporvypwvn &quot;http://127.0.0.1:2300/tasks/pxtporvypwvnpqzyrzolynropouxostp&quot; _blank
+  T_yvsuqnwstusl[&quot;yvsuqnws | Move publishing to gh-pages&lt;br/&gt;deploy branch | done&quot;]
+  class T_yvsuqnwstusl done;
+  click T_yvsuqnwstusl &quot;http://127.0.0.1:2300/tasks/yvsuqnwstuslpyptpxlkvumoxvnmmqtq&quot; _blank
+  T_ppwrwxyzpzvu[&quot;ppwrwxyz | Document content migration plan&lt;br/&gt;and internal docs guard | done&quot;]
+  class T_ppwrwxyzpzvu done;
+  click T_ppwrwxyzpzvu &quot;http://127.0.0.1:2300/tasks/ppwrwxyzpzvuosknyzsypsplnwkxkxym&quot; _blank
+  T_yqnkvnyxrmkw[&quot;yqnkvnyx | Refresh content migration handoff&lt;br/&gt;status | done&quot;]
+  class T_yqnkvnyxrmkw done;
+  click T_yqnkvnyxrmkw &quot;http://127.0.0.1:2300/tasks/yqnkvnyxrmkwymlosnrulwzkvllnxxmy&quot; _blank
+  T_yvsuqnwstusl -- &quot;parent of&quot; --&gt; T_ppwrwxyzpzvu
+  T_yvsuqnwstusl -- &quot;parent of&quot; --&gt; T_yqnkvnyxrmkw
+            </pre>
+          </div>
+        </div><div class="phase-section">
+          <h3>Phase 2</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_xwtsvowksvul[&quot;xwtsvowk | Port notebook bundles and&lt;br/&gt;selected notebooks | done&quot;]
+  class T_xwtsvowksvul done;
+  click T_xwtsvowksvul &quot;http://127.0.0.1:2300/tasks/xwtsvowksvulrnvrnrykmmmntnrovkuo&quot; _blank
+            </pre>
+          </div>
+        </div>
+      </section>
+<section class="iteration-section">
+        <div class="section-marker" aria-hidden="true"></div>
+        <h2><a href="http://127.0.0.1:2300/iterations/zyywqlxlrmtkknwksnunlqszwksuwwrw" target="_blank" rel="noreferrer">zyywqlxl</a> Site design system polish <span>active</span></h2>
+        <div class="phase-section">
+          <h3>Phase 1</h3>
+          <div class="graph graph-compact">
+            <pre class="mermaid">
+flowchart TB
+  classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
+  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
+  classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
+  classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
+  classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
+  classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
+  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
+  T_mpkyozwxtklw[&quot;mpkyozwx | Polish site visual system | done&quot;]
+  class T_mpkyozwxtklw done;
+  click T_mpkyozwxtklw &quot;http://127.0.0.1:2300/tasks/mpkyozwxtklwllkyqxrsovzyzxrqvlrm&quot; _blank
+  T_msvyxqkqrruv[&quot;msvyxqkq | Ignore local Gest state | done&quot;]
+  class T_msvyxqkqrruv done;
+  click T_msvyxqkqrruv &quot;http://127.0.0.1:2300/tasks/msvyxqkqrruvuxsklyqslkornvnwsqwm&quot; _blank
+            </pre>
+          </div>
+        </div>
+      </section></div>
+  </main>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "dark", securityLevel: "loose" });
+  </script>
+</body>
+</html>

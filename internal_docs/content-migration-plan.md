@@ -23,6 +23,9 @@ Status as of this checkpoint:
 - Use Gest before implementation. Relevant completed anchors:
   - `yvsuqnws`: moved publishing to `_site` plus `gh-pages`.
   - `ppwrwxyz`: wrote this content migration plan and publication guard.
+- Gest graph exports for handoff:
+  - `internal_docs/gest_graphs/overall.html`
+  - `internal_docs/gest_graphs/content_notebook_iteration.html`
 - Treat `/Users/rahul/Websites/rahuldave.github.io` as read-only reference
   material.
 - Create a new implementation branch/task for rollout step 3 before writing
