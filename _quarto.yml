@@ -2,6 +2,8 @@ project:
   type: website
   resources:
     - assets/download-bundle.js
+    - assets/learning-paths.js
+    - assets/learning-paths.json
     - assets/brochure/univ-ai-promotional-brochure.pdf
   render:
     - "*.qmd"
@@ -45,3 +47,4 @@ format:
           <link rel="icon" type="image/svg+xml" href="/assets/bluelogo.svg"/>
     include-after-body:
       - includes/download-bundle.html
+      - includes/learning-paths.html

@@ -7,11 +7,12 @@
     "build-tailwind": "tailwindcss -i tailwind.css -o output.css --no-source-map",
     "build-brochure": "mkdir -p assets/brochure && typst compile --creation-timestamp 0 brochure/univ_ai_promotional_brochure.typ assets/brochure/univ-ai-promotional-brochure.pdf",
     "build-bundles": "python3 _scripts/generate_bundles.py --site-dir _site --posts-dir posts",
+    "generate-learning-paths": "python3 _scripts/generate_learning_paths.py",
     "publish-routes": "python3 _scripts/publish_routes.py --site-dir _site",
     "test-bundles": "python3 _scripts/test_bundles.py --site-dir _site --report _site/test-report.json --timeout 600",
     "dev": "tailwindcss -i custom.scss -o output.css --map --watch",
-    "build-dev": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && quarto render",
-    "build": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && quarto render && npm run build-bundles && npm run publish-routes"
+    "build-dev": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && npm run generate-learning-paths && quarto render",
+    "build": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && npm run generate-learning-paths && quarto render && npm run build-bundles && npm run publish-routes"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.0",

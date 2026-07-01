@@ -11,3 +11,8 @@ node_modules/
 
 **/*.quarto_ipynb
 .gest/
+
+# Generated learning-path artifacts.
+/assets/learning-paths.json
+/courses/intro-to-sampling.qmd
+/courses/intro-to-sampling-card.png

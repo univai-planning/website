@@ -18,17 +18,23 @@ render:
 build-bundles:
     python3 _scripts/generate_bundles.py --site-dir {{out_dir}} --posts-dir posts
 
+generate-learning-paths:
+    python3 _scripts/generate_learning_paths.py
+
 publish-routes:
     python3 _scripts/publish_routes.py --site-dir {{out_dir}}
 
 test-routes:
     python3 -m unittest tests.test_publish_routes
 
+test-learning-paths:
+    python3 -m unittest tests.test_generate_learning_paths
+
 brochure:
     mkdir -p assets/brochure
     typst compile --creation-timestamp 0 brochure/univ_ai_promotional_brochure.typ assets/brochure/univ-ai-promotional-brochure.pdf
 
-build: generate-vars build-tailwind render build-bundles publish-routes
+build: generate-vars build-tailwind generate-learning-paths render build-bundles publish-routes
 
 build-dev:
     npm run build-dev
@@ -50,7 +56,10 @@ smoke: build
     test -f {{out_dir}}/index.html
     test -f {{out_dir}}/CNAME
     test -f {{out_dir}}/bundles.json
+    test -f {{out_dir}}/assets/learning-paths.json
     test -f {{out_dir}}/learning/index.html
+    test -f {{out_dir}}/learning/intro-to-sampling.html
+    test -f {{out_dir}}/learning/intro-to-sampling-card.png
     test -f {{out_dir}}/blog/index.html
     test -f {{out_dir}}/assets/brochure/univ-ai-promotional-brochure.pdf
     test ! -e {{out_dir}}/courses
@@ -60,7 +69,7 @@ smoke: build
 diff-check:
     git diff --check
 
-verify: smoke test-routes diff-check
+verify: smoke test-routes test-learning-paths diff-check
 
 clean:
     rm -rf {{out_dir}}

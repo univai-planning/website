@@ -19,8 +19,10 @@ for statistical computing, machine learning, and production data systems.
 ::: {.g-col-12 .g-col-md-6 .site-card}
 ### Guided paths
 
-Structured sequences connect foundations, runnable notebooks, and applied
-systems work.
+Start with probability fundamentals, move through the central limit theorem,
+and finish with Monte Carlo and sampling algorithms.
+
+[Introduction to Sampling](/learning/intro-to-sampling.html){.btn .btn-primary}
 :::
 
 ::: {.g-col-12 .g-col-md-6 .site-card}
