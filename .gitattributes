@@ -1,2 +1,7 @@
 # GitHub syntax highlighting
 pixi.lock linguist-language=YAML linguist-generated=true
+
+*.pdf binary
+*.png binary
+*.zip binary
+*.woff binary

@@ -5,7 +5,7 @@ Unzips each bundle to a temp directory, runs `uvx juv exec index.ipynb`,
 captures results, and writes a test report.
 
 Usage:
-    python3 _scripts/test_bundles.py [--site-dir docs] [--report docs/test-report.json] [--timeout 300]
+    python3 _scripts/test_bundles.py [--site-dir _site] [--report _site/test-report.json] [--timeout 300]
 """
 
 import argparse
@@ -85,7 +85,7 @@ def test_bundle(zip_path: Path, timeout: int = 300) -> dict:
 
 def main():
     parser = argparse.ArgumentParser(description="Test notebook bundles via juv exec")
-    parser.add_argument("--site-dir", default="docs", help="Site output directory")
+    parser.add_argument("--site-dir", default="_site", help="Site output directory")
     parser.add_argument("--report", default=None, help="Output report JSON path")
     parser.add_argument("--timeout", type=int, default=300, help="Timeout per notebook (seconds)")
     parser.add_argument("--slug", default=None, help="Test only this slug (for debugging)")
@@ -102,7 +102,7 @@ def main():
         zips = [z for z in zips if z.stem == args.slug]
 
     if not zips:
-        print("No zip bundles found. Run `make bundles` first.")
+        print("No zip bundles found. Run `just build` first.")
         sys.exit(1)
 
     print(f"Testing {len(zips)} bundles (timeout: {args.timeout}s each)")

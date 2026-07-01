@@ -2,6 +2,7 @@ project:
   type: website
   resources:
     - assets/download-bundle.js
+    - assets/brochure/univ-ai-promotional-brochure.pdf
   render:
     - "*.qmd"
     - "posts/"

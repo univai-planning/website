@@ -4,6 +4,7 @@
 .pixi
 *.egg-info
 _site/
+docs/
 node_modules/
 .DS_Store
 /.local-artifacts/
