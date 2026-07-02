@@ -19,8 +19,13 @@ Follow the repository VCS rules in `AGENTS.md` first.
    For new or edited notebook content, run source execution before this:
 
    ```bash
-   just prepare-notebook <selector> 1200
+   just prepare-notebook blog/<slug> 1200
    ```
+
+   For a single blog notebook, the source unit is
+   `posts/<slug>/index.ipynb`. `prepare-notebook` executes that source notebook,
+   builds the site so `/blog/<slug>/` is rendered, and focused-verifies the
+   generated zip bundle.
 
 2. Review source changes.
 

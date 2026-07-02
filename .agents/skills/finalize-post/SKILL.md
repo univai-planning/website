@@ -31,23 +31,32 @@ It applies to markdown, QMD, and notebook pages.
    must happen before publication because Quarto renders stored notebook
    outputs.
 
-4. Render through the project contract.
+4. For a single blog notebook, prefer the combined unit of work.
+
+   ```bash
+   just prepare-notebook blog/<slug> 1200
+   ```
+
+   This executes `posts/<slug>/index.ipynb`, renders the blog page, and
+   focused-verifies the generated download bundle.
+
+5. Render through the project contract when not using `prepare-notebook`.
 
    ```bash
    just build
    ```
 
-5. Verify friendly routes.
+6. Verify friendly routes.
    Blog content should be reachable through `/blog/` after `just build`.
    Learning content should be reachable through `/learning/`.
 
-6. Check listing cards and visual fit.
+7. Check listing cards and visual fit.
    Use browser verification for desktop and mobile when content affects a
    public page. If a card needs an image and the content has no appropriate
    generated image, add a local `assets/card.png` and set `image:` in
    frontmatter.
 
-7. Run focused checks.
+8. Run focused checks.
 
    ```bash
    just smoke

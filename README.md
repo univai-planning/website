@@ -34,6 +34,29 @@ just prepare-notebook blog/entropy 1200
 just cx-lint                       # Static check for cx declarations
 ```
 
+Single blog notebook workflow:
+
+```bash
+# Source lives here:
+posts/<slug>/index.ipynb
+
+# Primary one-command path for a new or edited blog notebook:
+just prepare-notebook blog/<slug> 1200
+```
+
+That target executes the source notebook in place, builds the site, and
+focused-verifies the generated zip bundle for that blog page. The source
+execution step is what refreshes the outputs Quarto renders into
+`/blog/<slug>/`; bundle verification alone does not update the blog page.
+
+Expanded equivalent:
+
+```bash
+just execute-notebook blog/<slug> 1200   # refresh stored notebook outputs
+just build                               # render /posts/ and publish /blog/
+just verify-notebooks blog/<slug> 1200   # run the generated zip with juv
+```
+
 Notebook workflow:
 
 1. Put the source notebook under `posts/<slug>/index.ipynb` for blog content or

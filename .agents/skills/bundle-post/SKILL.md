@@ -60,8 +60,15 @@ Skip markdown-only and QMD pages.
    just execute-notebook learning/<slug> 1200
    ```
 
-   For a new notebook, `just prepare-notebook <selector> 1200` executes the
-   source notebook, builds the site, and focused-verifies the generated bundle.
+   For a new blog notebook, the primary unit of work is
+   `posts/<slug>/index.ipynb` plus:
+
+   ```bash
+   just prepare-notebook blog/<slug> 1200
+   ```
+
+   This executes the source notebook, builds `/blog/<slug>/`, and
+   focused-verifies the generated bundle.
 
 ## Notes
 

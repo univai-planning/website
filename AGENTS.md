@@ -296,6 +296,26 @@ download bundle for that selector. `just verify ["selectors"] [timeout]` runs
 the full site verification contract, while passing selectors keeps the notebook
 bundle execution focused on those slugs/routes.
 
+The key unit of work for a single blog notebook is:
+
+```bash
+posts/<slug>/index.ipynb
+just prepare-notebook blog/<slug> 1200
+```
+
+Expanded, this means:
+
+```bash
+just execute-notebook blog/<slug> 1200
+just build
+just verify-notebooks blog/<slug> 1200
+```
+
+Do not treat `just verify-notebooks blog/<slug> 1200` as a substitute for
+source execution. Bundle verification runs the generated downloadable zip with
+`uvx juv exec`; it does not refresh the executed outputs that Quarto publishes
+into the blog page.
+
 `just deploy` adapts the sibling repo's `gh-pages` worktree deploy model:
 build `_site/`, copy it to a temporary `gh-pages` worktree with `rsync
 --delete`, commit, push, and remove the worktree. On first deployment, run
