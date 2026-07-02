@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "source_type": "ipynb",
+  "title": "Mixture Models and Types of Learning",
+  "cells": [
+    {
+      "cell": 0,
+      "type": "raw",
+      "skip": true
+    },
+    {
+      "cell": 1,
+      "type": "code",
+      "html_id": "94b3f49d"
+    },
+    {
+      "cell": 2,
+      "type": "code",
+      "html_id": "d73a5e9f"
+    },
+    {
+      "cell": 3,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 4,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "mixture-models",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 5,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 6,
+      "type": "code",
+      "html_id": "85be55b3"
+    },
+    {
+      "cell": 7,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "gaussian-mixture-models",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 8,
+      "type": "code",
+      "html_id": "518c488e"
+    },
+    {
+      "cell": 9,
+      "type": "code",
+      "html_id": "a985e456"
+    },
+    {
+      "cell": 10,
+      "type": "code",
+      "html_id": "88ff70be"
+    },
+    {
+      "cell": 11,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "supervised-learning",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 12,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "gaussian-discriminant-analysis",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 13,
+      "type": "code",
+      "html_id": "af3878e0"
+    },
+    {
+      "cell": 14,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 15,
+      "type": "code",
+      "html_id": "728cf1a5"
+    },
+    {
+      "cell": 16,
+      "type": "code",
+      "html_id": "fde47973"
+    },
+    {
+      "cell": 17,
+      "type": "code",
+      "html_id": "b3f8b006"
+    },
+    {
+      "cell": 18,
+      "type": "code",
+      "html_id": "0aae4199"
+    },
+    {
+      "cell": 19,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 20,
+      "type": "code",
+      "html_id": "affabb97"
+    },
+    {
+      "cell": 21,
+      "type": "code",
+      "html_id": "fb39cd31"
+    },
+    {
+      "cell": 22,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "unsupervised-learning-mixture-of-gaussians",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 23,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "concretely-formulating-the-problem",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 24,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "semi-supervised",
+          "level": 2
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+<!-- cell:0 type:markdown -->
+We have started moving selected technical material into a guided Learning
+library. The first path is **Introduction to Sampling**, a sequence of runnable
+lessons that starts with probability and distributions, then builds toward the
+central limit theorem, Monte Carlo integration, inverse-transform sampling,
+rejection sampling, and importance sampling.
+
+[Open the learning path](/learning/intro-to-sampling.html){.btn .btn-primary}
+
+If you want to jump straight into the first lesson, start with
+[Probability](/learning/probability/?path=intro-to-sampling&step=1).

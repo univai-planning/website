@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "source_type": "ipynb",
+  "title": "Learning With Noise",
+  "cells": [
+    {
+      "cell": 0,
+      "type": "raw",
+      "skip": true
+    },
+    {
+      "cell": 1,
+      "type": "code",
+      "html_id": "c21f64d3"
+    },
+    {
+      "cell": 2,
+      "type": "code",
+      "html_id": "2602a6d1"
+    },
+    {
+      "cell": 3,
+      "type": "code",
+      "html_id": "1a08f6cd"
+    },
+    {
+      "cell": 4,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "revisiting-our-model",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 5,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 6,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 7,
+      "type": "code",
+      "html_id": "ced9aa9b"
+    },
+    {
+      "cell": 8,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 9,
+      "type": "code",
+      "html_id": "191a12bb"
+    },
+    {
+      "cell": 10,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 11,
+      "type": "code",
+      "html_id": "bee8ecc1"
+    },
+    {
+      "cell": 12,
+      "type": "code",
+      "html_id": "cbf381e0"
+    },
+    {
+      "cell": 13,
+      "type": "code",
+      "html_id": "ef776e7d"
+    },
+    {
+      "cell": 14,
+      "type": "code",
+      "html_id": "d1a018f2"
+    },
+    {
+      "cell": 15,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "statement-of-the-learning-problem",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 16,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 17,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "why-go-out-of-sample",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 18,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 19,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "stochastic-noise",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 20,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 21,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 22,
+      "type": "code",
+      "html_id": "23b28de2"
+    },
+    {
+      "cell": 23,
+      "type": "code",
+      "html_id": "bdac017a"
+    },
+    {
+      "cell": 24,
+      "type": "code",
+      "html_id": "875bec69"
+    },
+    {
+      "cell": 25,
+      "type": "code",
+      "html_id": "ca6d6cfa"
+    },
+    {
+      "cell": 26,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 27,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "fitting-a-noisy-model",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 28,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "describing-things-probabilistically",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 29,
+      "type": "code",
+      "html_id": "f2f21a37"
+    },
+    {
+      "cell": 30,
+      "type": "code",
+      "html_id": "8befb580"
+    },
+    {
+      "cell": 31,
+      "type": "code",
+      "html_id": "2f2e1e93"
+    },
+    {
+      "cell": 32,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 33,
+      "type": "code",
+      "html_id": "5eb05216"
+    },
+    {
+      "cell": 34,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 35,
+      "type": "code",
+      "html_id": "08c64dfb"
+    },
+    {
+      "cell": 36,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 37,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "the-variance-of-your-model",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 38,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 39,
+      "type": "code",
+      "html_id": "c86cb77b"
+    },
+    {
+      "cell": 40,
+      "type": "code",
+      "html_id": "0219ab46"
+    },
+    {
+      "cell": 41,
+      "type": "code",
+      "html_id": "a04e5462"
+    },
+    {
+      "cell": 42,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 43,
+      "type": "code",
+      "html_id": "e72c9362"
+    },
+    {
+      "cell": 44,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 45,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "bias-and-variance",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 46,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "so-far",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 47,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 48,
+      "type": "markdown",
+      "headings": []
+    }
+  ]
+}

@@ -1,4 +1,1418 @@
 {
+  "posts/entropy": {
+    "zip": "/posts/entropy/entropy.zip",
+    "size_bytes": 260254,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/expofamily.png",
+      "assets/gen_norm.png"
+    ],
+    "route": "/posts",
+    "source_dir": "posts"
+  },
+  "blog/entropy": {
+    "zip": "/blog/entropy/entropy.zip",
+    "size_bytes": 260254,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/expofamily.png",
+      "assets/gen_norm.png"
+    ],
+    "route": "/blog",
+    "source_dir": "posts"
+  },
+  "posts/nnreg": {
+    "zip": "/posts/nnreg/nnreg.zip",
+    "size_bytes": 802959,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scikit-learn",
+      "torch"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/posts",
+    "source_dir": "posts"
+  },
+  "blog/nnreg": {
+    "zip": "/blog/nnreg/nnreg.zip",
+    "size_bytes": 802959,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scikit-learn",
+      "torch"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/blog",
+    "source_dir": "posts"
+  },
+  "learning/2gaussmix": {
+    "zip": "/learning/2gaussmix/2gaussmix.zip",
+    "size_bytes": 706168,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/MLE": {
+    "zip": "/learning/MLE/MLE.zip",
+    "size_bytes": 86865,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/gaussmle.png",
+      "assets/linregmle.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/advi": {
+    "zip": "/learning/advi/advi.zip",
+    "size_bytes": 637558,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "assets/TransformtoR.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/basicmontecarlo": {
+    "zip": "/learning/basicmontecarlo/basicmontecarlo.zip",
+    "size_bytes": 241953,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/hitormiss.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/bayes_withsampling": {
+    "zip": "/learning/bayes_withsampling/bayes_withsampling.zip",
+    "size_bytes": 310917,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/postpred.png",
+      "assets/priorxlike.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/bayesianregression": {
+    "zip": "/learning/bayesianregression/bayesianregression.zip",
+    "size_bytes": 288772,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/corr": {
+    "zip": "/learning/corr/corr.zip",
+    "size_bytes": 606824,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "assets/cov1.png",
+      "assets/cov2.png",
+      "assets/pchimps3.png",
+      "assets/pchimps4.png",
+      "assets/pchimps5.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/dataaug": {
+    "zip": "/learning/dataaug/dataaug.zip",
+    "size_bytes": 22775,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/discretemcmc": {
+    "zip": "/learning/discretemcmc/discretemcmc.zip",
+    "size_bytes": 46342,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/propmatrix.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/distrib-example": {
+    "zip": "/learning/distrib-example/distrib-example.zip",
+    "size_bytes": 347215,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/3flips.png",
+      "assets/binomial.png",
+      "assets/g12.csv",
+      "assets/predictwise.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/divergence": {
+    "zip": "/learning/divergence/divergence.zip",
+    "size_bytes": 213991,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/devianceaic.png",
+      "assets/inoutdeviance.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/doseplacebo": {
+    "zip": "/learning/doseplacebo/doseplacebo.zip",
+    "size_bytes": 17190,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/em": {
+    "zip": "/learning/em/em.zip",
+    "size_bytes": 233239,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/emupdate.png",
+      "assets/gform1.png",
+      "assets/gform2.png",
+      "assets/klsplitestep.png",
+      "assets/klsplitmstep.png",
+      "assets/klsplitup.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/entropy": {
+    "zip": "/learning/entropy/entropy.zip",
+    "size_bytes": 260256,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/expofamily.png",
+      "assets/gen_norm.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/expectations": {
+    "zip": "/learning/expectations/expectations.zip",
+    "size_bytes": 23937,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/functorch": {
+    "zip": "/learning/functorch/functorch.zip",
+    "size_bytes": 206785,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "torch"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "assets/mlp.png",
+      "assets/perceptron.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/gaussian_mixture_advi": {
+    "zip": "/learning/gaussian_mixture_advi/gaussian_mixture_advi.zip",
+    "size_bytes": 510979,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pymc",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/gelmanschools": {
+    "zip": "/learning/gelmanschools/gelmanschools.zip",
+    "size_bytes": 1249135,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "assets/8schools.png",
+      "assets/girolam1.png",
+      "assets/girolam2.png",
+      "assets/girolam3.png",
+      "assets/sympldiv.png",
+      "assets/sympldiv2.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/gelmanschoolstheory": {
+    "zip": "/learning/gelmanschoolstheory/gelmanschoolstheory.zip",
+    "size_bytes": 470187,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "assets/8schools.png",
+      "assets/restuarant_model.png",
+      "assets/school_model.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/generativemodels": {
+    "zip": "/learning/generativemodels/generativemodels.zip",
+    "size_bytes": 795305,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scikit-learn",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/bayesrisk.png",
+      "assets/erm.png",
+      "assets/genvsdiscrim.png",
+      "assets/learning.png",
+      "data/01_heights_weights_genders.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/gibbsconj": {
+    "zip": "/learning/gibbsconj/gibbsconj.zip",
+    "size_bytes": 12993,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/globemodel": {
+    "zip": "/learning/globemodel/globemodel.zip",
+    "size_bytes": 461781,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/postpred.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/globemodellab": {
+    "zip": "/learning/globemodellab/globemodellab.zip",
+    "size_bytes": 620398,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/postpred.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/gp1": {
+    "zip": "/learning/gp1/gp1.zip",
+    "size_bytes": 398754,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/gcondmarg.png",
+      "assets/gproc.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/gp2": {
+    "zip": "/learning/gp2/gp2.zip",
+    "size_bytes": 638565,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scikit-learn",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/gcondmarg.png",
+      "assets/gpco21.png",
+      "assets/gproc.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/gp3": {
+    "zip": "/learning/gp3/gp3.zip",
+    "size_bytes": 328143,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scikit-learn",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "data/salmon.txt"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/gpcorr": {
+    "zip": "/learning/gpcorr/gpcorr.zip",
+    "size_bytes": 744181,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "assets/covgp.png",
+      "assets/modelgp.png",
+      "assets/pacisl.png",
+      "data/Kline2.csv",
+      "data/distmatrix.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/gpsalmon": {
+    "zip": "/learning/gpsalmon/gpsalmon.zip",
+    "size_bytes": 472990,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scikit-learn",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "assets/bayeslevels2.png",
+      "data/salmon.txt"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/gradientdescent": {
+    "zip": "/learning/gradientdescent/gradientdescent.zip",
+    "size_bytes": 4341303,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scikit-learn",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/animsgd.gif"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/hierarch": {
+    "zip": "/learning/hierarch/hierarch.zip",
+    "size_bytes": 349104,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/kidneycancerus.png",
+      "assets/kidneycanceruspop.png",
+      "assets/rat-tumor-hier2.png",
+      "assets/ratsempbayes.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/hmcexplore": {
+    "zip": "/learning/hmcexplore/hmcexplore.zip",
+    "size_bytes": 471186,
+    "dependencies": [
+      "ipython",
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/levelsets.png",
+      "assets/lsetexp.png",
+      "assets/momresample.png",
+      "assets/nummodeerr.png",
+      "assets/reversemom.png",
+      "assets/rocketorbit.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/hmctweaking": {
+    "zip": "/learning/hmctweaking/hmctweaking.zip",
+    "size_bytes": 1252359,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/identifiability": {
+    "zip": "/learning/identifiability/identifiability.zip",
+    "size_bytes": 363489,
+    "dependencies": [
+      "graphviz",
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/importancesampling": {
+    "zip": "/learning/importancesampling/importancesampling.zip",
+    "size_bytes": 119568,
+    "dependencies": [
+      "scipy",
+      "numpy",
+      "matplotlib"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/importance.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/introgibbs": {
+    "zip": "/learning/introgibbs/introgibbs.zip",
+    "size_bytes": 143619,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/inversetransform": {
+    "zip": "/learning/inversetransform/inversetransform.zip",
+    "size_bytes": 56668,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/invtrans.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/islands1": {
+    "zip": "/learning/islands1/islands1.zip",
+    "size_bytes": 1326570,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "assets/islands.png",
+      "data/islands.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/islands2": {
+    "zip": "/learning/islands2/islands2.zip",
+    "size_bytes": 1113594,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "data/islands.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/jensens": {
+    "zip": "/learning/jensens/jensens.zip",
+    "size_bytes": 149654,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/EM1.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/logisticbp": {
+    "zip": "/learning/logisticbp/logisticbp.zip",
+    "size_bytes": 138478,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/layercake.png",
+      "assets/layerl.png",
+      "assets/layershororig.png",
+      "assets/layershorsm.png",
+      "assets/layershorstd.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/marginaloverdiscrete": {
+    "zip": "/learning/marginaloverdiscrete/marginaloverdiscrete.zip",
+    "size_bytes": 1092976,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "data/3g.dat",
+      "data/3gv2.dat"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/markov": {
+    "zip": "/learning/markov/markov.zip",
+    "size_bytes": 161998,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/gsample.png",
+      "assets/mcapproach.png",
+      "assets/mchain.png",
+      "assets/mchain2.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/metropolis": {
+    "zip": "/learning/metropolis/metropolis.zip",
+    "size_bytes": 212170,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/cod.png",
+      "assets/cod2.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/metropolishastings": {
+    "zip": "/learning/metropolishastings/metropolishastings.zip",
+    "size_bytes": 235681,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/metropolissupport": {
+    "zip": "/learning/metropolissupport/metropolissupport.zip",
+    "size_bytes": 82121,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/mixtures_and_mcmc": {
+    "zip": "/learning/mixtures_and_mcmc/mixtures_and_mcmc.zip",
+    "size_bytes": 885548,
+    "dependencies": [
+      "graphviz",
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "data/3gv2.dat",
+      "data/oldfaithful.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/mlp_classification": {
+    "zip": "/learning/mlp_classification/mlp_classification.zip",
+    "size_bytes": 2445641,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scikit-learn",
+      "scipy",
+      "seaborn",
+      "torch",
+      "tqdm"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/monksglmworkflow": {
+    "zip": "/learning/monksglmworkflow/monksglmworkflow.zip",
+    "size_bytes": 1077680,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "assets/a-st-bernardus-prior-8.jpg",
+      "assets/zinfmonks.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/montecarlointegrals": {
+    "zip": "/learning/montecarlointegrals/montecarlointegrals.zip",
+    "size_bytes": 43770,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/nnreg": {
+    "zip": "/learning/nnreg/nnreg.zip",
+    "size_bytes": 802960,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scikit-learn",
+      "torch"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/noiseless_learning": {
+    "zip": "/learning/noiseless_learning/noiseless_learning.zip",
+    "size_bytes": 397596,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/BasicModel.png",
+      "assets/bias.png",
+      "assets/linreg.png",
+      "data/noisysample.csv",
+      "data/religion.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/noisylearning": {
+    "zip": "/learning/noisylearning/noisylearning.zip",
+    "size_bytes": 1252870,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/NoisyModelPxy.png",
+      "data/noisypopulation.csv",
+      "data/noisysample.csv",
+      "data/religion.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/normalmodel": {
+    "zip": "/learning/normalmodel/normalmodel.zip",
+    "size_bytes": 15753,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/normalreg": {
+    "zip": "/learning/normalreg/normalreg.zip",
+    "size_bytes": 358611,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/Howell1.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/priors": {
+    "zip": "/learning/priors/priors.zip",
+    "size_bytes": 292816,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/probability": {
+    "zip": "/learning/probability/probability.zip",
+    "size_bytes": 120639,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/2flips.png",
+      "assets/bishop-prob.png",
+      "assets/venn.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/pymcnormalreg": {
+    "zip": "/learning/pymcnormalreg/pymcnormalreg.zip",
+    "size_bytes": 1168148,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb",
+      "data/Howell1.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/regularization": {
+    "zip": "/learning/regularization/regularization.zip",
+    "size_bytes": 532028,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scikit-learn",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/complexity-error-reg.png",
+      "data/noisysample.csv",
+      "data/religion.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/rejectionsampling": {
+    "zip": "/learning/rejectionsampling/rejectionsampling.zip",
+    "size_bytes": 127184,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/Rejection.png",
+      "assets/rejsteroid.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/samplingclt": {
+    "zip": "/learning/samplingclt/samplingclt.zip",
+    "size_bytes": 254080,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/sufstatexch": {
+    "zip": "/learning/sufstatexch/sufstatexch.zip",
+    "size_bytes": 60305,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/switchpoint": {
+    "zip": "/learning/switchpoint/switchpoint.zip",
+    "size_bytes": 983499,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/testingtraining": {
+    "zip": "/learning/testingtraining/testingtraining.zip",
+    "size_bytes": 937959,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scikit-learn",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/complexity-error-plot.png",
+      "assets/reshape.jpg",
+      "assets/sklearn2.jpg",
+      "assets/sklearntrans.jpg",
+      "assets/train-test.png",
+      "data/noisysample.csv",
+      "data/religion.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/tetchygibbs": {
+    "zip": "/learning/tetchygibbs/tetchygibbs.zip",
+    "size_bytes": 177738,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/torchvae": {
+    "zip": "/learning/torchvae/torchvae.zip",
+    "size_bytes": 209982,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pillow",
+      "torch",
+      "torchvision"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/typesoflearning": {
+    "zip": "/learning/typesoflearning/typesoflearning.zip",
+    "size_bytes": 138490,
+    "dependencies": [
+      "ipython",
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scikit-learn",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/zinfmonks.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/understandingaic": {
+    "zip": "/learning/understandingaic/understandingaic.zip",
+    "size_bytes": 124613,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn",
+      "statsmodels"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/inoutdeviance.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/utilityorrisk": {
+    "zip": "/learning/utilityorrisk/utilityorrisk.zip",
+    "size_bytes": 328183,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "pymc",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/validation": {
+    "zip": "/learning/validation/validation.zip",
+    "size_bytes": 298310,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scikit-learn",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/train-cv2.png",
+      "assets/train-cv3.png",
+      "assets/train-validate-test-cont.png",
+      "assets/train-validate-test.png",
+      "assets/train-validate-test3.png",
+      "data/noisysample.csv",
+      "data/religion.csv"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/varnn": {
+    "zip": "/learning/varnn/varnn.zip",
+    "size_bytes": 289507,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pymc",
+      "scikit-learn",
+      "seaborn"
+    ],
+    "pyodide_compatible": false,
+    "files": [
+      "index.ipynb"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
+  "learning/vi": {
+    "zip": "/learning/vi/vi.zip",
+    "size_bytes": 125728,
+    "dependencies": [
+      "matplotlib",
+      "numpy",
+      "pandas",
+      "scipy",
+      "seaborn"
+    ],
+    "pyodide_compatible": true,
+    "files": [
+      "index.ipynb",
+      "assets/Gaussian_Mixture_Model.png",
+      "assets/VI.png",
+      "assets/klsplitup.png",
+      "assets/vi2dg.png"
+    ],
+    "route": "/learning",
+    "source_dir": "courses"
+  },
   "entropy": {
     "zip": "/posts/entropy/entropy.zip",
     "size_bytes": 260254,
@@ -14,7 +1428,9 @@
       "index.ipynb",
       "assets/expofamily.png",
       "assets/gen_norm.png"
-    ]
+    ],
+    "route": "/posts",
+    "source_dir": "posts"
   },
   "nnreg": {
     "zip": "/posts/nnreg/nnreg.zip",
@@ -28,6 +1444,8 @@
     "pyodide_compatible": false,
     "files": [
       "index.ipynb"
-    ]
+    ],
+    "route": "/posts",
+    "source_dir": "posts"
   }
 }
