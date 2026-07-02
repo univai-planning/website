@@ -63,6 +63,12 @@ this repo's `_site/` output directory and `gh-pages` deployment branch, and
 preserve the rule that notebook downloads use zip bundles rather than
 `ipynb: default`.
 
+The notebook/content workflow skills have been ported into `.agents/skills/`:
+`bundle-post`, `finalize-post`, `execute-notebook`, `caption-images`,
+`import-wiki-notes`, `port-pymc3`, `edit-notebook`, and `publish`. Use them for
+notebook imports, course/blog content finalization, PyMC3 migration, and deployment, after
+applying the higher-priority GTW/Gest and VCS instructions in this file.
+
 Visual QA matters for CSS/layout work. Build the site, serve `_site/` locally,
 and inspect desktop and mobile viewports before handing off substantial visual
 changes.
@@ -241,7 +247,13 @@ just build-dev
 just preview
 just serve 8765
 just smoke
-just test-bundles
+just execute-notebook <selector> [timeout]
+just execute-notebooks "<selector selector...>" [timeout]
+just prepare-notebook <selector> [timeout]
+just test-bundles ["slug[,slug...]"] [timeout]
+just verify-notebooks ["slug[,slug...]"] [timeout]
+just verify ["slug[,slug...]"] [timeout]
+just cx-lint
 just deploy
 just pages-source-gh-pages
 browser visual check: http://127.0.0.1:8765/ at desktop and mobile viewports
@@ -249,7 +261,61 @@ just diff-check
 ```
 
 `just build` runs the current production pipeline (`generate-vars`, Tailwind
-build, `quarto render` to `_site/`, and notebook bundle generation).
+build, prompt/learning-path generation, `quarto render` to `_site/`,
+JupyterLite, LLM context, notebook bundle generation, and friendly route
+publication). It is `cx` backed: `_scripts/write_cx_manifest.py` hashes the
+declared source files into `.cx/inputs/site-build.json`, then `cx` skips the
+full site build when that manifest, the declared outputs, and the command line
+are unchanged. This lets `just deploy` reuse an already fresh `_site/` and run
+only the deployment work.
+
+`just build-bundles` is also `cx` backed for the notebook bundle manifest and
+zip artifacts. It uses `.cx/inputs/bundles.json` as the declared file input and
+`_site/bundles.json` plus `.cx/stamps/bundles` as outputs. It is a narrow
+artifact refresh for an existing rendered `_site/`, and writes bundles into the
+public `_site/posts`, `_site/blog`, and `_site/learning` route directories.
+`cx` is only used for these file-producing build stages; it is not used as a
+test runner.
+
+Notebook publishing has two separate checks:
+
+- `just execute-notebook <selector> [timeout]` and
+  `just execute-notebooks "<selectors>" [timeout]` execute source notebooks in
+  place with `_scripts/execute_notebook.py` so Quarto publishes fresh stored
+  outputs. Selectors may be slugs, `blog/<slug>`, `learning/<slug>`,
+  `posts/<slug>/index.ipynb`, or `courses/<slug>/index.ipynb`.
+- `just verify-notebooks ["selectors"] [timeout]` builds if needed, then runs
+  generated zip bundles with `uvx juv exec`. It caches passing results by
+  bundle-content hash plus timeout in `.cx/cache/test-bundles.json`, and
+  deduplicates identical bundle contents such as a notebook appearing in both
+  `posts/` and `courses/`.
+
+Use `just prepare-notebook <selector> [timeout]` for a new or edited notebook:
+it executes the source notebook, builds the site, and focused-verifies the
+download bundle for that selector. `just verify ["selectors"] [timeout]` runs
+the full site verification contract, while passing selectors keeps the notebook
+bundle execution focused on those slugs/routes.
+
+The key unit of work for a single blog notebook is:
+
+```bash
+posts/<slug>/index.ipynb
+just prepare-notebook blog/<slug> 1200
+```
+
+Expanded, this means:
+
+```bash
+just execute-notebook blog/<slug> 1200
+just build
+just verify-notebooks blog/<slug> 1200
+```
+
+Do not treat `just verify-notebooks blog/<slug> 1200` as a substitute for
+source execution. Bundle verification runs the generated downloadable zip with
+`uvx juv exec`; it does not refresh the executed outputs that Quarto publishes
+into the blog page.
+
 `just deploy` adapts the sibling repo's `gh-pages` worktree deploy model:
 build `_site/`, copy it to a temporary `gh-pages` worktree with `rsync
 --delete`, commit, push, and remove the worktree. On first deployment, run
@@ -277,6 +343,11 @@ steps. Do not wrap tests, lint, format, ordinary `cargo build`, `go build`,
 `tsc`, or commands without durable file outputs. Document the relevant build or
 pipeline target and `cx lint` here, and keep `.cx/state.json`, `.cx/graph.json`,
 and `.cx/tmp/` ignored without hiding a future `.cx/config.toml`.
+
+The current `cx` targets are `just build` and `just build-bundles`; run
+`just cx-lint` after changing their declarations. Keep `.cx/inputs/`,
+`.cx/stamps/`, and `.cx/cache/` local too: they are derived manifests, stamps,
+and notebook pass-cache state, not source artifacts.
 
 If a Just target emits an `AGENT_TASK v1` block, treat it as an agentic Just
 target and validate the packet before acting on it. `AGENT_TASK v1` is a

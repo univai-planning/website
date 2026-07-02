@@ -6,23 +6,67 @@ deploy_dir := "/tmp/univai-gh-pages-deploy"
 default:
     @just --list
 
+cx-prepare:
+    mkdir -p .cx/inputs .cx/stamps .cx/cache {{out_dir}}
+
+cx-lint:
+    bash -c 'cx lint'
+
+site-build-inputs: cx-prepare
+    python3 _scripts/write_cx_manifest.py --target site-build --out .cx/inputs/site-build.json --arg out_dir={{out_dir}}
+
+bundle-inputs: cx-prepare
+    python3 _scripts/write_cx_manifest.py --target bundles --out .cx/inputs/bundles.json --arg out_dir={{out_dir}}
+
 generate-vars:
     npm run generate-vars
 
 build-tailwind:
     NODE_ENV=production npm run build-tailwind
 
+compile-prompts:
+    python3 _scripts/compile_prompts.py
+
 render:
     quarto render
 
-build-bundles:
-    python3 _scripts/generate_bundles.py --site-dir {{out_dir}} --posts-dir posts
+build-bundles-raw:
+    _scripts/build_bundles_public.sh {{out_dir}}
+
+build-bundles: bundle-inputs
+    cx --in .cx/inputs/bundles.json --out {{out_dir}}/bundles.json --out .cx/stamps/bundles -- _scripts/stamp_command.sh .cx/stamps/bundles _scripts/build_bundles_public.sh {{out_dir}}
+
+generate-learning-paths:
+    python3 _scripts/generate_learning_paths.py
+
+build-jupyterlite:
+    _scripts/build_jupyterlite.sh
+    cp _lab/loader.html {{out_dir}}/lab/loader.html
+
+llm-context:
+    python3 _scripts/generate_llm_context.py --site-dir {{out_dir}} --content-root posts:posts:/posts:/blog --content-root courses:courses:/learning
+
+publish-routes:
+    python3 _scripts/publish_routes.py --site-dir {{out_dir}}
+
+test-routes:
+    python3 -m unittest tests.test_publish_routes
+
+test-learning-paths:
+    python3 -m unittest tests.test_generate_learning_paths
+
+test-runtime:
+    python3 -m unittest tests.test_generate_bundles tests.test_generate_llm_context tests.test_cx_manifest tests.test_test_bundles tests.test_execute_notebooks tests.test_import_notebook tests.test_build_bundles_public
+
+test-content-migration:
+    python3 -m unittest tests.test_content_migration_manifest
 
 brochure:
     mkdir -p assets/brochure
     typst compile --creation-timestamp 0 brochure/univ_ai_promotional_brochure.typ assets/brochure/univ-ai-promotional-brochure.pdf
 
-build: generate-vars build-tailwind render build-bundles
+build: site-build-inputs
+    cx --in .cx/inputs/site-build.json --out {{out_dir}}/index.html --out {{out_dir}}/bundles.json --out {{out_dir}}/llms.txt --out {{out_dir}}/learning/index.html --out {{out_dir}}/blog/index.html --out .cx/stamps/site-build -- _scripts/stamp_command.sh .cx/stamps/site-build _scripts/build_site.sh {{out_dir}}
 
 build-dev:
     npm run build-dev
@@ -33,25 +77,52 @@ preview:
 serve port="8765": build
     python3 -m http.server {{port}} --directory {{out_dir}}
 
-test-bundles slug="": build
-    if [[ -n "{{slug}}" ]]; then \
-      python3 _scripts/test_bundles.py --site-dir {{out_dir}} --report {{out_dir}}/test-report.json --timeout 600 --slug "{{slug}}"; \
-    else \
-      python3 _scripts/test_bundles.py --site-dir {{out_dir}} --report {{out_dir}}/test-report.json --timeout 600; \
-    fi
+test-bundles slugs="" timeout="1200": build
+    python3 _scripts/test_bundles.py --site-dir {{out_dir}} --report {{out_dir}}/test-report.json --cache-report .cx/cache/test-bundles.json --timeout {{timeout}} --slugs "{{slugs}}"
+
+execute-notebooks selectors timeout="1200":
+    python3 _scripts/execute_notebooks.py --timeout {{timeout}} --selectors "{{selectors}}"
+
+execute-notebook selector timeout="1200": (execute-notebooks selector timeout)
+
+prepare-notebook selector timeout="1200": (execute-notebooks selector timeout) (test-bundles selector timeout)
+
+verify-notebooks slugs="" timeout="1200": (test-bundles slugs timeout)
 
 smoke: build
     test -f {{out_dir}}/index.html
     test -f {{out_dir}}/CNAME
     test -f {{out_dir}}/bundles.json
+    test -f {{out_dir}}/llms.txt
+    test -f {{out_dir}}/lab/loader.html
+    test -f {{out_dir}}/assets/llm-explain.js
+    test -f {{out_dir}}/assets/llm-prompts.json
+    test -f {{out_dir}}/assets/learning-paths.json
+    test -f {{out_dir}}/learning/index.html
+    test -f {{out_dir}}/learning/intro-to-sampling.html
+    test -f {{out_dir}}/learning/intro-to-sampling-card.png
+    test -f {{out_dir}}/learning/corr/index.html
+    test -f {{out_dir}}/learning/boxloop.html
+    test -f {{out_dir}}/learning/software/index.html
+    test -f {{out_dir}}/learning/software/awk.html
+    test -f {{out_dir}}/learning/probability/cells.json
+    test -f {{out_dir}}/learning/probability/_content.md
+    test -f {{out_dir}}/learning/probability/probability.zip
+    test ! -e {{out_dir}}/learning/seasons
+    test ! -e {{out_dir}}/learning/votingforcongress
+    test -f {{out_dir}}/blog/index.html
+    test -f {{out_dir}}/blog/entropy/cells.json
+    test -f {{out_dir}}/blog/entropy/_content.md
+    test -f {{out_dir}}/blog/entropy/entropy.zip
     test -f {{out_dir}}/assets/brochure/univ-ai-promotional-brochure.pdf
+    test ! -e {{out_dir}}/courses
     test ! -e {{out_dir}}/internal_docs
     test ! -e {{out_dir}}/AGENTS.html
 
 diff-check:
     git diff --check
 
-verify: smoke diff-check
+verify slugs="" timeout="1200": smoke test-routes test-learning-paths test-runtime test-content-migration (test-bundles slugs timeout) diff-check
 
 clean:
     rm -rf {{out_dir}}

@@ -2,10 +2,15 @@ project:
   type: website
   resources:
     - assets/download-bundle.js
+    - assets/llm-explain.js
+    - assets/llm-prompts.json
+    - assets/learning-paths.js
+    - assets/learning-paths.json
     - assets/brochure/univ-ai-promotional-brochure.pdf
   render:
     - "*.qmd"
     - "posts/"
+    - "courses/"
     - "!internal_docs/"
     - "!AGENTS.md"
 
@@ -21,12 +26,17 @@ website:
         text: Solutions
       - href: methods.qmd
         text: Our Method
+      - href: /learning/
+        text: Learning
       # - href: example.qmd
       #   text: Example
-      - href: posts.qmd
+      - href: /blog/
         text: Blog
       - href: about.qmd
         text: About Us
+
+filters:
+  - _filters/cell-markers.lua
 
 format:
   html:
@@ -41,4 +51,6 @@ format:
       - text: |
           <link rel="icon" type="image/svg+xml" href="/assets/bluelogo.svg"/>
     include-after-body:
+      - includes/llm-explain.html
       - includes/download-bundle.html
+      - includes/learning-paths.html

@@ -1,0 +1,30 @@
+---
+title: "Software Notes"
+description: "Short notes on useful tools for data and AI work."
+page-layout: article
+llm-context: false
+---
+
+<span data-llm-context="false" hidden></span>
+
+These short notes collect tools we like for practical data and AI systems work.
+
+::: {.grid .site-card-grid}
+::: {.g-col-12 .g-col-md-4 .site-card}
+### [Awk](awk.html)
+
+A compact command-line tool for quick text and tabular data processing.
+:::
+
+::: {.g-col-12 .g-col-md-4 .site-card}
+### [Hamilton](hamilton.html)
+
+A micro-framework for defining feature and data transformations as DAGs.
+:::
+
+::: {.g-col-12 .g-col-md-4 .site-card}
+### [Prefect](prefect.html)
+
+Workflow orchestration for scheduled, repeatable data and ML pipelines.
+:::
+:::

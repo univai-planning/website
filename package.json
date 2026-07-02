@@ -5,12 +5,17 @@
   "scripts": {
     "generate-vars": "node generate-scss.js",
     "build-tailwind": "tailwindcss -i tailwind.css -o output.css --no-source-map",
+    "compile-prompts": "python3 _scripts/compile_prompts.py",
     "build-brochure": "mkdir -p assets/brochure && typst compile --creation-timestamp 0 brochure/univ_ai_promotional_brochure.typ assets/brochure/univ-ai-promotional-brochure.pdf",
-    "build-bundles": "python3 _scripts/generate_bundles.py --site-dir _site --posts-dir posts",
-    "test-bundles": "python3 _scripts/test_bundles.py --site-dir _site --report _site/test-report.json --timeout 600",
+    "build-jupyterlite": "_scripts/build_jupyterlite.sh && cp _lab/loader.html _site/lab/loader.html",
+    "llm-context": "python3 _scripts/generate_llm_context.py --site-dir _site --content-root posts:posts:/posts:/blog --content-root courses:courses:/learning",
+    "build-bundles": "just build-bundles",
+    "generate-learning-paths": "python3 _scripts/generate_learning_paths.py",
+    "publish-routes": "python3 _scripts/publish_routes.py --site-dir _site",
+    "test-bundles": "just test-bundles",
     "dev": "tailwindcss -i custom.scss -o output.css --map --watch",
-    "build-dev": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && quarto render",
-    "build": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && quarto render && npm run build-bundles"
+    "build-dev": "npm run generate-vars && NODE_ENV=production npm run build-tailwind && npm run compile-prompts && npm run generate-learning-paths && quarto render",
+    "build": "just build"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.0",

@@ -3,182 +3,61 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gest Relationship Graph</title>
+  <title>Gest Content Migration Task Tree</title>
   <style>
-    :root {
-      color-scheme: dark;
-      --bg: #101214;
-      --panel: #171a1f;
-      --text: #f4f4f5;
-      --muted: #9aa3ad;
-      --line: #2c333a;
-      --accent: #67b7dc;
-    }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font: 14px/1.5 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-    }
-    header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 18px 22px;
-      border-bottom: 1px solid var(--line);
-      background: var(--panel);
-    }
-    h1 {
-      margin: 0;
-      font-size: 18px;
-      font-weight: 650;
-      letter-spacing: 0;
-    }
-    a { color: var(--accent); }
-    main { padding: 18px 22px 30px; }
-    .hint { color: var(--muted); }
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 16px;
-      align-items: center;
-      margin: 0 0 16px;
-      color: var(--muted);
-    }
-    .legend span { display: inline-flex; align-items: center; gap: 6px; }
-    .swatch {
-      width: 12px;
-      height: 12px;
-      border-radius: 2px;
-      display: inline-block;
-      border: 1px solid #6b7280;
-    }
-    .swatch.iteration { background: #17324d; border-color: #67b7dc; }
-    .swatch.open { background: #2f2f2f; border-color: #d6d6d6; }
-    .swatch.progress { background: #463814; border-color: #f2c94c; }
-    .swatch.done { background: #20382f; border-color: #7bd88f; }
-    .swatch.cancelled { background: #3d2525; border-color: #eb5757; }
-    .line {
-      width: 20px;
-      height: 0;
-      display: inline-block;
-      border-top: 2px solid #9aa3ad;
-    }
-    .line.dashed { border-top-style: dashed; }
-    .iteration-stack {
-      position: relative;
-      margin-left: 14px;
-      padding-left: 26px;
-      border-left: 2px dashed #49515a;
-    }
-    .iteration-section {
-      position: relative;
-      margin: 0 0 22px;
-    }
-    .section-marker {
-      position: absolute;
-      left: -34px;
-      top: 11px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px var(--bg);
-    }
-    .iteration-section h2 {
-      margin: 0 0 8px;
-      font-size: 15px;
-      font-weight: 650;
-      letter-spacing: 0;
-    }
-    .iteration-section h2 span {
-      color: var(--muted);
-      font-weight: 500;
-      margin-left: 6px;
-    }
-    .phase-section {
-      margin: 10px 0 14px;
-    }
-    .phase-section h3 {
-      margin: 0 0 6px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 650;
-      letter-spacing: 0;
-    }
-    .graph {
-      overflow: auto;
-      min-height: 70vh;
-      padding: 16px;
-      border: 1px solid var(--line);
-      background: #0c0e10;
-    }
-    .graph-compact {
-      min-height: 0;
-    }
+    :root { color-scheme: dark; --bg:#101214; --panel:#171a1f; --text:#f4f4f5; --muted:#9aa3ad; --line:#2c333a; --accent:#67b7dc; }
+    body { margin:0; background:var(--bg); color:var(--text); font:14px/1.5 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    header { display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px 22px; border-bottom:1px solid var(--line); background:var(--panel); }
+    h1 { margin:0; font-size:18px; font-weight:650; letter-spacing:0; }
+    a { color:var(--accent); }
+    main { padding:18px 22px 30px; }
+    .hint { color:var(--muted); }
+    .graph { overflow:auto; min-height:70vh; padding:16px; border:1px solid var(--line); background:#0c0e10; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Gest Relationship Graph</h1>
-    <a href="http://127.0.0.1:2300" target="_blank" rel="noreferrer">gest serve</a>
-  </header>
-  <main>
-    <p class="hint">
-      Click any iteration or task node to open it in gest serve. Start it with
-      <code>gest serve</code> if links do not load.
-    </p>
-    <div class="legend" aria-label="Legend">
-      <span><b class="swatch iteration"></b>iteration</span>
-      <span><b class="swatch open"></b>open task</span>
-      <span><b class="swatch progress"></b>in progress</span>
-      <span><b class="swatch done"></b>done/completed</span>
-      <span><b class="swatch cancelled"></b>cancelled</span>
-      <span><b class="line solid"></b>relationship</span>
-      <span><b class="line dashed"></b>iteration order</span>
-    </div>
-    <div class="graph">
-      <pre class="mermaid">
-flowchart TB
+  <header><h1>Gest Content Migration Task Tree</h1><a href="http://127.0.0.1:2300" target="_blank" rel="noreferrer">gest serve</a></header>
+  <main><p class="hint">Generated from Gest task JSON at checkpoint time. Click nodes after starting <code>gest serve</code>.</p><div class="graph"><pre class="mermaid">flowchart TB
   classDef iteration fill:#17324d,stroke:#67b7dc,color:#f6fbff;
-  classDef active fill:#15391f,stroke:#6fcf97,color:#f7fff9;
   classDef open fill:#2f2f2f,stroke:#d6d6d6,color:#ffffff;
   classDef progress fill:#463814,stroke:#f2c94c,color:#fff8db;
   classDef done fill:#20382f,stroke:#7bd88f,color:#f1fff3;
   classDef cancelled fill:#3d2525,stroke:#eb5757,color:#fff4f4;
-  classDef legend fill:#11161c,stroke:#6b7280,color:#e5e7eb;
-  I_mtvrvytqwlzk[&quot;mtvrvytq | Solutions and notebook bundle&lt;br/&gt;refresh | active&quot;]
-  class I_mtvrvytqwlzk iteration;
-  click I_mtvrvytqwlzk &quot;http://127.0.0.1:2300/iterations/mtvrvytqwlzkvpqlupnvuorrouorxwyl&quot; _blank
-  T_pxtporvypwvn[&quot;pxtporvy | Redo Solutions page from&lt;br/&gt;brochure positioning | done&quot;]
-  class T_pxtporvypwvn done;
-  click T_pxtporvypwvn &quot;http://127.0.0.1:2300/tasks/pxtporvypwvnpqzyrzolynropouxostp&quot; _blank
-  T_xwtsvowksvul[&quot;xwtsvowk | Port notebook bundles and&lt;br/&gt;selected notebooks | done&quot;]
-  class T_xwtsvowksvul done;
-  click T_xwtsvowksvul &quot;http://127.0.0.1:2300/tasks/xwtsvowksvulrnvrnrykmmmntnrovkuo&quot; _blank
-  T_yvsuqnwstusl[&quot;yvsuqnws | Move publishing to gh-pages&lt;br/&gt;deploy branch | done&quot;]
-  class T_yvsuqnwstusl done;
-  click T_yvsuqnwstusl &quot;http://127.0.0.1:2300/tasks/yvsuqnwstuslpyptpxlkvumoxvnmmqtq&quot; _blank
-  T_ppwrwxyzpzvu[&quot;ppwrwxyz | Document content migration plan&lt;br/&gt;and internal docs guard | done&quot;]
-  class T_ppwrwxyzpzvu done;
-  click T_ppwrwxyzpzvu &quot;http://127.0.0.1:2300/tasks/ppwrwxyzpzvuosknyzsypsplnwkxkxym&quot; _blank
-  T_yqnkvnyxrmkw[&quot;yqnkvnyx | Refresh content migration handoff&lt;br/&gt;status | done&quot;]
-  class T_yqnkvnyxrmkw done;
-  click T_yqnkvnyxrmkw &quot;http://127.0.0.1:2300/tasks/yqnkvnyxrmkwymlosnrulwzkvllnxxmy&quot; _blank
-  I_mtvrvytqwlzk -- &quot;phase 1&quot; --&gt; T_ppwrwxyzpzvu
-  I_mtvrvytqwlzk -- &quot;phase 1&quot; --&gt; T_pxtporvypwvn
-  I_mtvrvytqwlzk -- &quot;phase 1&quot; --&gt; T_yvsuqnwstusl
-  I_mtvrvytqwlzk -- &quot;phase 2&quot; --&gt; T_xwtsvowksvul
-  T_yvsuqnwstusl -- &quot;parent of&quot; --&gt; T_ppwrwxyzpzvu
-  T_yvsuqnwstusl -- &quot;parent of&quot; --&gt; T_yqnkvnyxrmkw
-      </pre>
-    </div>
-  </main>
-  <script type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-    mermaid.initialize({ startOnLoad: true, theme: "dark", securityLevel: "loose" });
-  </script>
+  T_qxyzsqtkpmns[&quot;qxyzsqtk | Implement content migration<br/>and shared notebook runtime | open&quot;]
+  class T_qxyzsqtkpmns open;
+  click T_qxyzsqtkpmns &quot;http://127.0.0.1:2300/tasks/qxyzsqtkpmnslltvppvqzvuyplxvoprt&quot; _blank
+  T_mvuzonxylyno[&quot;mvuzonxy | Add learning and blog route<br/>scaffolding | done&quot;]
+  class T_mvuzonxylyno done;
+  click T_mvuzonxylyno &quot;http://127.0.0.1:2300/tasks/mvuzonxylynolmuvtoszwwqwnkosvpop&quot; _blank
+  T_qrwpmuxpmowz[&quot;qrwpmuxp | Port notebook workflow<br/>skills | done&quot;]
+  class T_qrwpmuxpmowz done;
+  click T_qrwpmuxpmowz &quot;http://127.0.0.1:2300/tasks/qrwpmuxpmowzkllpmyyumttypyusvpos&quot; _blank
+  T_nnmqktqnxxqk[&quot;nnmqktqn | Port sampling learning path<br/>and teaser | done&quot;]
+  class T_nnmqktqnxxqk done;
+  click T_nnmqktqnxxqk &quot;http://127.0.0.1:2300/tasks/nnmqktqnxxqkyusuuzrstwwoywrurrxs&quot; _blank
+  T_xlknuolnxozs[&quot;xlknuoln | Port shared notebook runtime | done&quot;]
+  class T_xlknuolnxozs done;
+  click T_xlknuolnxozs &quot;http://127.0.0.1:2300/tasks/xlknuolnxozsykqywwopykwtykonqmsk&quot; _blank
+  T_prsvuvylyzmk[&quot;prsvuvyl | Copy selected course and<br/>software content | done&quot;]
+  class T_prsvuvylyzmk done;
+  click T_prsvuvylyzmk &quot;http://127.0.0.1:2300/tasks/prsvuvylyzmkwwqtpsspzzlpxoxowptq&quot; _blank
+  T_vovqoqmunuxr[&quot;vovqoqmu | Verify migrated content end<br/>to end | done&quot;]
+  class T_vovqoqmunuxr done;
+  click T_vovqoqmunuxr &quot;http://127.0.0.1:2300/tasks/vovqoqmunuxrtxsnoonyrsxuzqrutlqm&quot; _blank
+  T_nnmqpvulqlqn[&quot;nnmqpvul | Wire and run notebook bundle<br/>execution tests | done&quot;]
+  class T_nnmqpvulqlqn done;
+  click T_nnmqpvulqlqn &quot;http://127.0.0.1:2300/tasks/nnmqpvulqlqnxmprkklxprkvzroynloy&quot; _blank
+  T_tnwntwnltukr[&quot;tnwntwnl | Investigate notebooks<br/>exceeding 20 minute juv<br/>execution | open&quot;]
+  class T_tnwntwnltukr open;
+  click T_tnwntwnltukr &quot;http://127.0.0.1:2300/tasks/tnwntwnltukrollrwrslrwpokouvvlrq&quot; _blank
+  T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_mvuzonxylyno
+  T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_nnmqktqnxxqk
+  T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_nnmqpvulqlqn
+  T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_prsvuvylyzmk
+  T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_qrwpmuxpmowz
+  T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_tnwntwnltukr
+  T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_vovqoqmunuxr
+  T_qxyzsqtkpmns -- &quot;child&quot; --&gt; T_xlknuolnxozs</pre></div></main>
+  <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs"; mermaid.initialize({ startOnLoad: true, theme: "dark", securityLevel: "loose" });</script>
 </body>
 </html>

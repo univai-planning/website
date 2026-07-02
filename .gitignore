@@ -8,6 +8,18 @@ docs/
 node_modules/
 .DS_Store
 /.local-artifacts/
+.jupyterlite.doit.db
 
 **/*.quarto_ipynb
 .gest/
+.cx/state.json
+.cx/graph.json
+.cx/tmp/
+.cx/inputs/
+.cx/stamps/
+.cx/cache/
+
+# Generated learning-path artifacts.
+/assets/learning-paths.json
+/courses/intro-to-sampling.qmd
+/courses/intro-to-sampling-card.png

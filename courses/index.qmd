@@ -1,0 +1,45 @@
+---
+title: "Learning"
+description: "Structured technical material from Univ.AI."
+page-layout: full
+---
+
+::: {.site-section}
+:::: {.container}
+:::: {.site-section__header}
+## Practical AI and data systems learning
+
+::: {.site-lede}
+Course notebooks and guided paths are moving here as a focused learning library
+for statistical computing, machine learning, and production data systems.
+:::
+::::
+
+:::: {.grid .site-card-grid}
+::: {.g-col-12 .g-col-md-4 .site-card}
+### Guided paths
+
+Start with probability fundamentals, move through the central limit theorem,
+and finish with Monte Carlo and sampling algorithms.
+
+[Introduction to Sampling](/learning/intro-to-sampling.html){.btn .btn-primary}
+:::
+
+::: {.g-col-12 .g-col-md-4 .site-card}
+### Course notebooks
+
+The migrated course archive includes 71 runnable notebooks and 10 markdown or
+Quarto notes from the selected source set.
+:::
+
+::: {.g-col-12 .g-col-md-4 .site-card}
+### Software notes
+
+Short notes on practical tools for data processing, orchestration, and
+pipeline design.
+
+[Browse software notes](/learning/software/){.btn .btn-primary}
+:::
+::::
+::::
+:::
