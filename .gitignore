@@ -19,6 +19,9 @@ node_modules/
 .cx/stamps/
 .cx/cache/
 
+# Generated internal Gest graph exports.
+/internal_docs/gest_graphs/*.html
+
 # Generated learning-path artifacts.
 /assets/learning-paths.json
 /courses/intro-to-sampling.qmd
