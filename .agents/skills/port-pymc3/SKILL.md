@@ -40,10 +40,14 @@ Do not use `return_inferencedata=False`; keep the modern InferenceData API.
 4. Test.
 
    ```bash
-   uv run _scripts/execute_notebook.py --timeout 1200 <notebook>
+   just execute-notebook <route>/<slug> 1200
    just build
-   python3 _scripts/test_bundles.py --site-dir _site --report _site/test-report.json --timeout 600 --slug <slug>
+   just verify-notebooks <route>/<slug> 1200
    ```
+
+   For a single blog notebook, `just prepare-notebook blog/<slug> 1200`
+   combines those steps. Use direct `_scripts/test_bundles.py` only when
+   debugging the bundle tester itself.
 
 ## Notes
 

@@ -75,12 +75,12 @@ markdown file is usually a rendered view of the notebook.
 8. Build and focused-verify the bundle.
 
    ```bash
-   just build
-   just verify-notebooks blog/<slug> 1200
+   just prepare-notebook blog/<slug> 1200
    ```
 
-   `just prepare-notebook blog/<slug> 1200` combines source execution, build,
-   and focused bundle verification for a single new notebook.
+   For learning imports, use `just prepare-notebook learning/<slug> 1200`.
+   Expanded, this is source execution, `just build`, and route-qualified
+   `just verify-notebooks <route>/<slug> 1200`.
 
 9. Finalize the page.
    Run `finalize-post`, inspect listing cards, and run browser verification
