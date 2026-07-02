@@ -60,9 +60,13 @@ It applies to markdown, QMD, and notebook pages.
 
    ```bash
    just smoke
-   just verify-notebooks <slug> 1200
+   just verify-notebooks blog/<slug> 1200
+   just verify-notebooks learning/<slug> 1200
    just diff-check
    ```
+
+   Run the selector that matches the content route; avoid bare slugs when the
+   same notebook appears in both blog and learning content.
 
 ## Notes
 
@@ -70,5 +74,6 @@ It applies to markdown, QMD, and notebook pages.
   output to `gh-pages`.
 - Do not duplicate learning-path content in the blog. Blog teasers should link
   to `/learning/` pages.
-- `just prepare-notebook <selector> 1200` combines source execution, site
+- `just prepare-notebook blog/<slug> 1200` or
+  `just prepare-notebook learning/<slug> 1200` combines source execution, site
   build, and focused bundle verification for a new or edited notebook.

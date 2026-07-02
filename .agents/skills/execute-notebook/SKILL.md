@@ -23,7 +23,7 @@ just execute-notebook posts/<slug>/index.ipynb 1200
 just execute-notebook courses/<slug>/index.ipynb 1200
 ```
 
-For debugging without output capture:
+For debugging without output capture, use the lower-level runner directly:
 
 ```bash
 uv run --with <dep> python _scripts/run_nb.py <notebook>
@@ -36,8 +36,18 @@ After execution:
 ```bash
 python3 -m json.tool <notebook> >/dev/null
 just build
-just verify-notebooks <slug> 1200
+just verify-notebooks blog/<slug> 1200
+just verify-notebooks learning/<slug> 1200
 ```
+
+For a single blog notebook, prefer the combined publish-ready target:
+
+```bash
+just prepare-notebook blog/<slug> 1200
+```
+
+That target expands to source execution, site build, and focused bundle
+verification. `verify-notebooks` alone does not refresh stored notebook outputs.
 
 Spot-check that code cells have expected outputs and no transient local paths
 were written into the notebook.
