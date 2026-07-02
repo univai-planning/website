@@ -31,10 +31,10 @@ render:
     quarto render
 
 build-bundles-raw:
-    python3 _scripts/generate_bundles.py --site-dir {{out_dir}} --content-root posts:posts:/posts:/blog --content-root courses:courses:/learning
+    _scripts/build_bundles_public.sh {{out_dir}}
 
 build-bundles: bundle-inputs
-    cx --in .cx/inputs/bundles.json --out {{out_dir}}/bundles.json --out .cx/stamps/bundles -- _scripts/stamp_command.sh .cx/stamps/bundles python3 _scripts/generate_bundles.py --site-dir {{out_dir}} --content-root posts:posts:/posts:/blog --content-root courses:courses:/learning
+    cx --in .cx/inputs/bundles.json --out {{out_dir}}/bundles.json --out .cx/stamps/bundles -- _scripts/stamp_command.sh .cx/stamps/bundles _scripts/build_bundles_public.sh {{out_dir}}
 
 generate-learning-paths:
     python3 _scripts/generate_learning_paths.py
@@ -56,7 +56,7 @@ test-learning-paths:
     python3 -m unittest tests.test_generate_learning_paths
 
 test-runtime:
-    python3 -m unittest tests.test_generate_bundles tests.test_generate_llm_context tests.test_cx_manifest tests.test_test_bundles tests.test_execute_notebooks tests.test_import_notebook
+    python3 -m unittest tests.test_generate_bundles tests.test_generate_llm_context tests.test_cx_manifest tests.test_test_bundles tests.test_execute_notebooks tests.test_import_notebook tests.test_build_bundles_public
 
 test-content-migration:
     python3 -m unittest tests.test_content_migration_manifest

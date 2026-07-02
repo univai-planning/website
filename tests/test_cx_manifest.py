@@ -46,7 +46,9 @@ class CxManifestTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / "_scripts").mkdir()
+            (root / "_scripts" / "build_bundles_public.sh").write_text("#!/usr/bin/env bash\n")
             (root / "_scripts" / "generate_bundles.py").write_text("print('bundles')\n")
+            (root / "_scripts" / "stamp_command.sh").write_text("#!/usr/bin/env bash\n")
             post = root / "posts" / "demo"
             post.mkdir(parents=True)
             (post / "index.ipynb").write_text("{}")
@@ -56,7 +58,9 @@ class CxManifestTest(unittest.TestCase):
             payload = self.manifest.build_manifest(root, "bundles", [])
             paths = {item["path"] for item in payload["files"]}
 
+        self.assertIn("_scripts/build_bundles_public.sh", paths)
         self.assertIn("_scripts/generate_bundles.py", paths)
+        self.assertIn("_scripts/stamp_command.sh", paths)
         self.assertIn("posts/demo/index.ipynb", paths)
         self.assertIn("posts/demo/assets/data.csv", paths)
 

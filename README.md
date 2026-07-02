@@ -24,7 +24,7 @@ Useful targets:
 
 ```bash
 just build                         # Incremental production build into _site/
-just build-bundles                 # Incremental notebook bundle generation
+just build-bundles                 # Incremental bundle refresh for an existing _site/
 just smoke                         # Cheap output canaries after build
 just verify                        # Full local verification
 just verify "nnreg,entropy" 1200    # Full verification with focused notebook bundle execution
@@ -47,7 +47,10 @@ Notebook workflow:
    bundle with `uvx juv exec`.
 
 `just prepare-notebook <selector> [timeout]` combines source execution, build,
-and focused bundle verification for a new or edited notebook.
+and focused bundle verification for a new or edited notebook. `just
+build-bundles` is a narrower artifact refresh for an already rendered `_site/`;
+it writes current bundle zips and manifest entries into the public `_site/posts`,
+`_site/blog`, and `_site/learning` routes without rerendering the whole site.
 
 Bundle verification is incremental separately from `cx`: passing bundle runs
 are cached by bundle-content hash plus timeout in `.cx/cache/test-bundles.json`.

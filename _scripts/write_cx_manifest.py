@@ -64,6 +64,12 @@ BUILD_FILES = {
     "_scripts/stamp_command.sh",
 }
 
+BUNDLE_BUILD_FILES = {
+    "_scripts/build_bundles_public.sh",
+    "_scripts/generate_bundles.py",
+    "_scripts/stamp_command.sh",
+}
+
 SITE_BUILD_ROOTS = {
     "_filters",
     "_lab",
@@ -128,7 +134,7 @@ def target_paths(root: Path, target: str) -> list[Path]:
         candidates.extend(root / name for name in sorted(SITE_BUILD_ROOTS))
         candidates.extend(root_markdown_files(root))
     elif target == "bundles":
-        candidates = [root / "_scripts/generate_bundles.py"]
+        candidates = [root / name for name in sorted(BUNDLE_BUILD_FILES)]
         candidates.extend(root / name for name in sorted(BUNDLE_ROOTS))
     else:
         raise SystemExit(f"unknown manifest target: {target}")

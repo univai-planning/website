@@ -271,8 +271,11 @@ only the deployment work.
 
 `just build-bundles` is also `cx` backed for the notebook bundle manifest and
 zip artifacts. It uses `.cx/inputs/bundles.json` as the declared file input and
-`_site/bundles.json` plus `.cx/stamps/bundles` as outputs. `cx` is only used
-for these file-producing build stages; it is not used as a test runner.
+`_site/bundles.json` plus `.cx/stamps/bundles` as outputs. It is a narrow
+artifact refresh for an existing rendered `_site/`, and writes bundles into the
+public `_site/posts`, `_site/blog`, and `_site/learning` route directories.
+`cx` is only used for these file-producing build stages; it is not used as a
+test runner.
 
 Notebook publishing has two separate checks:
 
