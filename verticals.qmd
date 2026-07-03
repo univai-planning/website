@@ -130,6 +130,16 @@ decisions.
 :::::
 
 ::::: {.g-col-12 .g-col-md-6 .site-card}
+### Sports Analytics
+
+Sports analytics where the model respects the game: multilevel cricket models
+for players, teams, venues, phases, and matchups; advanced cricket statistics
+from ball-by-ball data; soccer event, possession, and player-performance
+metrics; and video analytics for object and pose detection using CNN and
+transformer models.
+:::::
+
+::::: {.g-col-12 .g-col-md-6 .site-card}
 ### Legal and Credit
 
 Systems that search, reason over, and cite long contracts and loan documents,
