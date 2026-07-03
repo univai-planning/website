@@ -51,7 +51,10 @@ Skip markdown-only and QMD pages.
    ```
 
    Prefer route-qualified selectors. A bare slug can match both blog and
-   learning notebooks when duplicated content exists.
+   learning notebooks when duplicated content exists. If a notebook is an
+   archival or markdown-style page with no real Python code, it may
+   intentionally produce no zip bundle; verify the rendered route with
+   `just verify <route>/<slug> 1200` instead of forcing `verify-notebooks`.
 
 5. Check public route behavior.
    Blog notebooks should work at `/posts/<slug>/` and `/blog/<slug>/`.

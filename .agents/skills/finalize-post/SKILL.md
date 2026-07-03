@@ -13,7 +13,11 @@ It applies to markdown, QMD, and notebook pages.
 1. Validate frontmatter.
    Required fields for listing cards are `title`, `subtitle` or
    `description`, `categories`, and `date` when the content participates in a
-   dated listing. Keep categories lowercase.
+   dated listing. Blog posts also require `author`; use `Rahul Dave` when no
+   other author is specified. Keep categories lowercase. For archival notebooks
+   copied from `rahuldave.com` posts into `courses/`, confirm the raw
+   frontmatter cell still has the migrated `date`; the archive listing sorts
+   and displays that metadata.
 
 2. For notebooks, run `bundle-post`.
    This checks data files, injects PEP 723 dependencies, and prepares the zip
@@ -60,13 +64,17 @@ It applies to markdown, QMD, and notebook pages.
 
    ```bash
    just smoke
-   just verify-notebooks blog/<slug> 1200
-   just verify-notebooks learning/<slug> 1200
+   just verify blog/<slug> 1200
+   just verify learning/<slug> 1200
    just diff-check
    ```
 
    Run the selector that matches the content route; avoid bare slugs when the
-   same notebook appears in both blog and learning content.
+   same notebook appears in both blog and learning content. Use
+   `verify-notebooks` only for pages that should produce downloadable notebook
+   bundles. Plain QMD/MD posts and non-executable archive notebooks can have no
+   zip bundle, and focused `just verify <route>/<slug> 1200` should skip bundle
+   execution after resolving the source page.
 
 ## Notes
 

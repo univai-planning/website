@@ -35,9 +35,8 @@ After execution:
 
 ```bash
 python3 -m json.tool <notebook> >/dev/null
-just build
-just verify-notebooks blog/<slug> 1200
-just verify-notebooks learning/<slug> 1200
+just verify blog/<slug> 1200
+just verify learning/<slug> 1200
 ```
 
 For a single blog notebook, prefer the combined publish-ready target:
@@ -48,6 +47,8 @@ just prepare-notebook blog/<slug> 1200
 
 That target expands to source execution, site build, and focused bundle
 verification. `verify-notebooks` alone does not refresh stored notebook outputs.
+For archival or markdown-style notebooks that intentionally generate no zip
+bundle, focused `just verify <route>/<slug> 1200` is the correct route check.
 
 Spot-check that code cells have expected outputs and no transient local paths
 were written into the notebook.

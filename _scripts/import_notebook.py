@@ -15,6 +15,7 @@ def build_frontmatter_cell(
     description: str,
     categories: list[str],
     date: str,
+    author: str | None = None,
 ) -> dict:
     """Build a Quarto raw YAML frontmatter cell."""
     lines = [
@@ -22,8 +23,10 @@ def build_frontmatter_cell(
         f'title: "{title}"\n',
         f'subtitle: "{subtitle}"\n',
         f'description: "{description}"\n',
-        "categories:\n",
     ]
+    if author:
+        lines.append(f"author: {json.dumps(author)}\n")
+    lines.append("categories:\n")
     for category in categories:
         lines.append(f"    - {category.lower()}\n")
     lines.extend(
@@ -39,6 +42,14 @@ def build_frontmatter_cell(
         "metadata": {},
         "source": lines,
     }
+
+
+def author_for_import(content_root: Path, explicit_author: str | None) -> str | None:
+    if explicit_author:
+        return explicit_author
+    if content_root.name == "posts":
+        return "Rahul Dave"
+    return None
 
 
 def fix_paths(cell: dict) -> dict:
@@ -99,6 +110,7 @@ def main() -> None:
     parser.add_argument("--description", required=True)
     parser.add_argument("--categories", nargs="+", required=True)
     parser.add_argument("--date", required=True, help="YYYY-MM-DD")
+    parser.add_argument("--author", default=None, help="Author name. Defaults to Rahul Dave for posts imports.")
     parser.add_argument("--images", nargs="*", default=[], help="Image filenames to copy into assets/")
     parser.add_argument("--data-files", nargs="*", default=[], help="Data filenames to copy into assets/")
     parser.add_argument("--content-root", default="posts", help="Destination content root, usually posts or courses")
@@ -124,6 +136,7 @@ def main() -> None:
         args.description,
         args.categories,
         args.date,
+        author_for_import(content_root, args.author),
     )
     nb["cells"] = [frontmatter] + [fix_paths(cell) for cell in nb.get("cells", [])]
     nb.setdefault("metadata", {})

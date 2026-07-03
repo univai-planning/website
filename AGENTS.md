@@ -214,23 +214,24 @@ for the merged change, run it or record the exact blocker before handoff.
 
 At every durable checkpoint, run checkpoint hygiene. Durable checkpoints include
 any Codex-created Git commit, closing a depth-1 task/product parent, completing
-an iteration, or handing off after substantial implementation. Regenerate the
-overall Gest graph and a focused graph for the latest relevant iteration; treat
-graph generation like a Gest database operation and do not run it in parallel
-with `gest` commands. For user-visible, architecture-relevant, multi-session, or
+an iteration, or handing off after substantial implementation. Use Gest's
+internal graph/status output for the latest relevant iteration when it clarifies
+handoff context; do not export separate graph files unless the user asks for an
+external artifact. For user-visible, architecture-relevant, multi-session, or
 release-worthy work, decide whether to promote/sync a GitHub issue with `gpr`.
 For every development depth-1 parent and development iteration, the `gpr`
 decision is mandatory: create/sync the GitHub issue and store `github.issue` /
 `github.url`, or record why it was not promoted. After every code change, run an
 explicit review pass with `grv` or code-review stance before completing the
 task. Treat missing focused tests for changed callable code or APIs as review
-findings. Report graph paths, commit hashes, push status, review status, and
-the GitHub issue decision.
+findings. Report any internal Gest graph/status check used, commit hashes, push
+status, review status, and the GitHub issue decision.
 
 When a Gest-tracked branch becomes a pull request, use `gpa` to review the PR as
 an integration checkpoint before approval or merge. The PR should include a Gest
 context appendix with parent task, leaf tasks, iteration, artifacts/specs,
-verification, follow-ups, and graph links when that context is safe to expose.
+verification, follow-ups, and internal Gest graph/status context when that
+context is safe to expose.
 
 ## Project Command Contract
 
@@ -288,13 +289,18 @@ Notebook publishing has two separate checks:
   generated zip bundles with `uvx juv exec`. It caches passing results by
   bundle-content hash plus timeout in `.cx/cache/test-bundles.json`, and
   deduplicates identical bundle contents such as a notebook appearing in both
-  `posts/` and `courses/`.
+  `posts/` and `courses/`. Focused selectors that resolve to a real QMD/MD page
+  or a non-executable archive notebook with no generated zip bundle skip bundle
+  execution cleanly instead of failing as unknown selectors.
 
-Use `just prepare-notebook <selector> [timeout]` for a new or edited notebook:
+Use `just prepare-notebook <selector> [timeout]` for a new or edited executable
+notebook:
 it executes the source notebook, builds the site, and focused-verifies the
 download bundle for that selector. `just verify ["selectors"] [timeout]` runs
-the full site verification contract, while passing selectors keeps the notebook
-bundle execution focused on those slugs/routes.
+the full site verification contract, while passing selectors keeps notebook
+bundle execution focused on those slugs/routes and allows valid non-bundle
+source pages to pass after route, smoke, runtime, content-migration, and diff
+checks.
 
 The key unit of work for a single blog notebook is:
 

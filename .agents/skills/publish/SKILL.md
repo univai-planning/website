@@ -16,6 +16,18 @@ Follow the repository VCS rules in `AGENTS.md` first.
    just verify
    ```
 
+   For a single content route or similarly narrow change, use the focused form
+   instead of running every notebook bundle:
+
+   ```bash
+   just verify blog/<slug> 1200
+   just verify learning/<slug> 1200
+   ```
+
+   Plain QMD/MD posts and non-executable archive notebooks have no generated
+   zip bundle. Focused verification should still pass after route, runtime,
+   smoke, and diff checks when the selector resolves to a real source page.
+
    For new or edited notebook content, run source execution before this:
 
    ```bash

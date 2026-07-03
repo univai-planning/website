@@ -2,6 +2,7 @@
 title: "Introduction to Sampling"
 subtitle: "A guided path from probability to Monte Carlo methods."
 description: "A structured learning path that connects probability, distributions, the central limit theorem, Monte Carlo integration, and practical sampling algorithms."
+author: Rahul Dave
 date: 2026-07-01
 categories:
   - learning

@@ -24,6 +24,13 @@ import zipfile
 CACHE_VERSION = 1
 PASS_STATUSES = {"pass", "cached", "deduped"}
 FAIL_STATUSES = {"fail", "error", "timeout"}
+SOURCE_PAGE_SUFFIXES = ("index.ipynb", "index.qmd", "index.md")
+ROUTE_ROOTS = {
+    "posts": "posts",
+    "blog": "posts",
+    "courses": "courses",
+    "learning": "courses",
+}
 
 
 def split_selectors(values: list[str]) -> set[str]:
@@ -38,6 +45,102 @@ def split_selectors(values: list[str]) -> set[str]:
                 elif selector.startswith("courses/"):
                     selectors.add(f"learning/{selector.removeprefix('courses/')}")
     return selectors
+
+
+def source_page_for_selector(selector: str, root: Path = Path(".")) -> Path | None:
+    selector = selector.strip("/")
+    if not selector:
+        return None
+
+    direct = root / selector
+    if direct.is_file() and direct.suffix in {".ipynb", ".qmd", ".md"}:
+        return direct
+    if direct.is_dir():
+        for suffix in SOURCE_PAGE_SUFFIXES:
+            candidate = direct / suffix
+            if candidate.exists():
+                return candidate
+
+    parts = selector.split("/", 1)
+    if len(parts) == 2 and parts[0] in ROUTE_ROOTS:
+        content_root = root / ROUTE_ROOTS[parts[0]]
+        slug = parts[1].strip("/")
+        candidates = [
+            content_root / slug,
+            content_root / f"{slug}.qmd",
+            content_root / f"{slug}.md",
+        ]
+        for candidate in candidates:
+            if candidate.is_file():
+                return candidate
+            if candidate.is_dir():
+                for suffix in SOURCE_PAGE_SUFFIXES:
+                    index_candidate = candidate / suffix
+                    if index_candidate.exists():
+                        return index_candidate
+
+    for content_root in ("posts", "courses"):
+        root_path = root / content_root
+        candidates = [
+            root_path / selector,
+            root_path / f"{selector}.qmd",
+            root_path / f"{selector}.md",
+        ]
+        for candidate in candidates:
+            if candidate.is_file():
+                return candidate
+            if candidate.is_dir():
+                for suffix in SOURCE_PAGE_SUFFIXES:
+                    index_candidate = candidate / suffix
+                    if index_candidate.exists():
+                        return index_candidate
+
+    return None
+
+
+def notebook_has_python_code(nb_path: Path) -> bool:
+    with open(nb_path) as f:
+        nb = json.load(f)
+    for cell in nb.get("cells", []):
+        if cell.get("cell_type") != "code":
+            continue
+        source = "".join(cell.get("source", []))
+        stripped = source.strip()
+        if stripped and not (
+            stripped.startswith("# /// script") and stripped.endswith("# ///")
+        ):
+            return True
+    return False
+
+
+def source_page_requires_bundle(path: Path) -> bool:
+    return path.suffix == ".ipynb" and notebook_has_python_code(path)
+
+
+def selectors_resolve_to_non_bundle_source_pages(
+    selectors: set[str],
+    root: Path = Path("."),
+) -> bool:
+    if not selectors:
+        return False
+    pages = [source_page_for_selector(selector, root) for selector in selectors]
+    return all(page is not None and not source_page_requires_bundle(page) for page in pages)
+
+
+def write_skipped_report(report_path: Path, cache_report_path: Path, selectors: set[str], reason: str) -> None:
+    report = {
+        "summary": {"skipped": len(selectors)},
+        "total": 0,
+        "selectors": sorted(selectors),
+        "cache_report": str(cache_report_path),
+        "results": [],
+        "status": "skipped",
+        "reason": reason,
+    }
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(report_path, "w") as f:
+        json.dump(report, f, indent=2)
+        f.write("\n")
 
 
 def bundle_ids(zip_path: Path, site_dir: Path) -> set[str]:
@@ -231,7 +334,13 @@ def main():
 
     if not zips:
         if selectors:
-            print(f"No zip bundles matched selectors: {', '.join(sorted(selectors))}")
+            selector_list = ", ".join(sorted(selectors))
+            if selectors_resolve_to_non_bundle_source_pages(selectors):
+                reason = "matched source page does not generate a notebook bundle"
+                print(f"No zip bundles matched selectors: {selector_list}; {reason}.")
+                write_skipped_report(report_path, cache_report_path, selectors, reason)
+                return
+            print(f"No zip bundles matched selectors: {selector_list}")
         else:
             print("No zip bundles found. Run `just build` first.")
         sys.exit(1)

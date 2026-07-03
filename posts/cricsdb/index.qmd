@@ -2,6 +2,7 @@
 title: "CricsDB — A T20 Cricket Analytics Platform"
 subtitle: "12,940 matches, 2.95M deliveries, every ball searchable."
 description: "A full-stack T20 cricket analytics site built on FastAPI, React, Semiotic, and SQLite — with a Wisden-almanack visual identity and ball-by-ball data from cricsheet.org."
+author: Rahul Dave
 categories:
     - data
     - visualization

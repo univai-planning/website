@@ -42,11 +42,14 @@ markdown file is usually a rendered view of the notebook.
      --description "Two-sentence description." \
      --categories statistics sampling \
      --date YYYY-MM-DD \
+     --author "Rahul Dave" \
      --images image.png \
      --data-files data.csv
    ```
 
-   For a learning page, use `--content-root courses`.
+   For a learning page, use `--content-root courses` and omit `--author` unless
+   the course page should have an explicit author. The helper defaults blog
+   imports under `posts/` to `Rahul Dave` when `--author` is omitted.
 
 4. For markdown-only notes, copy to `posts/<slug>.md` or `courses/<slug>.md`,
    replace wiki/Jekyll frontmatter with Quarto frontmatter, and keep categories
@@ -81,6 +84,11 @@ markdown file is usually a rendered view of the notebook.
    For learning imports, use `just prepare-notebook learning/<slug> 1200`.
    Expanded, this is source execution, `just build`, and route-qualified
    `just verify-notebooks <route>/<slug> 1200`.
+
+   If the import is markdown-only or an archival notebook with no real Python
+   code and no generated bundle, use `just verify <route>/<slug> 1200` after
+   `just build` instead. Keep the migrated `date` metadata so dated listings
+   sort correctly.
 
 9. Finalize the page.
    Run `finalize-post`, inspect listing cards, and run browser verification

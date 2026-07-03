@@ -9,8 +9,8 @@ listing:
   contents:
     - "*/index.ipynb"
   categories: true
-  sort: "date"
-  fields: [title, subtitle, description, categories]
+  sort: date desc
+  fields: [title, subtitle, description, date, categories]
 ---
 
 ::: {.site-section}

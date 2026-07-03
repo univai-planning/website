@@ -37,6 +37,33 @@ class ImportNotebookTest(unittest.TestCase):
         self.assertIn("format:\n    html: default\n", source)
         self.assertNotIn("ipynb: default", source)
 
+    def test_frontmatter_includes_author_when_provided(self):
+        cell = self.importer.build_frontmatter_cell(
+            "Title",
+            "Subtitle",
+            "Description.",
+            ["Statistics"],
+            "2025-01-08",
+            "Rahul Dave",
+        )
+
+        source = "".join(cell["source"])
+        self.assertIn('author: "Rahul Dave"', source)
+
+    def test_posts_imports_default_to_rahul_dave_author(self):
+        self.assertEqual(
+            self.importer.author_for_import(Path("posts"), None),
+            "Rahul Dave",
+        )
+        self.assertEqual(
+            self.importer.author_for_import(Path("courses"), None),
+            None,
+        )
+        self.assertEqual(
+            self.importer.author_for_import(Path("courses"), "Ada Lovelace"),
+            "Ada Lovelace",
+        )
+
     def test_fix_paths_rewrites_wiki_paths_to_assets(self):
         cell = {
             "cell_type": "markdown",

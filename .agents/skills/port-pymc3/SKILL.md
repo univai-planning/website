@@ -41,8 +41,7 @@ Do not use `return_inferencedata=False`; keep the modern InferenceData API.
 
    ```bash
    just execute-notebook <route>/<slug> 1200
-   just build
-   just verify-notebooks <route>/<slug> 1200
+   just verify <route>/<slug> 1200
    ```
 
    For a single blog notebook, `just prepare-notebook blog/<slug> 1200`
