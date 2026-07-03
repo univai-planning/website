@@ -13,6 +13,7 @@ Box's Loop: https://univ.ai/learning/boxloop/_content.md
 Choosing Priors: From Flat to Weakly Informative: https://univ.ai/learning/priors/_content.md
 Convexity and Jensen's Inequality: https://univ.ai/learning/jensens/_content.md
 Correlation Modeling with LKJ Priors: https://univ.ai/learning/corr/_content.md
+Course Notebooks: https://univ.ai/learning/notebooks/_content.md
 CricsDB — A T20 Cricket Analytics Platform: https://univ.ai/blog/cricsdb/_content.md
 CricsDB — A T20 Cricket Analytics Platform: https://univ.ai/posts/cricsdb/_content.md
 Data Augmentation: https://univ.ai/learning/dataaug/_content.md

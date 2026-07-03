@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "source_type": "qmd",
+  "title": "Course Notebooks",
+  "cells": [
+    {
+      "cell": 0,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 1,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "notebook-archive",
+          "level": 2
+        }
+      ]
+    }
+  ]
+}
