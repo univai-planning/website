@@ -1,17 +1,5 @@
 [
   {
-    "listing": "/posts.html",
-    "items": [
-      "/posts/cricsdb/index.html",
-      "/posts/deebase/index.html",
-      "/posts/entropy/index.html",
-      "/posts/nnreg/index.html",
-      "/posts/intro-to-sampling-learning-path/index.html",
-      "/posts/lawoflargenumbers.html",
-      "/posts/vizasstory.html"
-    ]
-  },
-  {
     "listing": "/courses/notebooks.html",
     "items": [
       "/courses/distrib-example/index.html",
@@ -85,6 +73,19 @@
       "/courses/marginaloverdiscrete/index.html",
       "/courses/mixtures_and_mcmc/index.html",
       "/courses/corr/index.html"
+    ]
+  },
+  {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/cricsdb/index.html",
+      "/posts/deebase/index.html",
+      "/posts/entropy/index.html",
+      "/posts/nnreg/index.html",
+      "/posts/intro-to-sampling-learning-path/index.html",
+      "/posts/healthcare-fraud-ml-pipeline/index.html",
+      "/posts/lawoflargenumbers.html",
+      "/posts/vizasstory.html"
     ]
   }
 ]

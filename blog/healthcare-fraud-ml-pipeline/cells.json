@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "source_type": "qmd",
+  "title": "Modernizing Healthcare Fraud Detection via Machine Learning",
+  "cells": [
+    {
+      "cell": 0,
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "cell": 1,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "the-financial-impact-of-healthcare-fraud",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 2,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "data-synthesis-and-feature-engineering",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 3,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "provider-level-behavior",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 4,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "member-and-geospatial-anomalies",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 5,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "aggregate-network-features",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 6,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "addressing-extreme-class-imbalance",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 7,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "multi-model-architecture-matrix",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 8,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "model-performance-and-selection-framework",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 9,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "enterprise-grade-model-interpretability",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 10,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "the-analytical-interpretability-report",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 11,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "deep-dive-shap-analysis",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 12,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "mlops-continuous-drift-monitoring",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 13,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "leading-technical-indicators-monitored",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 14,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "bridging-the-gap-with-business-kpis",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 15,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "conclusion-and-next-steps",
+          "level": 2
+        }
+      ]
+    },
+    {
+      "cell": 16,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "plain-english-explanations-via-generative-ai",
+          "level": 3
+        }
+      ]
+    },
+    {
+      "cell": 17,
+      "type": "markdown",
+      "headings": [
+        {
+          "slug": "stronger-vector-spaces-via-contrastive-learning-and-attention",
+          "level": 3
+        }
+      ]
+    }
+  ]
+}

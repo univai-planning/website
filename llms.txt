@@ -70,6 +70,8 @@ Mixture Models and MCMC: https://univ.ai/learning/mixtures_and_mcmc/_content.md
 Mixture Models and Types of Learning: https://univ.ai/learning/typesoflearning/_content.md
 Model Comparison Continued: https://univ.ai/learning/modelcompar2/_content.md
 Model Comparison: https://univ.ai/learning/modelcomparison/_content.md
+Modernizing Healthcare Fraud Detection via Machine Learning: https://univ.ai/blog/healthcare-fraud-ml-pipeline/_content.md
+Modernizing Healthcare Fraud Detection via Machine Learning: https://univ.ai/posts/healthcare-fraud-ml-pipeline/_content.md
 Monte Carlo Integration: https://univ.ai/learning/montecarlointegrals/_content.md
 Multi-Layer Perceptron for Classification: https://univ.ai/learning/mlp_classification/_content.md
 Poisson Regression — Model Comparison and Hierarchical Overdispersion: https://univ.ai/learning/islands2/_content.md
