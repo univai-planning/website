@@ -30,6 +30,8 @@ and finish with Monte Carlo and sampling algorithms.
 
 The migrated course archive includes 71 runnable notebooks and 10 markdown or
 Quarto notes from the selected source set.
+
+[Browse notebook archive](/learning/notebooks.html){.btn .btn-primary}
 :::
 
 ::: {.g-col-12 .g-col-md-4 .site-card}
