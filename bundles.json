@@ -1,7 +1,7 @@
 {
   "posts/entropy": {
     "zip": "/posts/entropy/entropy.zip",
-    "size_bytes": 260254,
+    "size_bytes": 260266,
     "dependencies": [
       "matplotlib",
       "numpy",
@@ -20,7 +20,7 @@
   },
   "blog/entropy": {
     "zip": "/blog/entropy/entropy.zip",
-    "size_bytes": 260254,
+    "size_bytes": 260266,
     "dependencies": [
       "matplotlib",
       "numpy",
@@ -39,7 +39,7 @@
   },
   "posts/nnreg": {
     "zip": "/posts/nnreg/nnreg.zip",
-    "size_bytes": 802959,
+    "size_bytes": 802964,
     "dependencies": [
       "matplotlib",
       "numpy",
@@ -55,7 +55,7 @@
   },
   "blog/nnreg": {
     "zip": "/blog/nnreg/nnreg.zip",
-    "size_bytes": 802959,
+    "size_bytes": 802964,
     "dependencies": [
       "matplotlib",
       "numpy",
@@ -1415,7 +1415,7 @@
   },
   "entropy": {
     "zip": "/posts/entropy/entropy.zip",
-    "size_bytes": 260254,
+    "size_bytes": 260266,
     "dependencies": [
       "matplotlib",
       "numpy",
@@ -1434,7 +1434,7 @@
   },
   "nnreg": {
     "zip": "/posts/nnreg/nnreg.zip",
-    "size_bytes": 802959,
+    "size_bytes": 802964,
     "dependencies": [
       "matplotlib",
       "numpy",
