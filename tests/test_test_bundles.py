@@ -1,4 +1,7 @@
 import importlib.util
+import json
+import subprocess
+import sys
 import tempfile
 import unittest
 import zipfile
@@ -40,6 +43,126 @@ class TestBundlesHelpersTest(unittest.TestCase):
     def test_selectors_expand_public_aliases_to_rendered_roots(self):
         self.assertIn("posts/entropy", self.tester.split_selectors(["blog/entropy"]))
         self.assertIn("learning/nnreg", self.tester.split_selectors(["courses/nnreg"]))
+
+    def test_plain_qmd_public_alias_can_skip_bundle_execution(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            page = root / "posts" / "plain-post" / "index.qmd"
+            page.parent.mkdir(parents=True)
+            page.write_text("---\ntitle: Plain\n---\n")
+
+            self.assertEqual(
+                self.tester.source_page_for_selector("blog/plain-post", root),
+                page,
+            )
+            self.assertTrue(
+                self.tester.selectors_resolve_to_non_bundle_source_pages(
+                    {"blog/plain-post", "posts/plain-post"},
+                    root,
+                )
+            )
+
+    def test_non_executable_archive_notebook_can_skip_bundle_execution(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            page = root / "courses" / "archive-note" / "index.ipynb"
+            page.parent.mkdir(parents=True)
+            page.write_text('{"cells": [{"cell_type": "raw", "source": ["---\\ntitle: Archive\\n---\\n"]}]}')
+
+            self.assertEqual(
+                self.tester.source_page_for_selector("learning/archive-note", root),
+                page,
+            )
+            self.assertTrue(
+                self.tester.selectors_resolve_to_non_bundle_source_pages(
+                    {"learning/archive-note", "courses/archive-note"},
+                    root,
+                )
+            )
+
+    def test_executable_notebook_missing_bundle_is_not_skipped(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            page = root / "courses" / "executable-note" / "index.ipynb"
+            page.parent.mkdir(parents=True)
+            page.write_text('{"cells": [{"cell_type": "code", "source": ["print(1)"]}]}')
+
+            self.assertEqual(
+                self.tester.source_page_for_selector("learning/executable-note", root),
+                page,
+            )
+            self.assertFalse(
+                self.tester.selectors_resolve_to_non_bundle_source_pages(
+                    {"learning/executable-note", "courses/executable-note"},
+                    root,
+                )
+            )
+
+    def test_unknown_selector_is_not_treated_as_skippable(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+
+            self.assertIsNone(self.tester.source_page_for_selector("blog/missing", root))
+            self.assertFalse(
+                self.tester.selectors_resolve_to_non_bundle_source_pages({"blog/missing"}, root)
+            )
+
+    def test_cli_skips_valid_plain_qmd_without_bundle(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            site = root / "_site"
+            site.mkdir()
+            page = root / "posts" / "plain-post" / "index.qmd"
+            page.parent.mkdir(parents=True)
+            page.write_text("---\ntitle: Plain\n---\n")
+            report = site / "test-report.json"
+
+            proc = subprocess.run(
+                [
+                    sys.executable,
+                    str(ROOT / "_scripts" / "test_bundles.py"),
+                    "--site-dir",
+                    str(site),
+                    "--report",
+                    str(report),
+                    "--slugs",
+                    "blog/plain-post",
+                ],
+                cwd=root,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            payload = json.loads(report.read_text())
+            self.assertEqual(payload["status"], "skipped")
+            self.assertIn("does not generate", payload["reason"])
+
+    def test_cli_fails_executable_notebook_without_bundle(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            site = root / "_site"
+            site.mkdir()
+            page = root / "courses" / "executable-note" / "index.ipynb"
+            page.parent.mkdir(parents=True)
+            page.write_text('{"cells": [{"cell_type": "code", "source": ["print(1)"]}]}')
+
+            proc = subprocess.run(
+                [
+                    sys.executable,
+                    str(ROOT / "_scripts" / "test_bundles.py"),
+                    "--site-dir",
+                    str(site),
+                    "--slugs",
+                    "learning/executable-note",
+                ],
+                cwd=root,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertIn("No zip bundles matched selectors", proc.stdout)
 
     def test_execution_hash_ignores_route_specific_readme(self):
         with tempfile.TemporaryDirectory() as tmp:

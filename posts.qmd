@@ -5,4 +5,6 @@ listing:
         - "posts/"
         - "posts/**/"
     categories: true
+    sort: date desc
+    fields: [image, title, subtitle, author, date, categories]
 ---

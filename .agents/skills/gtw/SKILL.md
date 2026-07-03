@@ -334,10 +334,9 @@ commit.
 
 At every durable checkpoint, run the cleanup that future agents need:
 
-- regenerate the overall Gest graph and a focused graph for the latest relevant
-  iteration
-- treat graph generation as a Gest database operation and do not run it in
-  parallel with `gest`
+- inspect the internal Gest graph/status for the latest relevant iteration when
+  it would clarify handoff context; do not export or commit separate graph files
+  unless the user asks for an external artifact
 - for every development depth-1 parent and development iteration, run the
   explicit `gpr` decision: create/sync the GitHub issue and record
   `github.issue`/`github.url`, or record why it was not promoted
@@ -352,8 +351,8 @@ At every durable checkpoint, run the cleanup that future agents need:
   or report the exact reason deployment was skipped
 - run `grv` after every code change before task completion, even for quick
   development without a pull request
-- report graph paths, commit hashes, push status, review status, and GitHub
-  issue decision
+- report the internal Gest graph/status check when used, plus commit hashes,
+  push status, review status, and GitHub issue decision
 - report the final branch/execution mode for substantial write work, including
   whether GitButler stack work was sequential or whether parallel work used
   physical worktrees

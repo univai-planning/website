@@ -434,9 +434,9 @@ oriented. Durable checkpoints include:
 
 Checkpoint steps:
 
-1. Regenerate the overall Gest graph and a focused graph for the latest relevant
-   iteration. Treat graph generation as a Gest database operation: do not run it
-   in parallel with any `gest` command.
+1. Inspect the internal Gest graph/status for the latest relevant iteration
+   when it clarifies handoff context. Do not export or commit separate graph
+   files unless the user asks for an external artifact.
 2. For user-visible, architecture-relevant, multi-session, or release-worthy
    work, decide whether GitHub promotion is appropriate. For development
    depth-1 parents and development iterations, this decision is mandatory. Use
@@ -455,8 +455,8 @@ Checkpoint steps:
    record any findings before closing the leaf, parent, or iteration. Missing
    focused tests for changed callable code or APIs are review findings.
 6. Verify the final Gest status after closing the parent or iteration and report
-   the graph paths, commit hashes, push status, review status, and GitHub issue
-   decision.
+   any internal Gest graph/status check used, commit hashes, push status, review
+   status, and GitHub issue decision.
 
 ## Template Sync
 

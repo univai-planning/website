@@ -2,6 +2,7 @@
 title: "Visualization As Story"
 subtitle: "Don't make your audience think."
 description: "Good visualizations frame data as a story, using annotations and conventions so the audience doesn't have to think. We walk through Financial Times COVID vaccine charts as examples of effective visual communication."
+author: Rahul Dave
 date: 2022-12-03
 twitterurl: "https://twitter.com/rahuldave/status/1425200284301725708"
 categories:
@@ -65,4 +66,3 @@ categories:
 10. Read more on how to make good visualizations using R in this book by @khealy . If you are a pythonista, learn how to make good plots in @matplotlib using <https://end-to-end-machine-learning.teachable.com/p/navigating-matplotlib-tutorial-how-to/> by @_brohrer_ .
 
 ![](/assets/vizasstory/10.png)
-

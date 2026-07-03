@@ -82,7 +82,7 @@ Look for:
 - `github.issue`, `github.url`, `github.pr`, `github.pr_url`
 - `vcs.*` metadata such as branch mode, execution mode, workspace path, and
   integration method
-- checkpoint graph paths
+- internal Gest graph/status context when relevant
 
 ## Review
 
@@ -204,9 +204,7 @@ Suggested PR body section:
 - Artifacts/specs: <none or list>
 - Verification: <commands/checks>
 - Follow-ups: <none or list>
-- Graphs:
-  - overall: <path-or-url>
-  - focused: <path-or-url>
+- Gest graph/status: <internal graph checked, external artifact omitted, or path>
 ```
 
 If the PR body lacks this context, offer to update it:
@@ -308,7 +306,8 @@ gest task meta set <task-id> github.merge_method <method>
 gest task meta set <task-id> github.merged_commit <sha>
 ```
 
-5. Regenerate checkpoint graphs for durable workflow changes.
+5. Check the internal Gest graph/status for durable workflow changes when useful.
+   Do not export graph files unless the user asks for an external artifact.
 
 ## Tag And Dependency Review
 

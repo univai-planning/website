@@ -2,6 +2,7 @@
 title: "DeeBase — An Async, Fastlite-Inspired ORM"
 subtitle: "An ergonomic async database library that works across SQLite and PostgreSQL."
 description: "DeeBase is a small async SQLAlchemy-based library with a fastlite-inspired API: dataclass tables, FK navigation, FTS, views, migrations, and a FastAPI integration that auto-generates CRUD endpoints."
+author: Rahul Dave
 categories:
     - data
 date: 2026-01-20

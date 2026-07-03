@@ -2,6 +2,7 @@
 title : "The LLN"
 subtitle: "Flip enough coins and the truth emerges."
 description: "The Law of Large Numbers says the sample average converges to the true mean as sample size grows. We illustrate this with coin flips and connect frequentist sampling probability to inferential probability from symmetry."
+author: Rahul Dave
 date: 2022-12-03
 categories:
     - statistics
@@ -86,4 +87,3 @@ one of the allowed values of the distribution (here 0 and 1). The mean here simp
 The LLN then says that sampling probabilities converge to this "inferential probability".
 
 wh
-
