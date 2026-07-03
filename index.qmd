@@ -106,6 +106,18 @@ We build ML systems that connect data, model behavior, and business metrics acro
 :::::
 
 ::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
+### Analytics
+
+We build analytics systems that connect data engineering, modeling, and decision-making across business and domain workflows.
+
+* Sports analytics and performance modeling
+* Dashboards and executive reporting
+* Snowflake and warehouse-backed analytics
+* Data models, metrics layers, and pipelines
+* Operational monitoring and KPI tracking
+:::::
+
+::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
 ### Systems and Data Engineering
 
 We design the data and software systems that support reliable AI products in production.
@@ -141,7 +153,7 @@ Stay at the forefront of AI innovation with our research team. We turn cutting-e
 
 ::::: {.grid .site-card-grid}
 
-::::: {.g-col-12 .g-col-md-3 .site-card}
+::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
 ### Healthcare
 
 Revolutionizing patient care through AI-powered diagnostics and treatment planning.
@@ -152,7 +164,7 @@ Revolutionizing patient care through AI-powered diagnostics and treatment planni
 * Resource allocation
 :::::
 
-::::: {.g-col-12 .g-col-md-3 .site-card}
+::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
 ### Pharma
 
 Accelerating drug discovery and development with advanced machine learning solutions.
@@ -163,7 +175,7 @@ Accelerating drug discovery and development with advanced machine learning solut
 * Safety monitoring
 :::::
 
-::::: {.g-col-12 .g-col-md-3 .site-card}
+::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
 ### Law
 
 Enhancing legal services with AI-powered document analysis and research tools.
@@ -174,7 +186,7 @@ Enhancing legal services with AI-powered document analysis and research tools.
 * Compliance monitoring
 :::::
 
-::::: {.g-col-12 .g-col-md-3 .site-card}
+::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
 ### Finance
 
 Transforming financial services with intelligent automation and predictive analytics.
@@ -183,6 +195,17 @@ Transforming financial services with intelligent automation and predictive analy
 * Fraud detection
 * Portfolio management
 * Market analysis
+:::::
+
+::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
+### Sports Analytics
+
+Turning cricket, soccer, and video data into performance, strategy, and scouting intelligence.
+
+* Cricket player and matchup modeling
+* Advanced batting and bowling metrics
+* Soccer event and possession statistics
+* Object and pose detection from video
 :::::
 :::::
 ::::
