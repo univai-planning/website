@@ -99,6 +99,7 @@ smoke: build
     test -f {{out_dir}}/assets/llm-prompts.json
     test -f {{out_dir}}/assets/learning-paths.json
     test -f {{out_dir}}/learning/index.html
+    test -f {{out_dir}}/learning/notebooks.html
     test -f {{out_dir}}/learning/intro-to-sampling.html
     test -f {{out_dir}}/learning/intro-to-sampling-card.png
     test -f {{out_dir}}/learning/corr/index.html

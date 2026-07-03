@@ -1,0 +1,31 @@
+---
+title: "Course Notebooks"
+description: "A browsable index of Univ.AI course notebooks."
+page-layout: full
+listing:
+  id: course-notebooks
+  type: grid
+  grid-columns: 3
+  contents:
+    - "*/index.ipynb"
+  categories: true
+  sort: "date"
+  fields: [title, subtitle, description, categories]
+---
+
+::: {.site-section}
+:::: {.container}
+:::: {.site-section__header}
+## Notebook archive
+
+::: {.site-lede}
+Browse the migrated course notebooks for probability, statistical computing,
+machine learning, Bayesian modeling, Monte Carlo, MCMC, Gaussian processes, and
+modern Python workflows.
+:::
+::::
+
+::: {#course-notebooks}
+:::
+::::
+:::
