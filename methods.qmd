@@ -40,7 +40,7 @@ choices, business outcomes, and deployment realities in the same conversation.
 ::: {.site-lede}
 The process is deliberately simple: clarify the problem, build the model and
 software around it, translate results into business terms, then deploy with
-monitoring and team handoff.
+monitoring, embedded engineering support, and team handoff.
 :::
 ::::
 
@@ -65,8 +65,9 @@ Step 2
 
 ### Model Construction
 
-We shape the data strategy, design the model architecture, train and validate,
-plan inference, and optimize performance around the intended workflow.
+We shape the data strategy, design the model architecture, build KPI-grounded
+evals, train and validate, plan inference, and use post-training or RL
+fine-tuning when feedback data makes it useful.
 :::::
 
 ::::: {.g-col-12 .g-col-md-6 .site-card}
@@ -88,7 +89,8 @@ Step 4
 ### Deployment
 
 We integrate systems, optimize inference, close the customer-data flywheel,
-monitor performance, train teams, and plan ongoing support.
+monitor performance, embed forward-deployed engineers when needed, and leave
+teams with runbooks, dashboards, and ongoing support plans.
 :::::
 
 :::::

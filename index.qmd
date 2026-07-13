@@ -46,12 +46,13 @@ AI and Machine Learning science and engineering for companies ready to innovate
 ## Ideate, Implement and Innovate
 
 :::: {.site-lede}
-At univ.ai, we transform possibilities into reality. Our team of expert consultants combines deep technical knowledge with strategic thinking to deliver AI solutions that drive real business value.
+At univ.ai, we transform possibilities into reality. Our team of expert consultants and forward-deployed engineers combines deep technical knowledge with strategic thinking to deliver AI solutions that drive real business value.
 ::::
 
 ::: {.site-callout}
 * Custom AI and ML solutions tailored to your needs
 * End-to-end implementation support
+* Embedded AI engineering inside your workflows
 * Continuous innovation and optimization
 :::
 
@@ -128,13 +129,14 @@ We design the data and software systems that support reliable AI products in pro
 :::::
 
 ::::: {.g-col-12 .g-col-md-6 .g-col-lg-4 .site-card}
-### AI Research
+### Forward-Deployed AI Engineering
 
-Stay at the forefront of AI innovation with our research team. We turn cutting-edge research into practical business solutions.
+We embed AI engineers with your team to turn promising models into reliable operating systems inside the company.
 
-* Applied research projects
-* Proof of concepts
-* Performance optimization
+* KPI-grounded eval suites
+* RL fine-tuning and feedback loops
+* Agent traces and monitoring
+* Production handoff material
 :::::
 
 :::::

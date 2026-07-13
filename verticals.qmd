@@ -168,31 +168,40 @@ reservoir inputs.
 
 ::: {.site-lede}
 Our engagements are scoped around work products that teams can inspect, run,
-and improve after the handoff.
+and improve after the handoff, or around embedded engineers who work inside the
+client environment while those systems take shape.
 :::
 ::::
 
 ::::: {.grid .site-card-grid}
 
-::::: {.g-col-12 .g-col-md-4 .site-card}
+::::: {.g-col-12 .g-col-md-6 .site-card}
+### Embedded AI engineers
+
+Forward-deployed engineers can work with your product, data, and platform teams
+to set up eval systems, post-training loops, RL fine-tuning experiments,
+agent instrumentation, and production handoff material.
+:::::
+
+::::: {.g-col-12 .g-col-md-6 .site-card}
 ### What we take on
 
 Custom AI builds, research spikes, prototypes, production hardening, corporate
-courses, and team enablement.
+courses, embedded implementation, and team enablement.
 :::::
 
-::::: {.g-col-12 .g-col-md-4 .site-card}
+::::: {.g-col-12 .g-col-md-6 .site-card}
 ### What we deliver
 
-Code, APIs, dashboards, experiment traces, model documentation, workflows,
-training material, and deployment handoffs.
+Code, APIs, dashboards, eval suites, experiment traces, model documentation,
+workflows, training material, and deployment handoffs.
 :::::
 
-::::: {.g-col-12 .g-col-md-4 .site-card}
+::::: {.g-col-12 .g-col-md-6 .site-card}
 ### How we work
 
 Problem definition, model construction, business translation, deployment,
-monitoring, and training.
+monitoring, embedded engineering, and training.
 :::::
 
 :::::
