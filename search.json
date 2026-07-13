@@ -1285,7 +1285,7 @@
     "href": "verticals.html#engagements",
     "title": "univ.ai",
     "section": "Engagements",
-    "text": "Engagements\n\nOur engagements are scoped around work products that teams can inspect, run, and improve after the handoff."
+    "text": "Engagements\n\nOur engagements are scoped around work products that teams can inspect, run, and improve after the handoff, or around embedded engineers who work inside the client environment while those systems take shape."
   },
   {
     "objectID": "verticals.html#ready-to-scope-the-work",
@@ -1411,7 +1411,7 @@
     "href": "methods.html#how-the-work-moves",
     "title": "univ.ai",
     "section": "How the work moves",
-    "text": "How the work moves\n\nThe process is deliberately simple: clarify the problem, build the model and software around it, translate results into business terms, then deploy with monitoring and team handoff."
+    "text": "How the work moves\n\nThe process is deliberately simple: clarify the problem, build the model and software around it, translate results into business terms, then deploy with monitoring, embedded engineering support, and team handoff."
   },
   {
     "objectID": "methods.html#ready-to-innovate",
@@ -1635,7 +1635,7 @@
     "href": "index.html#ideate-implement-and-innovate",
     "title": "univ.ai",
     "section": "Ideate, Implement and Innovate",
-    "text": "Ideate, Implement and Innovate\n\nAt univ.ai, we transform possibilities into reality. Our team of expert consultants combines deep technical knowledge with strategic thinking to deliver AI solutions that drive real business value.\n\n\n\nCustom AI and ML solutions tailored to your needs\nEnd-to-end implementation support\nContinuous innovation and optimization"
+    "text": "Ideate, Implement and Innovate\n\nAt univ.ai, we transform possibilities into reality. Our team of expert consultants and forward-deployed engineers combines deep technical knowledge with strategic thinking to deliver AI solutions that drive real business value.\n\n\n\nCustom AI and ML solutions tailored to your needs\nEnd-to-end implementation support\nEmbedded AI engineering inside your workflows\nContinuous innovation and optimization"
   },
   {
     "objectID": "index.html#our-services",
