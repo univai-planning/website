@@ -18,11 +18,29 @@ class PublishRoutesTest(unittest.TestCase):
             courses_dir = site_dir / "courses"
             courses_dir.mkdir()
             courses_dir.joinpath("index.html").write_text("learning")
+            courses_dir.joinpath("notebooks.html").write_text(
+                '<a href="../courses/probability/index.html">Probability</a>'
+            )
+            courses_dir.joinpath("distributions.html").write_text(
+                '<a href="/courses/probability/index.html">Random Variable</a>'
+            )
+            courses_dir.joinpath("intro-to-sampling.html").write_text(
+                '<meta property="og:image" '
+                'content="https://univ.ai/courses/intro-to-sampling-card.png">'
+            )
 
             publish_routes.publish_learning(site_dir)
 
             self.assertFalse(courses_dir.exists())
             self.assertEqual(site_dir.joinpath("learning/index.html").read_text(), "learning")
+            for page in ("notebooks.html", "distributions.html"):
+                html = site_dir.joinpath("learning", page).read_text()
+                self.assertIn('href="/learning/probability/index.html"', html)
+                self.assertNotIn("../courses/", html)
+            self.assertIn(
+                'content="https://univ.ai/learning/intro-to-sampling-card.png"',
+                site_dir.joinpath("learning/intro-to-sampling.html").read_text(),
+            )
 
     def test_blog_route_copies_posts_and_rewrites_listing_links(self):
         with tempfile.TemporaryDirectory() as tmp:

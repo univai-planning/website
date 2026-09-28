@@ -27,6 +27,18 @@ def publish_learning(site_dir: Path) -> None:
     courses_dir = site_dir / "courses"
     learning_dir = site_dir / "learning"
     replace_tree(courses_dir, learning_dir, remove_src=True)
+    if not learning_dir.exists():
+        return
+
+    # Quarto renders listing and cross-page links against the source directory.
+    # Once /courses/ is removed, those links must point at the published route.
+    for page in learning_dir.rglob("*.html"):
+        html = page.read_text()
+        updated = html.replace('href="../courses/', 'href="/learning/')
+        updated = updated.replace('href="/courses/', 'href="/learning/')
+        updated = updated.replace('content="https://univ.ai/courses/', 'content="https://univ.ai/learning/')
+        if updated != html:
+            page.write_text(updated)
 
 
 def publish_blog(site_dir: Path) -> None:

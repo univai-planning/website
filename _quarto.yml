@@ -7,6 +7,7 @@ project:
     - assets/learning-paths.js
     - assets/learning-paths.json
     - assets/brochure/univ-ai-promotional-brochure.pdf
+    - courses/*-card.png
   render:
     - "*.qmd"
     - "posts/"
