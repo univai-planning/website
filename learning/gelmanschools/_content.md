@@ -216,7 +216,7 @@ logtau1 = np.log(idata1.posterior["tau"].values.flatten())
 plt.plot(logtau1, alpha=0.6)
 plt.axvline(5000, color="r")
 ```
-![Figure](https://univ.ai/learning/gelmanschools/index_files/figure-html/cell-10-output-1.png)
+![Figure](https://univ.ai/learning/gelmanschools/index_files/figure-html/cell-10-output-2.png)
 
 <!-- cell:21 type:markdown -->
 We plot the cumulative mean of $log(\tau)$ as time goes on. This definitely shows some problems. Its biased above the value you would expect from many many samples.
@@ -466,7 +466,7 @@ logtau2 = np.log(idata2.posterior["tau"].values.flatten())
 plt.plot(logtau2, alpha=0.6)
 plt.axvline(5000, color="r")
 ```
-![Figure](https://univ.ai/learning/gelmanschools/index_files/figure-html/cell-21-output-1.png)
+![Figure](https://univ.ai/learning/gelmanschools/index_files/figure-html/cell-21-output-2.png)
 
 <!-- cell:40 type:markdown -->
 And the effective number of iterations hs improved as well:
@@ -589,7 +589,7 @@ plt.xlabel('theta[0]')
 plt.title('scatter plot between log(tau) and theta[0]')
 plt.legend()
 ```
-![Figure](https://univ.ai/learning/gelmanschools/index_files/figure-html/cell-26-output-1.png)
+![Figure](https://univ.ai/learning/gelmanschools/index_files/figure-html/cell-26-output-2.png)
 
 <!-- cell:49 type:markdown -->
 It may not be possible in all models to achieve this sort of decoupling. In that case, Riemannian HMC, where we generalize the mass matrix to depend upon position, explicitly tackling high-curvature, can help.

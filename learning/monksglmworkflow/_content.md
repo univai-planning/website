@@ -2452,7 +2452,7 @@ plt.axhline(sbc_low, 0,1, c='r')
 plt.axhline(sbc_mid, 0,1, c='r')
 plt.axhline(sbc_high, 0,1, c='r')
 ```
-![Figure](https://univ.ai/learning/monksglmworkflow/index_files/figure-html/cell-53-output-1.png)
+![Figure](https://univ.ai/learning/monksglmworkflow/index_files/figure-html/cell-53-output-2.png)
 
 <!-- cell:70 type:markdown -->
 ### Posterior Predictive Check
@@ -2535,7 +2535,7 @@ for i in range(ppc_obsv.shape[0]):
 plt.hist(zeros)
 plt.axvline(np.sum(y==0), 0,1, c='r')
 ```
-![Figure](https://univ.ai/learning/monksglmworkflow/index_files/figure-html/cell-59-output-1.png)
+![Figure](https://univ.ai/learning/monksglmworkflow/index_files/figure-html/cell-59-output-2.png)
 
 <!-- cell:77 type:markdown -->
 ## A second model: 0 inflated poisson
@@ -2605,7 +2605,7 @@ theta   0.732  0.051   0.639    0.830      0.001    0.001    4354.0    4905.0   
 ```python
 plt.scatter(trace2.posterior['lambda'].values.flatten(), trace2.posterior['theta'].values.flatten())
 ```
-![Figure](https://univ.ai/learning/monksglmworkflow/index_files/figure-html/cell-64-output-1.png)
+![Figure](https://univ.ai/learning/monksglmworkflow/index_files/figure-html/cell-64-output-2.png)
 
 <!-- cell:84 type:code -->
 ```python
@@ -3222,7 +3222,7 @@ plt.plot(lbda, pdf.pdf(lbda), c=c_dark_highlight, lw=2)
 plt.xlabel("lambda"); plt.ylabel("Prior Density"); plt.yticks([]);
 plt.axvline(1, 0, 1, c="blue")
 ```
-![Figure](https://univ.ai/learning/monksglmworkflow/index_files/figure-html/cell-78-output-1.png)
+![Figure](https://univ.ai/learning/monksglmworkflow/index_files/figure-html/cell-78-output-2.png)
 
 <!-- cell:101 type:code -->
 ```python
@@ -3242,7 +3242,7 @@ plt.plot(theta, pdf.pdf(theta), c=c_dark_highlight, lw=2)
 plt.xlabel("theta"); plt.ylabel("Prior Density"); plt.yticks([]);
 plt.axvline(0.01, 0, 1, c="blue")
 ```
-![Figure](https://univ.ai/learning/monksglmworkflow/index_files/figure-html/cell-80-output-1.png)
+![Figure](https://univ.ai/learning/monksglmworkflow/index_files/figure-html/cell-80-output-2.png)
 
 <!-- cell:103 type:code -->
 ```python

@@ -197,7 +197,7 @@ logtau1 = np.log(idata1.posterior['tau'].values.flatten())
 plt.plot(logtau1, alpha=0.6)
 plt.axvline(5000, color="r")
 ```
-![Figure](https://univ.ai/learning/hmctweaking/index_files/figure-html/cell-11-output-1.png)
+![Figure](https://univ.ai/learning/hmctweaking/index_files/figure-html/cell-11-output-2.png)
 
 <!-- cell:18 type:markdown -->
 ### Tracking divergences

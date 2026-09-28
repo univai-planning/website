@@ -114,7 +114,7 @@ def randnms(mu, sigma, n):
 y=a0+a1*x+randnms(0.,noiseSD,N)
 plt.scatter(x,y)
 ```
-![Figure](https://univ.ai/learning/bayesianregression/index_files/figure-html/cell-5-output-1.png)
+![Figure](https://univ.ai/learning/bayesianregression/index_files/figure-html/cell-5-output-2.png)
 
 <!-- cell:8 type:markdown -->
 ### Likelihood
@@ -293,7 +293,7 @@ priorCovariance = prior_covariance(1/priorPrecision )
 priorPDF = lambda w: multivariate_normal.pdf(w,mean=priorMean,cov=priorCovariance)
 cplot(priorPDF)
 ```
-![Figure](https://univ.ai/learning/bayesianregression/index_files/figure-html/cell-13-output-1.png)
+![Figure](https://univ.ai/learning/bayesianregression/index_files/figure-html/cell-13-output-2.png)
 
 <!-- cell:22 type:code -->
 ```python

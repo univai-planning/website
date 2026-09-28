@@ -236,7 +236,7 @@ logtau = np.log(idata2.posterior["tau"].values.flatten())
 plt.plot(logtau, alpha=0.6)
 plt.axvline(5000, color="r")
 ```
-![Figure](https://univ.ai/learning/gelmanschoolstheory/index_files/figure-html/cell-8-output-1.png)
+![Figure](https://univ.ai/learning/gelmanschoolstheory/index_files/figure-html/cell-8-output-2.png)
 
 <!-- cell:18 type:code -->
 ```python

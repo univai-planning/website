@@ -271,7 +271,7 @@ sns.kdeplot(pred_n[:,1])
 sns.kdeplot(pred_n[:,50])
 sns.kdeplot(pred_n[:,99])
 ```
-![Figure](https://univ.ai/learning/advi/index_files/figure-html/cell-25-output-1.png)
+![Figure](https://univ.ai/learning/advi/index_files/figure-html/cell-25-output-2.png)
 
 <!-- cell:29 type:markdown -->
 ## ADVI: what does it do?
@@ -324,7 +324,7 @@ data = np.random.multivariate_normal([0,0], cov, size=1000)
 sns.kdeplot(x=data[:,0], y=data[:,1], alpha=0.4);
 plt.scatter(data[:,0], data[:,1], s=10, alpha=0.2)
 ```
-![Figure](https://univ.ai/learning/advi/index_files/figure-html/cell-26-output-1.png)
+![Figure](https://univ.ai/learning/advi/index_files/figure-html/cell-26-output-2.png)
 
 <!-- cell:32 type:code -->
 ```python
@@ -391,7 +391,7 @@ We do a pretty good job:
 density_vals = mdtrace.posterior['density'].values.reshape(-1, 2)
 plt.scatter(density_vals[:,0], density_vals[:,1], s=5, alpha=0.1)
 ```
-![Figure](https://univ.ai/learning/advi/index_files/figure-html/cell-31-output-1.png)
+![Figure](https://univ.ai/learning/advi/index_files/figure-html/cell-31-output-2.png)
 
 <!-- cell:40 type:markdown -->
 But when we sample using ADVI, the mean-field approximation means that we lose our correlation:
@@ -432,7 +432,7 @@ samps=mdvar.approx.sample(5000)
 samps_vals = samps.posterior['density'].values.reshape(-1, 2)
 plt.scatter(samps_vals[:,0], samps_vals[:,1], s=5, alpha=0.3)
 ```
-![Figure](https://univ.ai/learning/advi/index_files/figure-html/cell-35-output-1.png)
+![Figure](https://univ.ai/learning/advi/index_files/figure-html/cell-35-output-2.png)
 
 <!-- cell:45 type:markdown -->
 A full rank fit also models the covariance parameters, and thus restores our correlation at the cost of more variational parameters to fit...
@@ -469,4 +469,4 @@ samps2=mdvar_fr.approx.sample(5000)
 samps2_vals = samps2.posterior['density'].values.reshape(-1, 2)
 plt.scatter(samps2_vals[:,0], samps2_vals[:,1], s=5, alpha=0.3)
 ```
-![Figure](https://univ.ai/learning/advi/index_files/figure-html/cell-38-output-1.png)
+![Figure](https://univ.ai/learning/advi/index_files/figure-html/cell-38-output-2.png)

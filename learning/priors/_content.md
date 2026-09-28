@@ -58,7 +58,7 @@ Output:
 ```
 (0.0, 2.0)
 ```
-![Figure](https://univ.ai/learning/priors/index_files/figure-html/cell-4-output-1.png)
+![Figure](https://univ.ai/learning/priors/index_files/figure-html/cell-4-output-2.png)
 
 <!-- cell:7 type:markdown -->
 Now, let's transform $\theta$ with the function $\psi=\log \frac{\theta}{1−θ}$. This is just a function to stretch θ across the real line. Now how likely are different values of ψ under our transformation?
@@ -424,7 +424,7 @@ Output:
 ```
 (-10.0, 15.0)
 ```
-![Figure](https://univ.ai/learning/priors/index_files/figure-html/cell-22-output-1.png)
+![Figure](https://univ.ai/learning/priors/index_files/figure-html/cell-22-output-2.png)
 
 <!-- cell:33 type:markdown -->
 ## Other choices

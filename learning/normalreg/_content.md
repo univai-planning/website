@@ -370,7 +370,7 @@ Output:
 ```python
 sns.histplot(w[:,0] + w[:,1] * 55, kde=True) # the weight=55 posterior
 ```
-![Figure](https://univ.ai/learning/normalreg/index_files/figure-html/cell-29-output-1.png)
+![Figure](https://univ.ai/learning/normalreg/index_files/figure-html/cell-29-output-2.png)
 
 <!-- cell:37 type:code -->
 ```python

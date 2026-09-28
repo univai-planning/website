@@ -125,7 +125,7 @@ plt.plot(xvals, hinfo[0][0]*p(xvals), 'r', label=u'p(x)')
 plt.legend()
 
 ```
-![Figure](https://univ.ai/learning/inversetransform/index_files/figure-html/cell-4-output-1.png)
+![Figure](https://univ.ai/learning/inversetransform/index_files/figure-html/cell-4-output-2.png)
 
 <!-- cell:6 type:markdown -->
 ### Box-Muller algorithm

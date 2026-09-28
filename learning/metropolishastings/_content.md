@@ -220,7 +220,7 @@ Output:
 ```
 (0.0, 5000.0)
 ```
-![Figure](https://univ.ai/learning/metropolishastings/index_files/figure-html/cell-13-output-1.png)
+![Figure](https://univ.ai/learning/metropolishastings/index_files/figure-html/cell-13-output-2.png)
 
 <!-- cell:23 type:markdown -->
 The first many samples will contain  signs of the initial condition, and will also reflect the fact that you have not found the stationary distribution as yet. We will see tests later for this, but as a rule of thumb, you always want to eliminate the first 5-10% of your samples. The appearance of **white noise** is a good sign.
@@ -234,7 +234,7 @@ Output:
 ```
 (20000.0, 25000.0)
 ```
-![Figure](https://univ.ai/learning/metropolishastings/index_files/figure-html/cell-14-output-1.png)
+![Figure](https://univ.ai/learning/metropolishastings/index_files/figure-html/cell-14-output-2.png)
 
 <!-- cell:25 type:markdown -->
 Notice that strong autocorrelations persist at high sample number too. This is the nature of metropolis and MH samplers..your next move is clearly highly correlated with the previous one.

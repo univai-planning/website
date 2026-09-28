@@ -214,7 +214,7 @@ Output:
 /var/folders/wq/mr3zj9r14dzgjnq9rjx_vqbc0000gn/T/ipykernel_49236/549138771.py:3: SyntaxWarning: "\c" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\c"? A raw string is also an option.
   axes[0].plot(df.x,df.y, 'o',alpha=0.6, label="$\cal{D}$");
 ```
-![Figure](https://univ.ai/learning/testingtraining/index_files/figure-html/cell-10-output-2.png)
+![Figure](https://univ.ai/learning/testingtraining/index_files/figure-html/cell-10-output-3.png)
 
 <!-- cell:17 type:markdown -->
 ## A digression about scikit-learn

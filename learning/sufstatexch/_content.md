@@ -232,7 +232,7 @@ Output:
 /Users/rahul/Library/Caches/uv/archive-v0/wqGmuChAgnYkC6wFhsKJY/lib/python3.14/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 9 (	) missing from font(s) DejaVu Sans.
   fig.canvas.print_figure(bytes_io, **kw)
 ```
-![Figure](https://univ.ai/learning/sufstatexch/index_files/figure-html/cell-6-output-2.png)
+![Figure](https://univ.ai/learning/sufstatexch/index_files/figure-html/cell-6-output-3.png)
 
 <!-- cell:14 type:markdown -->
 The mean birth-rates can be calculated from the samples, as can the variances, which are also given us by the formulae from above:

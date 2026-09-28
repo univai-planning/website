@@ -237,7 +237,7 @@ Output:
 /var/folders/wq/mr3zj9r14dzgjnq9rjx_vqbc0000gn/T/ipykernel_48766/3408123445.py:16: UserWarning: color is redundantly defined by the 'color' keyword argument and the fmt string "k-" (-> color='k'). The keyword argument will take precedence.
   plt.plot(xaug[:,1], best_fit(xaug[:,1]), 'k-', color = "r")
 ```
-![Figure](https://univ.ai/learning/gradientdescent/index_files/figure-html/cell-15-output-2.png)
+![Figure](https://univ.ai/learning/gradientdescent/index_files/figure-html/cell-15-output-3.png)
 
 <!-- cell:20 type:markdown -->
 Remember that the linear regression cost function is convex, and more precisely quadratic. We can see the path that gradient descent takes in arriving at the optimum:

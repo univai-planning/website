@@ -189,7 +189,7 @@ Standard deviation of our estimates:  0.06174834767832666
 Mean importance sampling MC estimate:  3.141806901630496
 Standard deviation of our estimates:  0.01620145069610606
 ```
-![Figure](https://univ.ai/learning/importancesampling/index_files/figure-html/cell-4-output-3.png)
+![Figure](https://univ.ai/learning/importancesampling/index_files/figure-html/cell-4-output-4.png)
 
 <!-- cell:7 type:code -->
 ```python

@@ -58,7 +58,7 @@ plt.scatter(data[:, 0], data[:, 1], c='g', alpha=0.5)
 plt.scatter(ms[0, 0], ms[0, 1], c='r', s=100)
 plt.scatter(ms[1, 0], ms[1, 1], c='b', s=100)
 ```
-![Figure](https://univ.ai/learning/gaussian_mixture_advi/index_files/figure-html/cell-4-output-1.png)
+![Figure](https://univ.ai/learning/gaussian_mixture_advi/index_files/figure-html/cell-4-output-2.png)
 
 <!-- cell:6 type:code -->
 ```python
@@ -210,7 +210,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 
   sns.barplot(x=[1, 2], y=np.mean(pi_vals[-500:], axis=0),
 ```
-![Figure](https://univ.ai/learning/gaussian_mixture_advi/index_files/figure-html/cell-11-output-2.png)
+![Figure](https://univ.ai/learning/gaussian_mixture_advi/index_files/figure-html/cell-11-output-3.png)
 
 <!-- cell:18 type:markdown -->
 We can use the same model with ADVI as follows. 
@@ -455,7 +455,7 @@ Output:
 ```
 (-6.0, 6.0)
 ```
-![Figure](https://univ.ai/learning/gaussian_mixture_advi/index_files/figure-html/cell-24-output-1.png)
+![Figure](https://univ.ai/learning/gaussian_mixture_advi/index_files/figure-html/cell-24-output-2.png)
 
 <!-- cell:35 type:markdown -->
 MCMC takes of ther order of a minute in time, which is 50 times more than on the small dataset.

@@ -291,7 +291,7 @@ s2_f_samples = idata.posterior["s2_f"].values.flatten()
 l_samples = idata.posterior["l"].values.flatten()
 sns.kdeplot(x=s2_f_samples, y=l_samples)
 ```
-![Figure](https://univ.ai/learning/gp3/index_files/figure-html/cell-17-output-1.png)
+![Figure](https://univ.ai/learning/gp3/index_files/figure-html/cell-17-output-2.png)
 
 <!-- cell:25 type:markdown -->
 We can get posterior predictive samples using `sample_posterior_predictive`, except that this being GPs, we will get back posterior predictive functions, not just parameter traces.
@@ -370,7 +370,7 @@ Output:
 /Users/rahul/Library/Caches/uv/archive-v0/6dZLOYbEs6FIjQWRPDF00/lib/python3.14/site-packages/IPython/core/pylabtools.py:170: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
   fig.canvas.print_figure(bytes_io, **kw)
 ```
-![Figure](https://univ.ai/learning/gp3/index_files/figure-html/cell-22-output-2.png)
+![Figure](https://univ.ai/learning/gp3/index_files/figure-html/cell-22-output-3.png)
 
 <!-- cell:31 type:markdown -->
 ## Where are GPs used?

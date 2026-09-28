@@ -80,7 +80,7 @@ z2 = z.reshape(xg.shape)
 z2
 plt.contourf(xg,yg,z2)
 ```
-![Figure](https://univ.ai/learning/tetchygibbs/index_files/figure-html/cell-5-output-1.png)
+![Figure](https://univ.ai/learning/tetchygibbs/index_files/figure-html/cell-5-output-2.png)
 
 <!-- cell:7 type:markdown -->
 ## Gibbs Sampler

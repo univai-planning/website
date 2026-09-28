@@ -85,7 +85,7 @@ def h(p):
 plt.plot(p, [h(pr) for pr in p]);
 plt.axvline(0.5, 0, 1, color='r')
 ```
-![Figure](https://univ.ai/learning/entropy/index_files/figure-html/cell-4-output-1.png)
+![Figure](https://univ.ai/learning/entropy/index_files/figure-html/cell-4-output-2.png)
 
 <!-- cell:7 type:markdown -->
 Thus you can see there is maximal uncertainty at 0.5.

@@ -503,7 +503,7 @@ We can make visual comparison plots in the style of McElreath's book. We can see
 ```python
 az.plot_compare(comparedf)
 ```
-![Figure](https://univ.ai/learning/islands2/index_files/figure-html/cell-26-output-1.png)
+![Figure](https://univ.ai/learning/islands2/index_files/figure-html/cell-26-output-2.png)
 
 <!-- cell:37 type:markdown -->
 ### Comparing for non-centered models
@@ -671,7 +671,7 @@ What we find now is that the full-model has much more weight.
 ```python
 az.plot_compare(comparedf2)
 ```
-![Figure](https://univ.ai/learning/islands2/index_files/figure-html/cell-33-output-1.png)
+![Figure](https://univ.ai/learning/islands2/index_files/figure-html/cell-33-output-2.png)
 
 <!-- cell:46 type:markdown -->
 In either the centered or non-centered case, our top model excludes the interaction, but the second top model includes it. In the centered case, the non-interacting model has most of the weight, while in the non-centered model, the weights were more equally shared.
@@ -858,7 +858,7 @@ Output:
 /var/folders/wq/mr3zj9r14dzgjnq9rjx_vqbc0000gn/T/ipykernel_99269/478959609.py:3: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
   pphpd = az.hdi(ppsamps.T)
 ```
-![Figure](https://univ.ai/learning/islands2/index_files/figure-html/cell-44-output-2.png)
+![Figure](https://univ.ai/learning/islands2/index_files/figure-html/cell-44-output-3.png)
 
 <!-- cell:65 type:markdown -->
 By taking the ratio of the posterior-predictive variance to the posterior-predictive mean, we see that the model is overdispersed.
@@ -1045,7 +1045,7 @@ Output:
 /var/folders/wq/mr3zj9r14dzgjnq9rjx_vqbc0000gn/T/ipykernel_99269/3714602409.py:2: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
   pphpd = az.hdi(ppsamps.T)
 ```
-![Figure](https://univ.ai/learning/islands2/index_files/figure-html/cell-55-output-2.png)
+![Figure](https://univ.ai/learning/islands2/index_files/figure-html/cell-55-output-3.png)
 
 <!-- cell:81 type:markdown -->
 The envelope of predictions is much wider here, but overlaps all the points! This is because of the varying intercepts, and it reflects the fact that there is much more variation in the data than is expected from a pure poisson model.
@@ -1103,7 +1103,7 @@ m2c_onlyc      4 -75.538210  17.092756  35.652563  3.085498e-16  22.478023  22.0
 ```python
 az.plot_compare(comparedf)
 ```
-![Figure](https://univ.ai/learning/islands2/index_files/figure-html/cell-58-output-1.png)
+![Figure](https://univ.ai/learning/islands2/index_files/figure-html/cell-58-output-2.png)
 
 <!-- cell:86 type:code -->
 ```python

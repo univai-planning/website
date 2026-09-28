@@ -51,7 +51,7 @@ data = np.random.multivariate_normal([0,0], cov, size=1000)
 sns.kdeplot(x=data[:,0], y=data[:,1]);
 plt.scatter(data[:,0], data[:,1], alpha=0.4)
 ```
-![Figure](https://univ.ai/learning/corr/index_files/figure-html/cell-4-output-1.png)
+![Figure](https://univ.ai/learning/corr/index_files/figure-html/cell-4-output-2.png)
 
 <!-- cell:6 type:markdown -->
 To model a covariance, consider that in can be written thus:

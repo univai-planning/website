@@ -114,7 +114,7 @@ Output:
 ```
 (-3.23517784804296, 3.0648221519570455)
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-7-output-1.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-7-output-2.png)
 
 <!-- cell:9 type:code -->
 ```python
@@ -846,8 +846,8 @@ Output:
 ```
 100%|██████████| 500/500 [00:00<00:00, 624.44it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-4.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-5.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-13.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-14.png)
 Output:
 ```
 /Users/rahul/Library/Caches/uv/archive-v0/nvTdsg5itG6f4n0ZtJtSg/lib/python3.14/site-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
@@ -903,8 +903,8 @@ Output:
 ```
 100%|██████████| 500/500 [00:00<00:00, 655.08it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-9.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-10.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-27.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-28.png)
 Output:
 ```
 /Users/rahul/Library/Caches/uv/archive-v0/nvTdsg5itG6f4n0ZtJtSg/lib/python3.14/site-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
@@ -972,8 +972,8 @@ Output:
 ```
 100%|██████████| 500/500 [00:01<00:00, 452.92it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-14.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-15.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-44.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-45.png)
 Output:
 ```
 /Users/rahul/Library/Caches/uv/archive-v0/nvTdsg5itG6f4n0ZtJtSg/lib/python3.14/site-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
@@ -1045,8 +1045,8 @@ Output:
 ```
 100%|██████████| 500/500 [00:01<00:00, 413.59it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-19.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-20.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-62.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-63.png)
 Output:
 ```
 /Users/rahul/Library/Caches/uv/archive-v0/nvTdsg5itG6f4n0ZtJtSg/lib/python3.14/site-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
@@ -1108,8 +1108,8 @@ Output:
 ```
 100%|██████████| 500/500 [00:00<00:00, 537.32it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-24.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-25.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-77.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-78.png)
 Output:
 ```
 /Users/rahul/Library/Caches/uv/archive-v0/nvTdsg5itG6f4n0ZtJtSg/lib/python3.14/site-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
@@ -1175,8 +1175,8 @@ Output:
 ```
 100%|██████████| 500/500 [00:01<00:00, 495.19it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-29.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-30.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-93.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-94.png)
 Output:
 ```
 /Users/rahul/Library/Caches/uv/archive-v0/nvTdsg5itG6f4n0ZtJtSg/lib/python3.14/site-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
@@ -1250,8 +1250,8 @@ Output:
 ```
 100%|██████████| 500/500 [00:01<00:00, 439.03it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-34.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-35.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-111.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-112.png)
 Output:
 ```
 /Users/rahul/Library/Caches/uv/archive-v0/nvTdsg5itG6f4n0ZtJtSg/lib/python3.14/site-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
@@ -1569,8 +1569,8 @@ Output:
 ```
 100%|██████████| 500/500 [00:08<00:00, 61.42it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-39.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-40.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-190.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-191.png)
 Output:
 ```
 /Users/rahul/Library/Caches/uv/archive-v0/nvTdsg5itG6f4n0ZtJtSg/lib/python3.14/site-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
@@ -1636,8 +1636,8 @@ Output:
 ```
 100%|██████████| 500/500 [00:00<00:00, 532.63it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-44.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-45.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-206.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-207.png)
 Output:
 ```
 /Users/rahul/Library/Caches/uv/archive-v0/nvTdsg5itG6f4n0ZtJtSg/lib/python3.14/site-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
@@ -1703,8 +1703,8 @@ Output:
 ```
 100%|██████████| 500/500 [00:00<00:00, 505.71it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-49.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-50.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-222.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-223.png)
 Output:
 ```
 /Users/rahul/Library/Caches/uv/archive-v0/nvTdsg5itG6f4n0ZtJtSg/lib/python3.14/site-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
@@ -1842,8 +1842,8 @@ Output:
 ```
 100%|██████████| 1000/1000 [00:02<00:00, 349.41it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-54.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-55.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-256.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-257.png)
 Output:
 ```
 /Users/rahul/Library/Caches/uv/archive-v0/nvTdsg5itG6f4n0ZtJtSg/lib/python3.14/site-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
@@ -2873,8 +2873,8 @@ Output:
 ```
 100%|██████████| 1000/1000 [00:29<00:00, 33.84it/s]
 ```
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-59.png)
-![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-60.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-513.png)
+![Figure](https://univ.ai/learning/mlp_classification/index_files/figure-html/cell-27-output-514.png)
 Output:
 ```
 Train acc 0.9041666666666667

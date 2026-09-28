@@ -249,7 +249,7 @@ Output:
 ```
 (150.0, 300.0)
 ```
-![Figure](https://univ.ai/learning/2gaussmix/index_files/figure-html/cell-19-output-1.png)
+![Figure](https://univ.ai/learning/2gaussmix/index_files/figure-html/cell-19-output-2.png)
 
 <!-- cell:27 type:code -->
 ```python
@@ -294,7 +294,7 @@ Output:
 ```
 (150.0, 300.0)
 ```
-![Figure](https://univ.ai/learning/2gaussmix/index_files/figure-html/cell-24-output-1.png)
+![Figure](https://univ.ai/learning/2gaussmix/index_files/figure-html/cell-24-output-2.png)
 
 <!-- cell:32 type:code -->
 ```python

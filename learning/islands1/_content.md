@@ -252,7 +252,7 @@ def postscat(idata, thevars):
 ```python
 postscat(idata, ["betap", "betac", "betapc", "alpha"])
 ```
-![Figure](https://univ.ai/learning/islands1/index_files/figure-html/cell-15-output-1.png)
+![Figure](https://univ.ai/learning/islands1/index_files/figure-html/cell-15-output-2.png)
 
 <!-- cell:26 type:markdown -->
 Look at the very strong negative correlations between $\alpha$ and $\beta_p$, and the very strong ones between $\beta_c$ and $\beta_{pc}$. The latter is the cause for the 0-overlaps. When $\beta_c$ is high, $\beta_{pc}$ must be low, and vice-versa. As a result, its not enough to observe just the marginal uncertainty of each parameter; you must look at the joint uncertainty of the correlated variables.
@@ -339,7 +339,7 @@ alpha   3.312  0.089   3.143    3.477      0.001    0.001   13521.0   12501.0   
 ```python
 postscat(idata1c, ["betap", "betac", "betapc", "alpha"])
 ```
-![Figure](https://univ.ai/learning/islands1/index_files/figure-html/cell-22-output-1.png)
+![Figure](https://univ.ai/learning/islands1/index_files/figure-html/cell-22-output-2.png)
 
 <!-- cell:35 type:code -->
 ```python

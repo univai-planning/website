@@ -2,28 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.0.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2025-01-29">
 <meta name="description" content="Formalizes out-of-sample error estimation using Hoeffding’s inequality and the train/test split. Walks through scikit-learn’s data pipeline for polynomial regression, showing how the complexity parameter controls the bias-variance tradeoff.">
 
-<title>Learning Bounds and the Test Set – univ.ai</title>
+<title>univ.ai - Learning Bounds and the Test Set</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -50,51 +43,71 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c67a7d068a8370113d9027fc4e8bf30e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-e0d64750a3675fa668af59a9862b8111.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c67a7d068a8370113d9027fc4e8bf30e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5f7f5b3dfa67a32e8914d26ccdce3ed0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-c913f9cbc324134835fb06b3e2d90571.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-5f7f5b3dfa67a32e8914d26ccdce3ed0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -103,10 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 <!-- Google Fonts: Bitter (headings) + Source Serif 4 (body) + IBM Plex Mono (code) -->
@@ -116,255 +127,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- Bootstrap Icons for brand mark and UI elements -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <link rel="icon" type="image/svg+xml" href="../../assets/bluelogo.svg">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
 <link rel="stylesheet" href="../../site.css">
-<meta property="og:title" content="Learning Bounds and the Test Set – univ.ai">
+<meta property="og:title" content="univ.ai - Learning Bounds and the Test Set">
 <meta property="og:description" content="Formalizes out-of-sample error estimation using Hoeffding’s inequality and the train/test split. Walks through scikit-learn’s data pipeline for polynomial regression, showing how the complexity parameter controls the bias-variance tradeoff.">
-<meta property="og:image" content="https://univ.ai/courses/testingtraining/index_files/figure-html/cell-6-output-1.png">
-<meta property="og:site_name" content="univ.ai">
-<meta property="og:image:height" content="440">
-<meta property="og:image:width" content="591">
+<meta property="og:site-name" content="univ.ai">
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../assets/bluelogo.svg" alt="" class="navbar-logo light-content">
-    <img src="../../assets/bluelogo.svg" alt="" class="navbar-logo dark-content">
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <a class="navbar-brand" href="../../index.html">
+    <img src="../../assets/bluelogo.svg" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../verticals.html"> 
-<span class="menu-text">Solutions</span></a>
+    <a class="nav-link" href="../../verticals.html">Solutions</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../methods.html"> 
-<span class="menu-text">Our Method</span></a>
+    <a class="nav-link" href="../../methods.html">Our Method</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../learning/"> 
-<span class="menu-text">Learning</span></a>
+    <a class="nav-link" href="../../learning/">Learning</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog/"> 
-<span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="../../blog/">Blog</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About Us</span></a>
+    <a class="nav-link" href="../../about.html">About Us</a>
   </li>  
 </ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -373,7 +183,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -399,7 +209,6 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -427,17 +236,14 @@ window.Quarto = {
       <p class="date">January 29, 2025</p>
     </div>
   </div>
-  
     
   </div>
   
 
-
 </header>
 
-
-<div id="04be8df9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:33.755527Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:33.755208Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.734969Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.734559Z&quot;}}" data-hide="true" data-execution_count="2" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:33.755527Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:33.755208Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.734969Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.734559Z&quot;}" data-hide="true" data-execution_count="2" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
@@ -449,10 +255,10 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.notebook_repr_html'</span>, <span class="va">True</span>)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sns.set_context(<span class="st">"poster"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sns.set_context(<span class="st">"poster"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f77d2ca3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.736347Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.736216Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.739090Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.738738Z&quot;}}" data-hide="true" data-execution_count="3" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_simple_plot():</span>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.736347Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.736216Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.739090Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.738738Z&quot;}" data-hide="true" data-execution_count="3" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_simple_plot():</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    fig, axes<span class="op">=</span>plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">5</span>), nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_ylabel(<span class="st">"$y$"</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_xlabel(<span class="st">"$x$"</span>)</span>
@@ -473,141 +279,135 @@ window.Quarto = {
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_xlim([<span class="dv">0</span>,<span class="dv">1</span>])</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_xlim([<span class="dv">0</span>,<span class="dv">1</span>])</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()<span class="op">;</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> axes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> axes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="revisiting-the-model" class="level2">
 <h2 class="anchored" data-anchor-id="revisiting-the-model">Revisiting the model</h2>
 <p>Let <span class="math inline">\(x\)</span> be the fraction of religious people in a county and <span class="math inline">\(y\)</span> be the probability of voting for Romney as a function of <span class="math inline">\(x\)</span>. In other words <span class="math inline">\(y_i\)</span> is data that pollsters have taken which tells us their estimate of people voting for Romney and <span class="math inline">\(x_i\)</span> is the fraction of religious people in county <span class="math inline">\(i\)</span>. Because poll samples are finite, there is a margin of error on each data point or county <span class="math inline">\(i\)</span>, but we will ignore that for now.</p>
 <p>Let us assume that we have a “population” of 200 counties <span class="math inline">\(x\)</span>:</p>
-<div id="274e0404" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.740300Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.740217Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.747767Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.747302Z&quot;}}" data-execution_count="4" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dffull<span class="op">=</span>pd.read_csv(<span class="st">"data/religion.csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dffull.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.740300Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.740217Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.747767Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.747302Z&quot;}" data-execution_count="4" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dffull<span class="op">=</span>pd.read_csv(<span class="st">"data/religion.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dffull.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
+
 <div>
 
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">promney</th>
-<th data-quarto-table-cell-role="th">rfrac</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>0.047790</td>
-<td>0.00</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>0.051199</td>
-<td>0.01</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>0.054799</td>
-<td>0.02</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>0.058596</td>
-<td>0.03</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>0.062597</td>
-<td>0.04</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>promney</th>
+      <th>rfrac</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.047790</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.051199</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.054799</td>
+      <td>0.02</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.058596</td>
+      <td>0.03</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.062597</td>
+      <td>0.04</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
 <p>Lets suppose now that the Lord came by and told us that the points in the plot below captures <span class="math inline">\(f(x)\)</span> exactly.</p>
-<div id="69ce5fd7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.748768Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.748699Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.791353Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.790897Z&quot;}}" data-execution_count="5" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>dffull.rfrac.values</span>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.748768Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.748699Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.791353Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.790897Z&quot;}" data-execution_count="5" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>dffull.rfrac.values</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f<span class="op">=</span>dffull.promney.values</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,f,<span class="st">'.'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,f,<span class="st">'.'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Notice that our sampling of <span class="math inline">\(x\)</span> is not quite uniform: there are more points around <span class="math inline">\(x\)</span> of 0.7.</p>
 <p>Now, in real life we are only given a sample of points. Lets assume that out of this population of 200 points we are given a sample <span class="math inline">\(\cal{D}\)</span> of 30 data points. Such data is called <strong>in-sample data</strong>. Contrastingly, the entire population of data points is also called <strong>out-of-sample data</strong>.</p>
-<div id="05d00cf3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.792382Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.792299Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.796429Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.796096Z&quot;}}" data-execution_count="6" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/noisysample.csv"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.792382Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.792299Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.796429Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.796096Z&quot;}" data-execution_count="6" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/noisysample.csv"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
+
 <div>
 
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">f</th>
-<th data-quarto-table-cell-role="th">i</th>
-<th data-quarto-table-cell-role="th">x</th>
-<th data-quarto-table-cell-role="th">y</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>0.075881</td>
-<td>7</td>
-<td>0.07</td>
-<td>0.138973</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>0.085865</td>
-<td>9</td>
-<td>0.09</td>
-<td>0.050510</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>0.096800</td>
-<td>11</td>
-<td>0.11</td>
-<td>0.183821</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>0.184060</td>
-<td>23</td>
-<td>0.23</td>
-<td>0.057621</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>0.285470</td>
-<td>33</td>
-<td>0.33</td>
-<td>0.358174</td>
-</tr>
-</tbody>
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>f</th>
+      <th>i</th>
+      <th>x</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.075881</td>
+      <td>7</td>
+      <td>0.07</td>
+      <td>0.138973</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.085865</td>
+      <td>9</td>
+      <td>0.09</td>
+      <td>0.050510</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.096800</td>
+      <td>11</td>
+      <td>0.11</td>
+      <td>0.183821</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.184060</td>
+      <td>23</td>
+      <td>0.23</td>
+      <td>0.057621</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.285470</td>
+      <td>33</td>
+      <td>0.33</td>
+      <td>0.358174</td>
+    </tr>
+  </tbody>
 </table>
-
 </div>
 </div>
 </div>
-<div id="9c244675" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.797417Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.797346Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.967209Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.966618Z&quot;}}" data-figure_type="w" data-execution_count="7" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>axes<span class="op">=</span>make_plot()</span>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.797417Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.797346Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:34.967209Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:34.966618Z&quot;}" data-figure_type="w" data-execution_count="7" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>axes<span class="op">=</span>make_plot()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(x,f, <span class="st">'k-'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>, label<span class="op">=</span><span class="st">"f (from the Lord)"</span>)<span class="op">;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(x,f, <span class="st">'r.'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, label<span class="op">=</span><span class="st">"population"</span>)<span class="op">;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(df.x,df.f, <span class="st">'o'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"in-sample noiseless data $</span><span class="er">\</span><span class="st">cal</span><span class="sc">{D}</span><span class="st">$"</span>)<span class="op">;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(df.x,df.y, <span class="st">'s'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"in-sample noisy data $</span><span class="er">\</span><span class="st">cal</span><span class="sc">{D}</span><span class="st">$"</span>)<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(df.x,df.f, <span class="st">'o'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"in-sample noiseless data $\cal</span><span class="sc">{D}</span><span class="st">$"</span>)<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(df.x,df.y, <span class="st">'s'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"in-sample noisy data $\cal</span><span class="sc">{D}</span><span class="st">$"</span>)<span class="op">;</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(loc<span class="op">=</span><span class="dv">4</span>)<span class="op">;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend(loc<span class="op">=</span><span class="dv">4</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend(loc<span class="op">=</span><span class="dv">4</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:4: SyntaxWarning: "\c" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\c"? A raw string is also an option.
 &lt;&gt;:5: SyntaxWarning: "\c" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\c"? A raw string is also an option.
@@ -619,11 +419,7 @@ window.Quarto = {
   axes[1].plot(df.x,df.y, 's', alpha=0.6, label="in-sample noisy data $\cal{D}$");</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -653,15 +449,15 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/train-test.png" class="img-fluid figure-img"></p>
-<figcaption>Splitting dataset D into training and test sets (image after Learning from Data)</figcaption>
+<p></p><figcaption class="figure-caption">Splitting dataset D into training and test sets (image after Learning from Data)</figcaption><p></p>
 </figure>
 </div>
 <p>We ARE taking a hit on the amount of data we have to train our model. The more data we have, the better we can do for our fits. But, you cannot figure out the generalization ability of a learner by looking at the same data it was trained on: there is nothing to generalize to, and as we know we can fit very complex models to training data which have no hope of generalizing (like an interpolator). Thus, to estimate the <strong>out-of-sample error or risk</strong>, we must leave data over to make this estimation.</p>
 <p>At this point you are thinking: the test set is just another sample of the population, just like the training set. What guarantee do we have that it approximates the out-of-sample error well? And furthermore, if we pick 6 out of 30 points as a test set, why would you expect the estimate to be any good?</p>
 <p>We will kind-of hand wavingly show later that the test set error is a good estimate of the out of sample error, especially for larger and larger test sets. You are right to worry that 6 points is perhaps too few, but thats what we have for now, and we shall work with them.</p>
 <p>We are <strong>using the training set then, as our in-sample set, and the test set as a proxy for out-of-sample.</strong>.</p>
-<div id="3bbbf92d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.968469Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.968384Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.084992Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.084497Z&quot;}}" data-execution_count="8" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:34.968469Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:34.968384Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.084992Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.084497Z&quot;}" data-execution_count="8" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>datasize<span class="op">=</span>df.shape[<span class="dv">0</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#split dataset using the index, as we have x,f, and y that we want to split.</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>itrain,itest <span class="op">=</span> train_test_split(<span class="bu">range</span>(<span class="dv">30</span>),train_size<span class="op">=</span><span class="dv">24</span>, test_size<span class="op">=</span><span class="dv">6</span>)</span>
@@ -670,29 +466,28 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>ytrain <span class="op">=</span> df.y[itrain].values</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>xtest<span class="op">=</span> df.x[itest].values</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>ftest <span class="op">=</span> df.f[itest].values</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ytest <span class="op">=</span> df.y[itest].values</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ytest <span class="op">=</span> df.y[itest].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ded6d12d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.086257Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.086105Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.189498Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.189105Z&quot;}}" data-execution_count="9" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>axes<span class="op">=</span>make_plot()</span>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.086257Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.086105Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.189498Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.189105Z&quot;}" data-execution_count="9" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>axes<span class="op">=</span>make_plot()</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(df.x,df.f, <span class="st">'k-'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"f (from the Lord)"</span>)<span class="op">;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(df.x,df.y, <span class="st">'o'</span>,alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"$</span><span class="er">\</span><span class="st">cal</span><span class="sc">{D}</span><span class="st">$"</span>)<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(df.x,df.y, <span class="st">'o'</span>,alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"$\cal</span><span class="sc">{D}</span><span class="st">$"</span>)<span class="op">;</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(df.x,df.f, <span class="st">'k-'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"f (from the Lord)"</span>)<span class="op">;</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(xtrain, ytrain, <span class="st">'s'</span>, label<span class="op">=</span><span class="st">"training"</span>)</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(xtest, ytest, <span class="st">'s'</span>, label<span class="op">=</span><span class="st">"testing"</span>)</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(loc<span class="op">=</span><span class="st">"lower right"</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend(loc<span class="op">=</span><span class="st">"lower right"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend(loc<span class="op">=</span><span class="st">"lower right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:3: SyntaxWarning: "\c" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\c"? A raw string is also an option.
 &lt;&gt;:3: SyntaxWarning: "\c" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\c"? A raw string is also an option.
 /var/folders/wq/mr3zj9r14dzgjnq9rjx_vqbc0000gn/T/ipykernel_49236/549138771.py:3: SyntaxWarning: "\c" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\c"? A raw string is also an option.
   axes[0].plot(df.x,df.y, 'o',alpha=0.6, label="$\cal{D}$");</code></pre>
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-10-output-2.png" class="img-fluid figure-img"></p>
-</figure>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>&lt;matplotlib.legend.Legend at 0x110540980&gt;</code></pre>
 </div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-10-output-3.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -717,13 +512,13 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/sklearntrans.jpg" class="img-fluid figure-img"></p>
-<figcaption>Polynomial feature transform: expanding x into a design matrix</figcaption>
+<p></p><figcaption class="figure-caption">Polynomial feature transform: expanding x into a design matrix</figcaption><p></p>
 </figure>
 </div>
 <p>Here is an example. The reason for using <code>[[1],[2],[3]]</code> as opposed to <code>[1,2,3]</code> is that scikit-learn expects data to be stored in a two-dimensional array or matrix with size <code>[n_samples, n_features]</code>.</p>
-<div id="f15b6a92" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.190558Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.190463Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.192933Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.192553Z&quot;}}" data-execution_count="10" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>PolynomialFeatures(<span class="dv">3</span>).fit_transform([[<span class="dv">1</span>],[<span class="dv">2</span>], [<span class="dv">3</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.190558Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.190463Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.192933Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.192553Z&quot;}" data-execution_count="10" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>PolynomialFeatures(<span class="dv">3</span>).fit_transform([[<span class="dv">1</span>],[<span class="dv">2</span>], [<span class="dv">3</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>array([[ 1.,  1.,  1.,  1.],
        [ 1.,  2.,  4.,  8.],
@@ -734,11 +529,11 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/reshape.jpg" class="img-fluid figure-img"></p>
-<figcaption>NumPy reshape: converting a 1D array to a column vector</figcaption>
+<p></p><figcaption class="figure-caption">NumPy reshape: converting a 1D array to a column vector</figcaption><p></p>
 </figure>
 </div>
-<div id="b361c9f1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.193990Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.193898Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.195998Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.195651Z&quot;}}" data-execution_count="11" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.193990Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.193898Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.195998Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.195651Z&quot;}" data-execution_count="11" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>array([[1],
        [2],
@@ -746,8 +541,8 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
 </div>
 </div>
 <p>So now we are in the recatangular, rows=samples, columns=features form expected by <code>scikit-learn</code>. Ok, so lets see the process to transform our 1-D dataset <code>x</code> into a d-dimensional one.</p>
-<div id="6ba62056" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.197065Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.196983Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.198934Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.198640Z&quot;}}" data-execution_count="12" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>xtrain</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.197065Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.196983Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.198934Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.198640Z&quot;}" data-execution_count="12" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>xtrain</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>array([0.71829603, 0.91      , 0.23      , 0.96      , 0.67      ,
        0.75841654, 0.56      , 0.82850909, 0.74990267, 0.33      ,
@@ -756,8 +551,8 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
        0.63071361, 0.66      , 0.52      , 0.94      ])</code></pre>
 </div>
 </div>
-<div id="7864ed29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.199855Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.199780Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.201913Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.201571Z&quot;}}" data-execution_count="13" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>xtrain.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.199855Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.199780Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.201913Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.201571Z&quot;}" data-execution_count="13" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>xtrain.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>array([[0.71829603],
        [0.91      ],
@@ -785,8 +580,8 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
        [0.94      ]])</code></pre>
 </div>
 </div>
-<div id="c4f12224" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.202972Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.202906Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.205443Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.205034Z&quot;}}" data-execution_count="14" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>PolynomialFeatures(<span class="dv">2</span>).fit_transform(xtrain.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.202972Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.202906Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.205443Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.205034Z&quot;}" data-execution_count="14" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>PolynomialFeatures(<span class="dv">2</span>).fit_transform(xtrain.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>array([[1.        , 0.71829603, 0.51594919],
        [1.        , 0.91      , 0.8281    ],
@@ -823,7 +618,7 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/sklearn2.jpg" class="img-fluid figure-img"></p>
-<figcaption>Scikit-learn train/test data layout: X_train, y_train, X_test, y_test</figcaption>
+<p></p><figcaption class="figure-caption">Scikit-learn train/test data layout: X_train, y_train, X_test, y_test</figcaption><p></p>
 </figure>
 </div>
 <p>The test set <code>Xtest</code> has the same structure, and is used in the <code>.predict</code> interface. Once we have fit the estimator, we predict the results on the test set by:</p>
@@ -832,15 +627,15 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
 <p>A summary of the scikit-learn interface can be found here:</p>
 <p>http://nbviewer.jupyter.org/github/jakevdp/sklearn_pycon2015/blob/master/notebooks/02.2-Basic-Principles.ipynb#Recap:-Scikit-learn’s-estimator-interface</p>
 <p>Lets put this alltogether. Below we write a function to create multiple datasets, one for each polynomial degree:</p>
-<div id="19ed8743" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.206459Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.206387Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.208301Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.208001Z&quot;}}" data-execution_count="15" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_features(train_set, test_set, degrees):</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    traintestlist<span class="op">=</span>[]</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> d <span class="kw">in</span> degrees:</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        traintestdict<span class="op">=</span>{}</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        traintestdict[<span class="st">'train'</span>] <span class="op">=</span> PolynomialFeatures(d).fit_transform(train_set.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        traintestdict[<span class="st">'test'</span>] <span class="op">=</span> PolynomialFeatures(d).fit_transform(test_set.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        traintestlist.append(traintestdict)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> traintestlist</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.206459Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.206387Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.208301Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.208001Z&quot;}" data-execution_count="15" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_features(train_set, test_set, degrees):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    traintestlist<span class="op">=</span>[]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> d <span class="kw">in</span> degrees:</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        traintestdict<span class="op">=</span>{}</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        traintestdict[<span class="st">'train'</span>] <span class="op">=</span> PolynomialFeatures(d).fit_transform(train_set.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        traintestdict[<span class="st">'test'</span>] <span class="op">=</span> PolynomialFeatures(d).fit_transform(test_set.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        traintestlist.append(traintestdict)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> traintestlist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -853,18 +648,18 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
 <p>The predictor interface extends the notion of an estimator by adding a predict method that takes an array X_test and produces predictions for X_test, based on the learned parameters of the estimator.</p>
 </blockquote>
 <p>So, for increasing polynomial degree, and thus feature dimension <code>d</code>, we fit a <code>LinearRegression</code> model on the traing set. We then use scikit-learn again to calculate the error or risk. We calculate the <code>mean_squared_error</code> between the model’s predictions and the data, BOTH on the training set and test set. We plot this error as a function of the defree of the polynomial <code>d</code>.</p>
-<div id="949dad2a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.209244Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.209169Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.251064Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.250595Z&quot;}}" data-execution_count="16" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>degrees<span class="op">=</span><span class="bu">range</span>(<span class="dv">21</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>error_train<span class="op">=</span>np.empty(<span class="bu">len</span>(degrees))</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>error_test<span class="op">=</span>np.empty(<span class="bu">len</span>(degrees))</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>traintestlists<span class="op">=</span>make_features(xtrain, xtest, degrees)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.209244Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.209169Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.251064Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.250595Z&quot;}" data-execution_count="16" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>degrees<span class="op">=</span><span class="bu">range</span>(<span class="dv">21</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>error_train<span class="op">=</span>np.empty(<span class="bu">len</span>(degrees))</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>error_test<span class="op">=</span>np.empty(<span class="bu">len</span>(degrees))</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>traintestlists<span class="op">=</span>make_features(xtrain, xtest, degrees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="13bd62b7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.252266Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.252181Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.254773Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.254362Z&quot;}}" data-execution_count="17" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>traintestlists[<span class="dv">3</span>][<span class="st">'train'</span>], ytrain</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.252266Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.252181Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.254773Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.254362Z&quot;}" data-execution_count="17" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>traintestlists[<span class="dv">3</span>][<span class="st">'train'</span>], ytrain</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>(array([[1.00000000e+00, 7.18296032e-01, 5.15949190e-01, 3.70604256e-01],
         [1.00000000e+00, 9.10000000e-01, 8.28100000e-01, 7.53571000e-01],
@@ -897,8 +692,8 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
         0.65597413, 0.60311145, 0.47094573, 0.93613422]))</code></pre>
 </div>
 </div>
-<div id="22a1c2e1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.255762Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.255687Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.257835Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.257507Z&quot;}}" data-execution_count="18" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>traintestlists[<span class="dv">3</span>][<span class="st">'test'</span>], ytest</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.255762Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.255687Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.257835Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.257507Z&quot;}" data-execution_count="18" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>traintestlists[<span class="dv">3</span>][<span class="st">'test'</span>], ytest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>(array([[1.        , 0.79      , 0.6241    , 0.493039  ],
         [1.        , 0.11      , 0.0121    , 0.001331  ],
@@ -913,28 +708,28 @@ B &amp;:&amp; R_{out \,of \,sample} (g) \approx R_{\cal{D}}(g)
 <section id="estimating-the-out-of-sample-error" class="level3">
 <h3 class="anchored" data-anchor-id="estimating-the-out-of-sample-error">Estimating the out-of-sample error</h3>
 <p>We can then use <code>mean_squared_error</code> from <code>sklearn</code> to calculate the error between the predictions and actual <code>ytest</code> values. Below we calculate this error on both the training set (which we already fit on) and the test set (which we hadnt seen before), and plot how these errors change with the degree of the polynomial.</p>
-<div id="0a00b79d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.258821Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.258752Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.265291Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.264841Z&quot;}}" data-execution_count="19" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>est3 <span class="op">=</span> LinearRegression()</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>est3.fit(traintestlists[<span class="dv">3</span>][<span class="st">'train'</span>], ytrain)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>pred_on_train3<span class="op">=</span>est3.predict(traintestlists[<span class="dv">3</span>][<span class="st">'train'</span>])</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>pred_on_test3<span class="op">=</span>est3.predict(traintestlists[<span class="dv">3</span>][<span class="st">'test'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.258821Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.258752Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.265291Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.264841Z&quot;}" data-execution_count="19" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>est3 <span class="op">=</span> LinearRegression()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>est3.fit(traintestlists[<span class="dv">3</span>][<span class="st">'train'</span>], ytrain)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>pred_on_train3<span class="op">=</span>est3.predict(traintestlists[<span class="dv">3</span>][<span class="st">'train'</span>])</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>pred_on_test3<span class="op">=</span>est3.predict(traintestlists[<span class="dv">3</span>][<span class="st">'test'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2f6a6e1b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.266228Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.266155Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.268147Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.267850Z&quot;}}" data-execution_count="20" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"errtrain"</span>,mean_squared_error(ytrain, pred_on_train3))</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"errtest"</span>,mean_squared_error(ytest, pred_on_test3))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.266228Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.266155Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.268147Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.267850Z&quot;}" data-execution_count="20" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"errtrain"</span>,mean_squared_error(ytrain, pred_on_train3))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"errtest"</span>,mean_squared_error(ytest, pred_on_test3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>errtrain 0.005015554362501814
 errtest 0.005856235863081063</code></pre>
 </div>
 </div>
 <p>Let us now do this for a polynomial of degree 19</p>
-<div id="12ab16f3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.269243Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.269173Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.271838Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.271492Z&quot;}}" data-execution_count="21" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>est19 <span class="op">=</span> LinearRegression()</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>est19.fit(traintestlists[<span class="dv">19</span>][<span class="st">'train'</span>], ytrain)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>pred_on_train19<span class="op">=</span>est19.predict(traintestlists[<span class="dv">19</span>][<span class="st">'train'</span>])</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>pred_on_test19<span class="op">=</span>est19.predict(traintestlists[<span class="dv">19</span>][<span class="st">'test'</span>])</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"errtrain"</span>,mean_squared_error(ytrain, pred_on_train19))</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"errtest"</span>,mean_squared_error(ytest, pred_on_test19))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.269243Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.269173Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.271838Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.271492Z&quot;}" data-execution_count="21" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>est19 <span class="op">=</span> LinearRegression()</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>est19.fit(traintestlists[<span class="dv">19</span>][<span class="st">'train'</span>], ytrain)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>pred_on_train19<span class="op">=</span>est19.predict(traintestlists[<span class="dv">19</span>][<span class="st">'train'</span>])</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>pred_on_test19<span class="op">=</span>est19.predict(traintestlists[<span class="dv">19</span>][<span class="st">'test'</span>])</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"errtrain"</span>,mean_squared_error(ytrain, pred_on_train19))</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"errtest"</span>,mean_squared_error(ytest, pred_on_test19))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>errtrain 0.0027668856750368014
 errtest 278.13941540060097</code></pre>
@@ -945,39 +740,35 @@ errtest 278.13941540060097</code></pre>
 <section id="finding-the-appropriate-complexity" class="level3">
 <h3 class="anchored" data-anchor-id="finding-the-appropriate-complexity">Finding the appropriate complexity</h3>
 <p>Lets now carry out this minimization systematically for each polynomial degree d.</p>
-<div id="2d0db747" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.272898Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.272826Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.284059Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.283737Z&quot;}}" data-execution_count="22" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> degrees:<span class="co">#for increasing polynomial degrees 0,1,2...</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    Xtrain <span class="op">=</span> traintestlists[d][<span class="st">'train'</span>]</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    Xtest <span class="op">=</span> traintestlists[d][<span class="st">'test'</span>]</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#set up model</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#fit</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#predict</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#calculate mean squared error</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#set up model</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    est <span class="op">=</span> LinearRegression()</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">#fit</span></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    est.fit(Xtrain, ytrain)</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#predict</span></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    prediction_on_training <span class="op">=</span> est.predict(Xtrain)</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    prediction_on_test <span class="op">=</span> est.predict(Xtest)</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#calculate mean squared error</span></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    error_train[d] <span class="op">=</span> mean_squared_error(ytrain, prediction_on_training)</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    error_test[d] <span class="op">=</span> mean_squared_error(ytest, prediction_on_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.272898Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.272826Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.284059Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.283737Z&quot;}" data-execution_count="22" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> degrees:<span class="co">#for increasing polynomial degrees 0,1,2...</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    Xtrain <span class="op">=</span> traintestlists[d][<span class="st">'train'</span>]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    Xtest <span class="op">=</span> traintestlists[d][<span class="st">'test'</span>]</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#set up model</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#fit</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#predict</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#calculate mean squared error</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#set up model</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    est <span class="op">=</span> LinearRegression()</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">#fit</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    est.fit(Xtrain, ytrain)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#predict</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    prediction_on_training <span class="op">=</span> est.predict(Xtrain)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    prediction_on_test <span class="op">=</span> est.predict(Xtest)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#calculate mean squared error</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>    error_train[d] <span class="op">=</span> mean_squared_error(ytrain, prediction_on_training)</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    error_test[d] <span class="op">=</span> mean_squared_error(ytest, prediction_on_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f7dd7264" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.285102Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.285031Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.357716Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.357290Z&quot;}}" data-execution_count="23" data-cell-type="code">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>plt.plot(degrees, error_train, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'train (in-sample)'</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>plt.plot(degrees, error_test, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'test'</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>plt.axvline(np.argmin(error_test), <span class="dv">0</span>,<span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">"min test error at d=</span><span class="sc">%d</span><span class="st">"</span><span class="op">%</span>np.argmin(error_test), alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'mean squared error'</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'degree'</span>)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">"log"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2026-03-03T06:44:35.285102Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-03T06:44:35.285031Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-03T06:44:35.357716Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-03T06:44:35.357290Z&quot;}" data-execution_count="23" data-cell-type="code">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.plot(degrees, error_train, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'train (in-sample)'</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>plt.plot(degrees, error_test, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'test'</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>plt.axvline(np.argmin(error_test), <span class="dv">0</span>,<span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">"min test error at d=</span><span class="sc">%d</span><span class="st">"</span><span class="op">%</span>np.argmin(error_test), alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'mean squared error'</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'degree'</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">"log"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The graph shows a very interesting structure. The training error decreases with increasing degree of the polynomial. This ought to make sense given what you know now: one can construct an arbitrarily complex polynomial to fit all the training data: indeed one could construct an order 24 polynomial which perfectly interpolates the 24 data points in the training set. You also know that this would do very badly on the test set as it would wiggle like mad to capture all the data points. And this is indeed what we see in the test set error.</p>
@@ -986,7 +777,7 @@ errtest 278.13941540060097</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/complexity-error-plot.png" class="img-fluid figure-img"></p>
-<figcaption>Bias-variance tradeoff: underfitting vs overfitting as complexity increases</figcaption>
+<p></p><figcaption class="figure-caption">Bias-variance tradeoff: underfitting vs overfitting as complexity increases</figcaption><p></p>
 </figure>
 </div>
 <p>Keep in mind that as you see in the plot above this minimum can be shallow: in this case any of the low order polynomials would be “good enough”.</p>
@@ -1020,7 +811,7 @@ errtest 278.13941540060097</code></pre>
 <p>This also tells us something about complexity. M is a measure of this complexity, and it tells us that our bound is worse for more complex hypothesis spaces. This is our notion of overfitting.</p>
 <p>The Hoeffding inequality can be repharased. Pick a tolerance <span class="math inline">\(\delta\)</span>. Then, note that with probability <span class="math inline">\(1 - 2\,M\,e^{-2\epsilon^2 N}\)</span>, <span class="math inline">\(\vert R_{out} - R_{in} \vert &lt; \epsilon\)</span>. This means</p>
 <p><span class="math display">\[R_{out} &lt;= R_{in} + \epsilon\]</span></p>
-<p>Now let <span class="math inline">\(\delta =  2\,M\,e^{-2\epsilon^2 N}\)</span>.</p>
+<p>Now let <span class="math inline">\(\delta = 2\,M\,e^{-2\epsilon^2 N}\)</span>.</p>
 <p>Then, <strong>with probability</strong> <span class="math inline">\(1-\delta\)</span>:</p>
 <p><span class="math display">\[R_{out} &lt;= R_{in} + \sqrt{\frac{1}{2N}ln(\frac{2M}{\delta})}\]</span></p>
 </section>
@@ -1040,420 +831,206 @@ errtest 278.13941540060097</code></pre>
 <script src="../../assets/download-bundle.js"></script>
 <script src="../../assets/learning-paths.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    setColorSchemeToggle(hasAlternateSentinel())
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
         }
       }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
       return false;
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
     }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/univ\.ai");
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
-      } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
-      }
-    }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
-          }
-        } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
-            if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
-      } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
-        });
-      }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
-  </script>
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
 </div> <!-- /content -->
-
 
 
 

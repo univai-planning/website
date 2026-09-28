@@ -329,7 +329,7 @@ plt.title('Posterior predictive')
 plt.xlabel('k')
 plt.legend()
 ```
-![Figure](https://univ.ai/learning/globemodel/index_files/figure-html/cell-20-output-1.png)
+![Figure](https://univ.ai/learning/globemodel/index_files/figure-html/cell-20-output-2.png)
 
 <!-- cell:35 type:markdown -->
 You can interrogate the posterior-predictive, or **simulated** samples in other ways, asking about the longest run of water tosses, or the number of times the water/land switched. This is left as an exercise. In particular, you will find that the number of switches is not consistent with what you see in our data. This might lead you to question our model...always a good thing..but note that we have very little data as yet to go on

@@ -168,7 +168,7 @@ Output:
 ```
 (0.0, 1000.0)
 ```
-![Figure](https://univ.ai/learning/nnreg/index_files/figure-html/cell-15-output-1.png)
+![Figure](https://univ.ai/learning/nnreg/index_files/figure-html/cell-15-output-2.png)
 
 <!-- cell:16 type:code -->
 ```python

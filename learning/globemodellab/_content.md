@@ -116,7 +116,7 @@ Output:
 ```python
 sns.histplot(grid_post_samples, kde=True)
 ```
-![Figure](https://univ.ai/learning/globemodellab/index_files/figure-html/cell-10-output-1.png)
+![Figure](https://univ.ai/learning/globemodellab/index_files/figure-html/cell-10-output-2.png)
 
 <!-- cell:13 type:markdown -->
 ## Laplace Approximation
@@ -270,7 +270,7 @@ Now we can get samples from here:
 ```python
 sns.histplot(frozen_laplace.rvs(10000), kde=True)
 ```
-![Figure](https://univ.ai/learning/globemodellab/index_files/figure-html/cell-24-output-1.png)
+![Figure](https://univ.ai/learning/globemodellab/index_files/figure-html/cell-24-output-2.png)
 
 <!-- cell:29 type:markdown -->
 ## Conjugate Priors
@@ -542,7 +542,7 @@ plt.title('Posterior predictive')
 plt.xlabel('k')
 plt.legend()
 ```
-![Figure](https://univ.ai/learning/globemodellab/index_files/figure-html/cell-41-output-1.png)
+![Figure](https://univ.ai/learning/globemodellab/index_files/figure-html/cell-41-output-2.png)
 
 <!-- cell:60 type:markdown -->
 ### Replicative predictives

@@ -152,7 +152,7 @@ Output:
 ```
 (-4.0, 4.0)
 ```
-![Figure](https://univ.ai/learning/gp1/index_files/figure-html/cell-7-output-1.png)
+![Figure](https://univ.ai/learning/gp1/index_files/figure-html/cell-7-output-2.png)
 
 <!-- cell:16 type:markdown -->
 Now we add some data. This data can be thought of as augmenting the dimension of our multivariate normal in a structure that is captured by the formulae we wrote down at the beginning of this notebook:

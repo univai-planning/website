@@ -1,0 +1,13 @@
+{
+  "summary": {
+    "skipped": 1
+  },
+  "total": 0,
+  "selectors": [
+    "learning/notebooks"
+  ],
+  "cache_report": ".cx/cache/test-bundles.json",
+  "results": [],
+  "status": "skipped",
+  "reason": "matched source page does not generate a notebook bundle"
+}
